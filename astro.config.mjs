@@ -7,6 +7,7 @@ export default defineConfig({
   site: 'https://example.com', // TODO: change to real domain
   redirects: {
     '/back-pain': '/what-we-treat/back-pain/',
+    '/testimonials': '/patient-testimonials/',
   },
   integrations: [react(), sitemap()],
   vite: {

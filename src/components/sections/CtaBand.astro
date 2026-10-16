@@ -1,12 +1,15 @@
 ---
 import Arrow from '@components/ui/Arrow.astro';
 import { img } from '@/data/images';
-interface Props { title?: string; text?: string; phoneHref?: string; phoneLabel?: string }
+interface Action { label: string; href: string; kind?: 'primary' | 'light' | 'outline'; external?: boolean }
+interface Props { title?: string; text?: string; phoneHref?: string; phoneLabel?: string; eyebrow?: string; actions?: Action[] }
 const {
   title = 'Start your journey to better movement today.',
   text = 'Whether you are recovering from an injury or want to move better, book with our expert therapists.',
   phoneHref = 'tel:+12129747252',
   phoneLabel = '(212) 974-7252',
+  eyebrow = 'Book a visit',
+  actions,
 } = Astro.props;
 ---
 
@@ -14,13 +17,20 @@ const {
   <img src={img.nycBand} alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" class="absolute inset-0 -z-10 h-full w-full object-cover" />
   <div class="absolute inset-0 -z-10 bg-pine-950/80"></div>
   <div class="container-x text-center" data-reveal>
-    <p class="eyebrow !text-clay-300">Book a visit</p>
+    <p class="eyebrow !text-clay-300">{eyebrow}</p>
     <h2 class="mx-auto mt-4 max-w-3xl text-3xl leading-tight sm:text-5xl">{title}</h2>
     <p class="mx-auto mt-5 max-w-xl text-lg text-white/80">{text}</p>
     <div class="mt-9 flex flex-wrap justify-center gap-3">
-      <a href="/appointment/" class="btn btn-primary">New patients <Arrow /></a>
-      <a href="https://www.zocdoc.com/practice/cynergy-physical-therapy-p-c-147257" target="_blank" rel="noopener noreferrer" class="btn btn-light">Book online (Zocdoc)</a>
-      <a href={phoneHref} class="btn btn-outline-light">Call {phoneLabel}</a>
+      {actions ? actions.map((a) => (
+        <a href={a.href} class:list={['btn', a.kind === 'light' ? 'btn-light' : a.kind === 'outline' ? 'btn-outline-light' : 'btn-primary']} target={a.external ? '_blank' : undefined} rel={a.external ? 'noopener noreferrer' : undefined}>{a.label}</a>
+      )) : (
+        <>
+          <a href="/appointment/" class="btn btn-primary">New patients <Arrow /></a>
+          <a href="https://www.zocdoc.com/practice/cynergy-physical-therapy-p-c-147257" target="_blank" rel="noopener noreferrer" class="btn btn-light">Book online (Zocdoc)</a>
+          <a href={phoneHref} class="btn btn-outline-light">Call {phoneLabel}</a>
+        </>
+      )}
     </div>
+
   </div>
 </section>

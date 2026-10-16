@@ -1,0 +1,44 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import PageHero from '@components/sections/PageHero.astro';
+import SectionHeading from '@components/ui/SectionHeading.astro';
+import ReviewsFilter, { type ReviewCard } from '@components/islands/ReviewsFilter';
+import CtaBand from '@components/sections/CtaBand.astro';
+import { img } from '@/data/images';
+import { locations } from '@/data/locations';
+import { patientReviews } from '@/data/patient-reviews';
+
+// Reviews come from https://cynergypt.com/testimonials/ (short excerpts and summaries).
+const nameOf = (id?: string) => locations.find((l) => l.id === id)?.name;
+const items: ReviewCard[] = patientReviews.map((r) => ({ ...r, placeLabel: nameOf(r.place) }));
+const places = locations
+  .filter((l) => patientReviews.some((r) => r.place === l.id))
+  .map((l) => ({ id: l.id, label: l.name }));
+---
+
+<BaseLayout
+  title="Patient Reviews | Cynergy Physical Therapy"
+  description="What patients say about Cynergy Physical Therapy in New York City: real stories from our Midtown, Cobble Hill and ADPT clinics."
+>
+  <PageHero
+    eyebrow="Patient reviews"
+    title="What our patients are saying."
+    text="Real words from the people we care for. Filter by clinic to read stories from the place nearest you."
+    image={img.reviews}
+    imageAlt="Smiling patients"
+    crumbs={[{ label: 'Home', href: '/' }, { label: 'At Cynergy', href: '/about/' }, { label: 'Patient Reviews' }]}
+    primary={{ label: 'Book an appointment', href: '/appointment/' }}
+    secondary={{ label: 'Call (212) 974-7252', href: 'tel:+12129747252' }}
+  />
+
+  <section class="py-20 lg:py-28">
+    <div class="container-x">
+      <SectionHeading eyebrow="Stories" title="Better movement, in their words." text="Excerpts from reviews on our previous site." />
+      <div class="mt-10" data-reveal>
+        <ReviewsFilter client:load items={items} places={places} />
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</BaseLayout>
