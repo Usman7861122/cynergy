@@ -69,23 +69,6 @@ export const mainNav: NavItem[] = [
     },
   },
   {
-    label: 'At Cynergy',
-    href: '/about/',
-    mega: {
-      kind: 'about',
-      blurbTitle: 'Our style of care',
-      blurb:
-        'Professional, energetic and compassionate. We treat the whole person, one-on-one, with warmth and humor.',
-      cta: { label: 'More About Cynergy', href: '/about/' },
-      heading: 'Learn more',
-      links: [
-        { label: 'Frequently Asked Questions', href: '/faq/', desc: 'Quick answers before your first visit' },
-        { label: 'Patient Reviews', href: '/patient-testimonials/', desc: 'What our patients say about us' },
-        { label: 'Mentorship At Cynergy', href: '/mentorship-at-cynergy/', desc: 'How we train the next generation' },
-      ],
-    },
-  },
-  {
     label: 'Sports',
     href: '/sports-physical-therapy/',
     mega: {
@@ -126,6 +109,23 @@ export const mainNav: NavItem[] = [
         text: 'Care for athletes at every level.',
         cta: { label: 'Explore sports care', href: '/sports-physical-therapy/' },
       },
+    },
+  },
+  {
+    label: 'At Cynergy',
+    href: '/about/',
+    mega: {
+      kind: 'about',
+      blurbTitle: 'Our style of care',
+      blurb:
+        'Professional, energetic and compassionate. We treat the whole person, one-on-one, with warmth and humor.',
+      cta: { label: 'More About Cynergy', href: '/about/' },
+      heading: 'Learn more',
+      links: [
+        { label: 'Frequently Asked Questions', href: '/faq/', desc: 'Quick answers before your first visit' },
+        { label: 'Patient Reviews', href: '/patient-testimonials/', desc: 'What our patients say about us' },
+        { label: 'Mentorship At Cynergy', href: '/mentorship-at-cynergy/', desc: 'How we train the next generation' },
+      ],
     },
   },
   { label: 'Providers', href: '/provider/', mega: { kind: 'providers' } },
