@@ -7,7 +7,7 @@ const INTERVAL = 7000;
 const slides = [
   {
     image: img.nycHero,
-    title: 'New York’s home for movement.',
+    title: 'New York’s home for\u00A0movement.',
     text: 'Physical and Occupational Therapy, Pilates and performance care across six locations in New York City.',
   },
   {
