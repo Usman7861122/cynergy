@@ -325,7 +325,7 @@ export default function Header({ transparentTop = false }: { transparentTop?: bo
         <div aria-hidden="true" className={`pointer-events-none absolute inset-x-0 top-0 -z-10 h-[15rem] bg-gradient-to-b from-pine-950/90 via-pine-950/60 via-50% to-transparent transition-opacity duration-500 ${solid ? 'opacity-0' : 'opacity-100'}`} />
         {/* Utility strip */}
         <div className={`hidden overflow-hidden border-b border-white/10 transition-all duration-500 lg:block ${scrolled ? 'max-h-0 border-transparent opacity-0' : 'max-h-12 opacity-100'}`}>
-          <div className="container-x flex h-11 items-center justify-between text-[13px]">
+          <div className="container-x flex h-11 items-center justify-between text-[14px]">
             <p className="text-white/70">Physical &amp; Occupational Therapy in New York City</p>
             <ul className="flex items-center gap-1">
               <li>
@@ -354,7 +354,7 @@ export default function Header({ transparentTop = false }: { transparentTop?: bo
               {mainNav.map((item) => (
                 <li key={item.label} onMouseEnter={() => (item.mega ? enter(item.label) : (keep(), setOpen(null)))}>
                   <div className="flex items-center">
-                    <a href={item.href} className={`inline-flex min-h-11 items-center whitespace-nowrap rounded-md px-3 text-[14px] font-medium tracking-wide transition hover:text-white ${open === item.label ? 'text-white' : 'text-white/90'}`}>
+                    <a href={item.href} className={`inline-flex min-h-11 items-center whitespace-nowrap rounded-md px-3 text-[15px] font-medium tracking-wide 2xl:text-[16px] transition hover:text-white ${open === item.label ? 'text-white' : 'text-white/90'}`}>
                       {item.label}
                     </a>
                     {item.mega && (
