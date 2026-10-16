@@ -1,0 +1,13 @@
+---
+// General page: /injuries/upper-extremity-conditions/
+// Location pages: /injuries/upper-extremity-conditions-midtown-west/
+import ServicePage from '@components/pages/ServicePage.astro';
+import { pathsFor } from '@/data/services';
+
+export function getStaticPaths() {
+  return pathsFor('injuries');
+}
+const { svc, loc } = Astro.props;
+---
+
+<ServicePage svc={svc} loc={loc} />

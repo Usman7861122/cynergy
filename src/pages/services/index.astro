@@ -1,0 +1,53 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import PageHero from '@components/sections/PageHero.astro';
+import SectionHeading from '@components/ui/SectionHeading.astro';
+import ServicesFilter, { type ServiceCard } from '@components/islands/ServicesFilter';
+import LocationCards from '@components/sections/LocationCards.astro';
+import CtaBand from '@components/sections/CtaBand.astro';
+import { img } from '@/data/images';
+import { services, servicePath, locationsFor } from '@/data/services';
+import { blurbs } from '@/data/services/blurbs';
+
+const items: ServiceCard[] = services.map((s) => {
+  const places = locationsFor(s);
+  return {
+    label: s.label,
+    href: servicePath(s),
+    image: s.image,
+    alt: s.imageAlt,
+    blurb: blurbs[s.slug] ?? '',
+    group: s.group === 'offer' ? 'offer' : 'treat',
+    note: places.length < 6 ? `At ${places.map((l) => l.name).join(', ')}` : undefined,
+  };
+});
+---
+
+<BaseLayout
+  title="Our Services | Physical Therapy in New York City | Cynergy"
+  description="Every service at Cynergy Physical Therapy in New York City: what we treat and what we offer, at six locations."
+>
+  <PageHero
+    eyebrow="Services"
+    title="Everything we do, in one place."
+    text="At Cynergy, your goals come first. Browse the conditions we treat and the programs we offer, then pick the clinic that is closest to you."
+    areas="Patients are welcome from across Manhattan and Brooklyn, including Midtown, Chelsea, the Upper East Side and Cobble Hill."
+    image={img.reformer}
+    imageAlt="A therapist guiding a patient through an exercise"
+    crumbs={[{ label: 'Home', href: '/' }, { label: 'Services' }]}
+    primary={{ label: 'Book an appointment', href: '/appointment/' }}
+    secondary={{ label: 'Call (212) 974-7252', href: 'tel:+12129747252' }}
+  />
+
+  <section class="py-20 lg:py-28">
+    <div class="container-x">
+      <SectionHeading eyebrow="All services" title="Find the care you need." text="Use the buttons to see only what we treat or only what we offer." />
+      <div class="mt-10" data-reveal>
+        <ServicesFilter client:load items={items} />
+      </div>
+    </div>
+  </section>
+
+  <LocationCards eyebrow="Find a clinic" title="Care at six New York locations." text="Choose the clinic that is closest to you." />
+  <CtaBand />
+</BaseLayout>

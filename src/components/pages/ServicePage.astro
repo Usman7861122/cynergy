@@ -1,0 +1,259 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import PageHero from '@components/sections/PageHero.astro';
+import SectionHeading from '@components/ui/SectionHeading.astro';
+import ConditionTabs from '@components/islands/ConditionTabs';
+import Faq from '@components/islands/Faq';
+import CtaBand from '@components/sections/CtaBand.astro';
+import LocationCards from '@components/sections/LocationCards.astro';
+import LocationFocus from '@components/sections/LocationFocus.astro';
+import Arrow from '@components/ui/Arrow.astro';
+import type { Location } from '@/data/locations';
+import { telHref } from '@/data/locations';
+import { mainNav } from '@/data/nav';
+import { leaders } from '@/data/providers';
+import { storiesFor } from '@/data/reviews';
+import { commonFaqs } from '@/data/services/common';
+import { servicePath, localPath, type Service } from '@/data/services/types';
+import { locationsFor } from '@/data/services';
+
+// One template for every "What we treat" page.
+// Without `loc` it is the general page. With `loc` it is the same page for one location.
+interface Props { svc: Service; loc?: Location }
+const { svc, loc } = Astro.props;
+
+const offer = svc.group === 'offer';
+const base = servicePath(svc);
+const localHref = (l: Location) => localPath(svc, l.id);
+const phoneLabel = loc ? loc.phone : '(212) 974-7252';
+const phoneHref = loc ? telHref(loc) : 'tel:+12129747252';
+const pageTitle = loc
+  ? `${svc.careName} in ${loc.name}, New York | Cynergy Physical Therapy`
+  : `${svc.seoTitle} | Cynergy Physical Therapy`;
+const pageDesc = loc
+  ? `One-on-one, evidence-based ${svc.careName.toLowerCase()} at Cynergy ${loc.name}, ${loc.line1}, ${loc.city}.`
+  : svc.heroText;
+
+const heroText = loc
+  ? (svc.heroText.includes('At Cynergy, ')
+      ? svc.heroText.replace('At Cynergy, ', `At Cynergy ${loc.name}, ${loc.line1}, `)
+      : `${svc.heroText} Visit us at Cynergy ${loc.name}, ${loc.line1}.`)
+  : svc.heroText;
+
+const faqs = [...(svc.faqs ?? commonFaqs)];
+if (loc) faqs.push({ q: `Where is the ${loc.name} clinic?`, a: `You can find us at ${loc.line1}, ${loc.city}. Call ${loc.phone} to book your visit.` });
+
+const stories = storiesFor(loc?.id);
+const director = loc ? leaders.find((p) => p.name === loc.director) : undefined;
+const related = ((mainNav.find((n) => n.label === 'Services')?.mega as any)?.groups?.[offer ? 1 : 0]?.links ?? []).filter((l: any) => l.href !== base);
+const parent = offer ? { label: 'What We Offer', href: '/what-we-offer/' } : { label: 'What We Treat', href: '/what-we-treat/' };
+const places = locationsFor(svc);
+const nums = ['', 'one', 'two', 'three', 'four', 'five', 'six'];
+const showBoth = !!(svc.causes && svc.approach);
+---
+
+<BaseLayout title={pageTitle} description={pageDesc}>
+  <PageHero
+    eyebrow={loc ? `${parent.label} · ${loc.name}` : parent.label}
+    title={loc ? `${svc.careName} in ${loc.name}.` : svc.heroTitle}
+    text={heroText}
+    areas={loc
+      ? `Patients are welcome from across ${loc.nearby} and the surrounding New York City area.`
+      : 'Patients are welcome from across Manhattan and Brooklyn, including Midtown, Chelsea, the Upper East Side and Cobble Hill.'}
+    image={svc.image}
+    imageAlt={svc.imageAlt}
+    crumbs={loc
+      ? [{ label: 'Home', href: '/' }, { label: parent.label, href: parent.href }, { label: svc.label, href: base }, { label: loc.name }]
+      : [{ label: 'Home', href: '/' }, { label: parent.label, href: parent.href }, { label: svc.label }]}
+    primary={{ label: 'Book an appointment', href: '/appointment/' }}
+    secondary={{ label: `Call ${phoneLabel}`, href: phoneHref }}
+  />
+
+  <!-- Overview -->
+  <section class="py-20 lg:py-28">
+    <div class="container-x grid gap-14 lg:grid-cols-12">
+      <div class="lg:col-span-5" data-reveal>
+        {svc.stat ? (
+          <div class="rounded-xl bg-pine-900 p-8 text-white sm:p-10">
+            <p class="font-serif text-7xl leading-none text-clay-300 sm:text-8xl">{svc.stat.big}{svc.stat.unit && <span class="text-5xl">{svc.stat.unit}</span>}</p>
+            <p class="mt-4 text-lg text-white/85">{svc.stat.text}</p>
+            {svc.stat.extra && (<><span class="my-6 block h-px w-12 bg-clay-300"></span><p class="text-white/75">{svc.stat.extra}</p></>)}
+          </div>
+        ) : (
+          <div class="aspect-[4/3] overflow-hidden rounded-xl bg-sage-200 lg:aspect-[4/5]">
+            <img src={svc.overviewImage ?? svc.whyImage} alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" class="h-full w-full object-cover" />
+          </div>
+        )}
+      </div>
+
+      <div class="lg:col-span-7">
+        <SectionHeading eyebrow={svc.overview.eyebrow} title={svc.overview.title} text={svc.overview.text} />
+        {(svc.causes || svc.approach) && (
+          <div class:list={['mt-10 grid gap-8', showBoth && 'sm:grid-cols-2']}>
+            {svc.causes && (
+              <div data-reveal>
+                <h3 class="text-xl text-pine-950">{svc.causes.title ?? 'Common causes'}</h3>
+                <ul class="mt-4 flex flex-wrap gap-2">
+                  {svc.causes.items.map((c) => <li class="rounded-md bg-sage-100 px-3 py-1.5 text-sm text-pine-900">{c}</li>)}
+                </ul>
+              </div>
+            )}
+            {svc.approach && (
+              <div data-reveal style="--d:100ms">
+                <h3 class="text-xl text-pine-950">{svc.approach.title ?? 'How we treat it'}</h3>
+                <ul class="mt-4 space-y-2">
+                  {svc.approach.items.map((a) => (
+                    <li class="flex items-start gap-3 text-ink/80">
+                      <span class="mt-2 h-1.5 w-4 shrink-0 rounded-sm bg-clay-500"></span>{a}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits -->
+  {svc.benefits && (
+    <section class="bg-cream-100 py-20 lg:py-28">
+      <div class="container-x">
+        <SectionHeading eyebrow={svc.benefits.eyebrow} title={svc.benefits.title} text={svc.benefits.text} align="center" />
+        <ul class="mt-12 grid gap-5 md:grid-cols-3">
+          {svc.benefits.items.map((b, n) => (
+            <li data-reveal style={`--d:${n * 100}ms`}>
+              <div class="group relative h-full overflow-hidden rounded-xl border border-pine-900/10 bg-white p-8 transition duration-500 hover:-translate-y-1.5 hover:border-transparent hover:bg-pine-900 hover:shadow-xl hover:shadow-pine-950/15">
+                <span aria-hidden="true" class="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-clay-500 transition-transform duration-500 group-hover:scale-x-100"></span>
+                <span class="text-sm tabular-nums text-clay-600 transition-colors group-hover:text-clay-300">0{n + 1}</span>
+                <h3 class="mt-4 text-2xl text-pine-950 transition-colors group-hover:text-white">{b.title}</h3>
+                <p class="mt-3 text-ink/70 transition-colors group-hover:text-white/80">{b.text}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <!-- Conditions -->
+  <section class:list={['py-20 lg:py-28', !svc.benefits && 'bg-cream-100']}>
+    <div class="container-x">
+      <SectionHeading eyebrow={svc.conditions.eyebrow} title={svc.conditions.title} text={svc.conditions.text} />
+      <div class="mt-12" data-reveal>
+        <ConditionTabs client:visible items={svc.conditions.items} ariaLabel={svc.conditions.ariaLabel} />
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Cynergy -->
+  <section class="bg-pine-900 py-20 text-white lg:py-28">
+    <div class="container-x grid items-center gap-14 lg:grid-cols-2">
+      <div data-reveal>
+        <div class="aspect-[4/3] overflow-hidden rounded-xl bg-pine-800">
+          <img src={svc.whyImage} alt={svc.whyImageAlt} loading="lazy" decoding="async" referrerpolicy="no-referrer" class="h-full w-full object-cover" />
+        </div>
+      </div>
+      <div>
+        <SectionHeading light eyebrow="Why choose Cynergy" title="We treat the whole person." text="Our experienced therapists build every plan around your priorities, with a warm, supportive approach and a little humor along the way." />
+        <ul class="mt-8 space-y-4" data-reveal style="--d:120ms">
+          {['Athletes', 'Busy professionals', 'Anyone looking for relief'].map((w) => (
+            <li class="flex items-center gap-4 border-b border-white/15 pb-4 text-lg">
+              <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-clay-600 text-white"><Arrow class="h-4 w-4" /></span>{w}
+            </li>
+          ))}
+        </ul>
+        <a href="/about/" class="btn btn-outline-light mt-9" data-reveal>About Cynergy <Arrow /></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-20 lg:py-28">
+    <div class="container-x grid gap-12 lg:grid-cols-12">
+      <div class="lg:col-span-4">
+        <SectionHeading eyebrow="FAQ" title="Questions we often hear." text="Still not sure? Call us and we will help." />
+        <a href={phoneHref} class="btn btn-outline mt-8" data-reveal>{phoneLabel}</a>
+      </div>
+      <div class="lg:col-span-8" data-reveal>
+        <Faq client:visible items={faqs} />
+      </div>
+    </div>
+  </section>
+
+  <!-- Patient stories -->
+  <section class="bg-cream-100 py-20 lg:py-28">
+    <div class="container-x">
+      <div class="flex flex-wrap items-end justify-between gap-6">
+        <SectionHeading eyebrow="Patient stories" title="What patients say about us." />
+        <a href="/testimonials/" class="btn btn-outline" data-reveal>Read more reviews <Arrow /></a>
+      </div>
+      <ul class="mt-12 grid gap-5 md:grid-cols-3">
+        {stories.map((s, n) => (
+          <li data-reveal style={`--d:${n * 100}ms`}>
+            <figure class="flex h-full flex-col rounded-xl border border-pine-900/10 bg-white p-8">
+              <svg class="h-8 w-8 text-clay-500" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7.2 6C4.9 7.7 3.5 10 3.5 13v5h6v-6H6.3c0-1.7.9-3.1 2.6-4.1L7.2 6Zm9.5 0c-2.3 1.7-3.7 4-3.7 7v5h6v-6h-3.2c0-1.7.9-3.1 2.6-4.1L16.7 6Z" /></svg>
+              <blockquote class="mt-4 flex-1 text-lg text-ink/80">{s.text}</blockquote>
+              <figcaption class="mt-6 border-t border-pine-900/10 pt-4 text-sm font-semibold uppercase tracking-[0.18em] text-pine-900">{s.name}</figcaption>
+            </figure>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  {loc && director && (
+    <section class="py-16 lg:py-24">
+      <div class="container-x">
+        <div class="grid items-center gap-8 rounded-xl border border-pine-900/10 bg-white p-6 sm:p-8 md:grid-cols-[220px_1fr]" data-reveal>
+          <img src={director.image} alt={director.name} loading="lazy" referrerpolicy="no-referrer" class="aspect-square w-full max-w-[220px] rounded-lg object-cover" />
+          <div>
+            <p class="eyebrow">Your clinic director</p>
+            <h2 class="mt-3 text-3xl text-pine-950 sm:text-4xl">{director.name}</h2>
+            <p class="mt-1 text-sm font-semibold uppercase tracking-[0.18em] text-pine-900">{director.credentials} · {director.role}</p>
+            <p class="mt-4 max-w-prose text-ink/80">{director.name.split(' ')[0]} leads the team at Cynergy {loc.name}. Meet the person who will help guide your care.</p>
+            <a href={director.href} class="btn btn-outline mt-6">Read full bio <Arrow /></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  {loc ? (
+    <LocationFocus loc={loc} service={svc.careName} hrefFor={localHref} others={places} />
+  ) : (
+    <LocationCards
+      eyebrow="Where we offer it"
+      ids={places.map((l) => l.id)}
+      title={`${svc.careName} at ${places.length === 6 ? 'all six locations' : `${nums[places.length]} of our locations`}.`}
+      text="Choose the clinic that is closest to you. Every location offers one-on-one care."
+      serviceHref={localHref}
+      serviceLabel={(l) => `${svc.careName} in ${l.name}`}
+    />
+  )}
+
+  <CtaBand
+    title={loc ? `Start your ${svc.label.toLowerCase()} care in ${loc.name} today.` : undefined}
+    text={loc ? `Book with our expert therapists at ${loc.line1}, ${loc.city}.` : undefined}
+    phoneHref={phoneHref}
+    phoneLabel={phoneLabel}
+  />
+
+  <!-- Related conditions -->
+  <section class="py-16 lg:py-24">
+    <div class="container-x">
+      <SectionHeading eyebrow="More to explore" title={offer ? "More of what we offer." : "Other conditions we treat."} />
+      <ul class="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4" data-reveal>
+        {related.map((l: { label: string; href: string }) => (
+          <li class="h-full">
+            <a href={l.href} class="group flex h-full min-h-14 items-center justify-between gap-3 rounded-lg border border-pine-900/15 px-5 py-3 text-pine-950 transition hover:border-pine-900 hover:bg-pine-900 hover:text-white">
+              <span class="font-serif text-lg">{l.label}</span>
+              <Arrow class="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-1" />
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</BaseLayout>

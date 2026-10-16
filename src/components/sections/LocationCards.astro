@@ -1,0 +1,48 @@
+---
+import SectionHeading from '@components/ui/SectionHeading.astro';
+import Arrow from '@components/ui/Arrow.astro';
+import { locations, directionsHref, telHref, type Location } from '@/data/locations';
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  text?: string;
+  /** Show only these location ids. Leave empty to show all locations. */
+  ids?: string[];
+  /** If set, each card gets a button to a page about that service at this location. */
+  serviceHref?: (l: Location) => string;
+  serviceLabel?: (l: Location) => string;
+}
+const { eyebrow = 'Locations', title, text, ids, serviceHref, serviceLabel } = Astro.props;
+const list = ids?.length ? locations.filter((l) => ids.includes(l.id)) : locations;
+---
+
+<section class="bg-cream-100 py-20 lg:py-28">
+  <div class="container-x">
+    <SectionHeading eyebrow={eyebrow} title={title} text={text} />
+    <ul class="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+      {list.map((l, n) => (
+        <li data-reveal style={`--d:${(n % 3) * 90}ms`}>
+          <article class="group relative flex h-full flex-col overflow-hidden rounded-xl border border-pine-900/10 bg-white p-7 transition duration-500 hover:-translate-y-1.5 hover:border-transparent hover:shadow-xl hover:shadow-pine-950/15">
+            <span aria-hidden="true" class="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-clay-500 transition-transform duration-500 group-hover:scale-x-100"></span>
+            <p class="text-sm tabular-nums text-clay-600">{String(n + 1).padStart(2, '0')}</p>
+            <h3 class="mt-3 text-2xl text-pine-950">{l.name}</h3>
+            <address class="mt-4 text-ink/75 not-italic">{l.line1}<br />{l.city}</address>
+            <a href={telHref(l)} class="mt-3 inline-flex min-h-11 items-center font-medium text-pine-900 underline-offset-4 hover:underline">{l.phone}</a>
+            <div class="mt-auto flex flex-col gap-3 border-t border-pine-900/10 pt-5">
+              {serviceHref ? (
+                <a href={serviceHref(l)} class="btn btn-primary w-full !justify-between text-left">
+                  <span>{serviceLabel ? serviceLabel(l) : 'View this service here'}</span>
+                  <Arrow class="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-1" />
+                </a>
+              ) : (
+                <a href={directionsHref(l)} target="_blank" rel="noopener noreferrer" class="btn btn-primary w-full">Directions</a>
+              )}
+              <a href={l.href} class="btn btn-outline !min-h-10 w-full">Location details</a>
+            </div>
+          </article>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

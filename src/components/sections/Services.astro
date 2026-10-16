@@ -1,0 +1,47 @@
+---
+import SectionHeading from '@components/ui/SectionHeading.astro';
+import Arrow from '@components/ui/Arrow.astro';
+import { img } from '@/data/images';
+
+const services = [
+  { title: 'Physical Therapy for Musicians', href: '/therapy-for-musicians/', image: img.musicians, excerpt: 'Care for the hands, shoulders and back of players and singers, so you can keep making music.' },
+  { title: 'Pilates', href: '/pilates/', image: img.pilatesStudio, excerpt: 'Reformer sessions led by therapists to build core strength, control and balance.' },
+  { title: 'Pre and Postnatal Physical Therapy', href: '/pre-and-postnatal-physical-therapy/', image: img.prenatal, excerpt: 'Gentle, guided support for your body before and after birth.' },
+  { title: 'Sports Medicine', href: '/sports-physical-therapy/', image: img.sportsMedicine, excerpt: 'Injury care and return-to-play plans for athletes of all levels.' },
+  { title: 'Sports Performance Training', href: '/sports-performance-training/', image: img.sportsPerformance, excerpt: 'Strength and movement training for athletes, adults and youth.' },
+  { title: 'Pelvic Floor Therapy', href: '/what-we-treat/pelvic-floor-health/', image: img.pelvic, excerpt: 'Private, one-on-one care for pelvic pain, leaks and digestive health.' },
+];
+---
+
+<section id="services" class="bg-cream-100 py-20 lg:py-28">
+  <div class="container-x">
+    <SectionHeading eyebrow="Our services" title="Care for how you want to move." text="Hover over a card to learn more." />
+
+    <ul class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {services.map((s, n) => (
+        <li data-reveal style={`--d:${(n % 3) * 90}ms`}>
+          <a href={s.href} class="group relative block aspect-[4/5] overflow-hidden rounded-2xl bg-sage-200">
+            <img src={s.image} alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" class="absolute inset-0 h-full w-full object-cover transition duration-[900ms] ease-out group-hover:scale-110 group-focus-visible:scale-110" />
+            <div class="absolute inset-0 bg-gradient-to-t from-pine-950/85 via-pine-950/10 to-transparent"></div>
+            <div class="absolute inset-0 bg-pine-950/70 opacity-0 transition duration-500 group-hover:opacity-100 group-focus-visible:opacity-100 [@media(hover:none)]:opacity-100"></div>
+            <div class="absolute inset-x-0 bottom-0 p-6 text-white sm:p-7">
+              <h3 class="text-2xl leading-snug">{s.title}</h3>
+              <div class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-500 ease-out group-hover:grid-rows-[1fr] group-focus-visible:grid-rows-[1fr] [@media(hover:none)]:grid-rows-[1fr]">
+                <div class="overflow-hidden">
+                  <p class="pt-3 text-[15px] text-white/85">{s.excerpt}</p>
+                  <span class="mt-4 inline-flex items-center gap-2 border-b border-clay-300 pb-0.5 text-sm font-medium text-clay-300">
+                    Read more <Arrow class="h-4 w-4 transition group-hover:translate-x-1" />
+                  </span>
+                </div>
+              </div>
+            </div>
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <div class="mt-12 text-center" data-reveal>
+      <a href="/services/" class="btn btn-primary">View more services <Arrow /></a>
+    </div>
+  </div>
+</section>

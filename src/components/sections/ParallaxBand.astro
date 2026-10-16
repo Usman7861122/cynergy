@@ -1,0 +1,23 @@
+---
+import { img } from '@/data/images';
+---
+
+<!-- Fixed-window parallax: the image stays fixed to the viewport and this section "reveals" it as you scroll. -->
+<section aria-label="Our promise" class="relative flex h-[85svh] min-h-[480px] items-center justify-center text-center text-white [clip-path:inset(0)]">
+  <img
+    src={img.nycBand}
+    alt=""
+    loading="lazy"
+    decoding="async"
+    referrerpolicy="no-referrer"
+    class="parallax-fixed fixed inset-0 -z-10 h-[100svh] w-full object-cover object-center"
+  />
+  <div class="absolute inset-0 bg-gradient-to-b from-pine-950/45 via-pine-950/30 to-pine-950/55"></div>
+  <div class="container-x relative max-w-4xl" data-reveal>
+    <p class="eyebrow !text-clay-300">Our promise</p>
+    <p class="mt-5 font-serif text-3xl leading-snug sm:text-5xl lg:text-6xl">
+      Therapy that is <em class="font-normal italic text-clay-300">always</em> <span class="whitespace-nowrap">one-on-one.</span>
+    </p>
+    <a href="/appointment/" class="btn btn-light mt-10">Start with a new patient visit</a>
+  </div>
+</section>

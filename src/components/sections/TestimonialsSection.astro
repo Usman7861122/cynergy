@@ -1,0 +1,34 @@
+---
+import Testimonials from '@components/islands/Testimonials';
+import Arrow from '@components/ui/Arrow.astro';
+import { img } from '@/data/images';
+
+// Short excerpts from real reviews on cynergypt.com/testimonials. Add or edit entries here.
+const items = [
+  {
+    quote: 'Cynergy PT is the best in NYC.',
+    story: 'After trying several practices, Julia found Chivonne at our Chelsea location. She was back to her normal activity about a month after a hamstring strain.',
+    name: 'Julia',
+    place: 'Chelsea',
+  },
+  { quote: 'Best in NY. Professional, Fun, intense, friendly, challenging, and effective.', name: 'Michelle G.' },
+  { quote: 'Laurence is by far the most skilled, patient and understanding.', name: 'Rami H.' },
+  { quote: 'Chivonne is the best professional I’ve ever worked with', name: 'Valériane L.' },
+  { quote: 'Alvin, my PT, truly cares about my goals', name: 'Katie K.', place: 'Cobble Hill' },
+  { quote: 'ADPT is by far the best PT establishment I’ve ever been to.', name: 'Deep B.', place: 'ADPT' },
+  { quote: 'Christine is a magician!', name: 'Avery K.', place: 'Cobble Hill' },
+];
+---
+
+<section id="testimonials" class="relative isolate overflow-hidden py-24 text-white lg:py-36">
+  <img src={img.nyc} alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" class="absolute inset-0 -z-10 h-full w-full object-cover" />
+  <div class="absolute inset-0 -z-10 bg-pine-950/70"></div>
+  <div class="absolute inset-0 -z-10 bg-gradient-to-t from-pine-950/80 via-transparent to-pine-950/50"></div>
+  <div class="container-x" data-reveal>
+    <p class="eyebrow mb-4 text-center !text-clay-300">Patient stories</p>
+    <Testimonials client:visible items={items} />
+    <div class="mt-10 text-center">
+      <a href="/testimonials/" class="btn btn-outline-light">Read more reviews <Arrow /></a>
+    </div>
+  </div>
+</section>

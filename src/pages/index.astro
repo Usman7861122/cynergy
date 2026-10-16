@@ -1,0 +1,28 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import HeroSlider from '@components/islands/HeroSlider';
+import WhoWeAre from '@components/sections/WhoWeAre.astro';
+import Services from '@components/sections/Services.astro';
+import WellnessDen from '@components/sections/WellnessDen.astro';
+import ParallaxBand from '@components/sections/ParallaxBand.astro';
+import WhatWeTreat from '@components/sections/WhatWeTreat.astro';
+import GallerySection from '@components/sections/GallerySection.astro';
+import Providers from '@components/sections/Providers.astro';
+import Affiliated from '@components/sections/Affiliated.astro';
+import TestimonialsSection from '@components/sections/TestimonialsSection.astro';
+import LocationsSection from '@components/sections/LocationsSection.astro';
+---
+
+<BaseLayout title="Cynergy Physical Therapy | Physical & Occupational Therapy in New York City" transparentHeader>
+  <HeroSlider client:load />
+  <WhoWeAre />
+  <Services />
+  <WellnessDen />
+  <ParallaxBand />
+  <WhatWeTreat />
+  <GallerySection />
+  <Providers />
+  <Affiliated />
+  <TestimonialsSection />
+  <LocationsSection />
+</BaseLayout>

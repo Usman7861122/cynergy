@@ -1,0 +1,101 @@
+@import "tailwindcss";
+@import "@fontsource-variable/lora";
+@import "@fontsource-variable/lora/wght-italic.css";
+@import "@fontsource-variable/dm-sans";
+
+@theme {
+  --font-serif: "Lora Variable", ui-serif, Georgia, serif;
+  --font-sans: "DM Sans Variable", ui-sans-serif, system-ui, sans-serif;
+
+  /* Deep pine: main brand */
+  --color-pine-950: #0b2421;
+  --color-pine-900: #123530;
+  --color-pine-800: #1a4a43;
+  --color-pine-700: #25625a;
+  --color-pine-600: #2f7a70;
+
+  /* Sage: soft support */
+  --color-sage-100: #e8efeb;
+  --color-sage-200: #d3dfd8;
+  --color-sage-300: #b3c7bc;
+  --color-sage-400: #8fab9d;
+
+  /* Cream: backgrounds */
+  --color-cream-50: #fbf9f4;
+  --color-cream-100: #f5f1e8;
+  --color-cream-200: #ebe4d4;
+
+  /* Clay: warm accent */
+  --color-clay-300: #e4b08d;
+  --color-clay-500: #b8683f;
+  --color-clay-600: #9c532f;
+  --color-clay-700: #7f4224;
+
+  --color-ink: #1b2a27;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body {
+    @apply bg-cream-50 font-sans text-base leading-relaxed text-ink antialiased;
+  }
+  h1, h2, h3, h4 { @apply font-serif; }
+  :focus-visible {
+    outline: 3px solid var(--color-clay-500);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+}
+
+@utility container-x {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 80rem;
+  padding-inline: 1rem;
+  @media (min-width: 640px) { padding-inline: 1.5rem; }
+  @media (min-width: 1024px) { padding-inline: 2rem; }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-md px-6 py-3 text-sm font-medium tracking-wide transition duration-300 active:scale-[0.98];
+  }
+  .btn-primary { @apply bg-clay-600 text-white hover:bg-clay-700; }
+  .btn-light { @apply bg-white text-pine-950 hover:bg-cream-200; }
+  .btn-outline { @apply border border-pine-800 text-pine-900 hover:bg-pine-900 hover:text-white; }
+  .btn-outline-light { @apply border border-white/60 text-white hover:bg-white hover:text-pine-950; }
+  .eyebrow { @apply text-xs font-semibold uppercase tracking-[0.22em] text-clay-600; }
+}
+
+/* Scroll reveal (script in BaseLayout adds .is-in) */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.9s var(--ease-out-expo), transform 0.9s var(--ease-out-expo);
+  transition-delay: var(--d, 0ms);
+}
+.js [data-reveal].is-in { opacity: 1; transform: none; }
+
+/* Hero slide progress bar */
+@keyframes fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.progress-fill {
+  transform-origin: left;
+  animation: fill var(--dur, 7000ms) linear forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js [data-reveal] { opacity: 1; transform: none; transition: none; }
+  .parallax-fixed { position: absolute !important; }
+}
+
+.hide-scrollbar { scrollbar-width: none; }
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+
+/* 3D flip helpers */
+.preserve-3d { transform-style: preserve-3d; -webkit-transform-style: preserve-3d; }
+.bf-hidden { backface-visibility: hidden; -webkit-backface-visibility: hidden; }

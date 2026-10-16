@@ -1,0 +1,48 @@
+---
+import SectionHeading from '@components/ui/SectionHeading.astro';
+import Arrow from '@components/ui/Arrow.astro';
+import { img } from '@/data/images';
+
+const offers = [
+  'Pelvic floor physical therapy',
+  'Prenatal and postpartum care',
+  'Dance medicine',
+  'Performance training',
+  'Pilates Reformer and Barre classes',
+  'Private Pilates Reformer sessions',
+];
+---
+
+<section id="wellness-den" class="relative overflow-hidden bg-pine-900 py-20 text-white lg:py-28">
+  <div class="container-x grid items-center gap-14 lg:grid-cols-2">
+    <div class="relative order-2 lg:order-1" data-reveal>
+      <div class="aspect-[4/3] overflow-hidden rounded-2xl bg-pine-800">
+        <img src={img.wellnessDen} alt="Inside The Wellness Den by Cynergy" loading="lazy" decoding="async" referrerpolicy="no-referrer" class="h-full w-full object-cover" />
+      </div>
+      <p class="absolute -bottom-5 right-4 rounded-md bg-cream-50 px-6 py-3 font-serif text-lg italic text-pine-900 shadow-xl sm:right-8">
+        heal well. move well. live well.
+      </p>
+    </div>
+
+    <div class="order-1 lg:order-2">
+      <SectionHeading
+        light
+        eyebrow="The Wellness Den"
+        title="Where physical therapy meets movement and wellness."
+        text="An integrated space that bridges physical therapy and group fitness. Work one-on-one with a physical therapist, or join Pilates and Barre classes mostly led by physical therapists."
+      />
+      <ul class="mt-8 flex flex-wrap gap-2.5" data-reveal style="--d:120ms">
+        {offers.map((o) => (
+          <li class="group flex cursor-default items-center gap-2.5 rounded-md border border-white/25 px-4 py-2.5 text-sm text-white/90 transition duration-300 hover:-translate-y-1 hover:border-transparent hover:bg-cream-50 hover:text-pine-950 hover:shadow-lg hover:shadow-pine-950/30">
+            <span aria-hidden="true" class="h-1.5 w-1.5 rounded-sm bg-clay-300 transition-all duration-300 group-hover:w-4 group-hover:bg-clay-600"></span>
+            {o}
+          </li>
+        ))}
+      </ul>
+      <div class="mt-10 flex flex-wrap gap-3" data-reveal style="--d:200ms">
+        <a href="https://momence.com/u/wellness-den-vdtmk1" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Book a class <Arrow /></a>
+        <a href="/locations/the-wellness-den-by-cynergy/" class="btn btn-outline-light">Visit The Wellness Den</a>
+      </div>
+    </div>
+  </div>
+</section>

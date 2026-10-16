@@ -1,0 +1,87 @@
+---
+import { img } from '@/data/images';
+import { locations, telHref } from '@/data/locations';
+import { socials, utilityRight, newPatients } from '@/data/nav';
+
+const quick = [
+  { label: 'Services', href: '/services/' },
+  { label: 'At Cynergy', href: '/about/' },
+  { label: 'Providers', href: '/provider/' },
+  { label: 'Media', href: '/media/' },
+  { label: 'Locations', href: '/locations/' },
+  { label: 'Sports', href: '/sports-physical-therapy/' },
+  { label: 'Contact Us', href: '/contact-us/' },
+  { label: 'Careers', href: '/careers-2/' },
+  { label: 'Store', href: '/store/' },
+];
+const more: { label: string; href: string; external?: boolean }[] = [...utilityRight, newPatients, { label: 'FAQ', href: '/faq/' }, { label: 'Patient Reviews', href: '/patient-testimonials/' }];
+const year = new Date().getFullYear();
+
+const icons: Record<string, string> = {
+  Facebook: 'M14 8h3V4h-3a4 4 0 0 0-4 4v2H7v4h3v8h4v-8h3l1-4h-4V8.5A.500.5 0 0 1 14 8Z',
+  YouTube: 'M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2C2 8.8 2 12 2 12s0 3.2.4 4.8a2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8c.4-1.6.4-4.8.4-4.8s0-3.2-.4-4.8ZM10 15V9l5 3-5 3Z',
+  Instagram: 'M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4Zm0 2a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H7Zm5 2.5a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9Zm0 2a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5ZM17.5 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2Z',
+};
+---
+
+<footer class="bg-pine-950 text-white">
+  <div class="container-x grid gap-12 py-16 lg:grid-cols-12 lg:py-20">
+    <div class="lg:col-span-4">
+      <a href="/" aria-label="Cynergy Physical Therapy — home">
+        <img src={img.logoWhite} alt="Cynergy by Rise Therapy" loading="lazy" referrerpolicy="no-referrer" class="h-14 w-auto" />
+      </a>
+      <p class="mt-6 max-w-sm text-white/70">
+        Personalised, cutting-edge rehabilitation and performance care to help you move better and live stronger. Serving NYC with expertise and compassion.
+      </p>
+      <a href="/appointment/" class="btn btn-primary mt-8">Book an appointment</a>
+      <ul class="mt-8 flex gap-3">
+        {socials.map((s) => (
+          <li>
+            <a href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label} class="flex h-11 w-11 items-center justify-center rounded-md border border-white/25 transition hover:bg-white hover:text-pine-950">
+              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d={icons[s.label]} /></svg>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <nav aria-label="Footer" class="grid grid-cols-2 gap-8 lg:col-span-4">
+      <div>
+        <h2 class="eyebrow !text-clay-300">Explore</h2>
+        <ul class="mt-4">
+          {quick.map((n) => <li><a href={n.href} class="flex min-h-10 items-center text-white/75 hover:text-white">{n.label}</a></li>)}
+        </ul>
+      </div>
+      <div>
+        <h2 class="eyebrow !text-clay-300">Patients</h2>
+        <ul class="mt-4">
+          {more.map((n) => (
+            <li>
+              <a href={n.href} {...(n.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})} class="flex min-h-10 items-center text-white/75 hover:text-white">{n.label}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </nav>
+
+    <div class="lg:col-span-4">
+      <h2 class="eyebrow !text-clay-300">Our locations</h2>
+      <ul class="mt-4 space-y-4">
+        {locations.map((l) => (
+          <li class="text-sm">
+            <a href={l.href} class="font-medium text-white hover:underline">{l.name}</a>
+            <p class="text-white/65">{l.line1}, {l.city}</p>
+            <a href={telHref(l)} class="inline-flex min-h-8 items-center text-white/85 hover:underline">{l.phone}</a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+
+  <div class="border-t border-white/10">
+    <div class="container-x flex flex-col gap-2 py-6 text-sm text-white/55 sm:flex-row sm:justify-between">
+      <p>© {year} Cynergy Physical Therapy. All rights reserved.</p>
+      <p>Physical &amp; Occupational Therapy · New York City</p>
+    </div>
+  </div>
+</footer>

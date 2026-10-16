@@ -1,0 +1,13 @@
+---
+import SectionHeading from '@components/ui/SectionHeading.astro';
+import LocationsExplorer from '@components/islands/LocationsExplorer';
+---
+
+<section id="locations" class="py-20 lg:py-28">
+  <div class="container-x">
+    <SectionHeading eyebrow="Locations" title="Six places across New York City." text="Open a location to see its address, phone number and map." />
+    <div class="mt-12" data-reveal>
+      <LocationsExplorer client:visible />
+    </div>
+  </div>
+</section>

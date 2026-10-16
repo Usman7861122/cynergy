@@ -1,0 +1,12 @@
+---
+// Pages that live at the site root, like the live site: /pilates/ and /pilates-midtown-west/
+import ServicePage from '@components/pages/ServicePage.astro';
+import { pathsFor } from '@/data/services';
+
+export function getStaticPaths() {
+  return pathsFor('');
+}
+const { svc, loc } = Astro.props;
+---
+
+<ServicePage svc={svc} loc={loc} />

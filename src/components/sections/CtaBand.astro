@@ -1,0 +1,26 @@
+---
+import Arrow from '@components/ui/Arrow.astro';
+import { img } from '@/data/images';
+interface Props { title?: string; text?: string; phoneHref?: string; phoneLabel?: string }
+const {
+  title = 'Start your journey to better movement today.',
+  text = 'Whether you are recovering from an injury or want to move better, book with our expert therapists.',
+  phoneHref = 'tel:+12129747252',
+  phoneLabel = '(212) 974-7252',
+} = Astro.props;
+---
+
+<section class="relative isolate overflow-hidden py-20 text-white lg:py-28">
+  <img src={img.nycBand} alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" class="absolute inset-0 -z-10 h-full w-full object-cover" />
+  <div class="absolute inset-0 -z-10 bg-pine-950/80"></div>
+  <div class="container-x text-center" data-reveal>
+    <p class="eyebrow !text-clay-300">Book a visit</p>
+    <h2 class="mx-auto mt-4 max-w-3xl text-3xl leading-tight sm:text-5xl">{title}</h2>
+    <p class="mx-auto mt-5 max-w-xl text-lg text-white/80">{text}</p>
+    <div class="mt-9 flex flex-wrap justify-center gap-3">
+      <a href="/appointment/" class="btn btn-primary">New patients <Arrow /></a>
+      <a href="https://www.zocdoc.com/practice/cynergy-physical-therapy-p-c-147257" target="_blank" rel="noopener noreferrer" class="btn btn-light">Book online (Zocdoc)</a>
+      <a href={phoneHref} class="btn btn-outline-light">Call {phoneLabel}</a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,52 @@
+---
+import SectionHeading from '@components/ui/SectionHeading.astro';
+import Arrow from '@components/ui/Arrow.astro';
+import { locations, mapSrc, directionsHref, telHref, type Location } from '@/data/locations';
+
+interface Props { loc: Location; service: string; hrefFor: (l: Location) => string; others?: Location[] }
+const { loc, service, hrefFor, others: pool = locations } = Astro.props;
+const others = pool.filter((l) => l.id !== loc.id);
+---
+
+<section class="bg-cream-100 py-20 lg:py-28">
+  <div class="container-x">
+    <SectionHeading eyebrow="Visit us" title={`${service} in ${loc.name}.`} text="Come see us, or call to book your first visit." />
+
+    <div class="mt-12 grid gap-6 lg:grid-cols-12">
+      <article class="rounded-xl border border-pine-900/10 bg-white p-8 sm:p-10 lg:col-span-5" data-reveal>
+        <p class="eyebrow">{loc.name}</p>
+        <address class="mt-4 font-serif text-2xl leading-snug text-pine-950 not-italic">{loc.line1}<br />{loc.city}</address>
+        <a href={telHref(loc)} class="mt-4 inline-flex min-h-11 items-center font-medium text-pine-900 underline-offset-4 hover:underline">{loc.phone}</a>
+        <p class="mt-4 border-t border-pine-900/10 pt-4 text-sm text-ink/70">{loc.lead}</p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href={directionsHref(loc)} target="_blank" rel="noopener noreferrer" class="btn btn-primary">Get directions</a>
+          <a href={loc.href} class="btn btn-outline">Location details</a>
+        </div>
+      </article>
+
+      <div class="relative min-h-[320px] overflow-hidden rounded-xl bg-sage-200 shadow-xl shadow-pine-950/10 lg:col-span-7" data-reveal style="--d:100ms">
+        <iframe
+          title={`Map of Cynergy ${loc.name}`}
+          src={mapSrc(loc)}
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          class="absolute inset-0 h-full w-full border-0 [filter:saturate(0.8)]"
+        ></iframe>
+      </div>
+    </div>
+
+    <div class="mt-14" data-reveal>
+      <h3 class="text-2xl text-pine-950">{service} at our other locations</h3>
+      <ul class="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+        {others.map((l) => (
+          <li class="h-full">
+            <a href={hrefFor(l)} class="group flex h-full min-h-20 items-center justify-between gap-3 rounded-lg border border-pine-900/15 bg-white px-4 py-3 text-pine-950 transition hover:border-pine-900 hover:bg-pine-900 hover:text-white">
+              <span class="font-serif text-lg leading-snug">{l.name}</span>
+              <Arrow class="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-1" />
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>

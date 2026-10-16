@@ -1,0 +1,67 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import PageHero from '@components/sections/PageHero.astro';
+import SectionHeading from '@components/ui/SectionHeading.astro';
+import LocationCards from '@components/sections/LocationCards.astro';
+import CtaBand from '@components/sections/CtaBand.astro';
+import Arrow from '@components/ui/Arrow.astro';
+import { img } from '@/data/images';
+import { offerServices as services, servicePath, locationsFor } from '@/data/services';
+
+// Short lines for the cards (same words as the home page cards).
+const blurbs: Record<string, string> = {
+  'therapy-for-musicians': 'Therapy built around you, your instrument and the way you play.',
+  'pilates': 'A full-body method that balances mobility and stability, alongside your physical therapy.',
+  'pre-and-postnatal-physical-therapy': 'Care for the changes and new aches of pregnancy and the months after birth.',
+  'strength-training-for-osteoporosis': 'Safe, therapist-led strength programs for stronger bones, posture and balance.',
+  'mckenzie-method-mdt': 'An exercise-based method that helps you find the cause of pain and treat it yourself.',
+  'pelvic-floor-gut-health-nyc': 'Whole-body care for constipation, bloating and other bowel problems.',
+  'male-pelvic-health-nyc': 'Private care for men with pelvic pain, urinary issues or sexual dysfunction.',
+};
+---
+
+<BaseLayout
+  title="What We Offer | Specialty Therapies in New York City | Cynergy"
+  description="Therapy for musicians, Pilates, pre and postnatal care, osteoporosis strength training, the McKenzie Method and pelvic health at Cynergy in New York City."
+>
+  <PageHero
+    eyebrow="What we offer"
+    title="Specialty therapies and programs."
+    text="At Cynergy, your goals come first. Choose a program to learn how it works, then pick the clinic that is closest to you."
+    areas="Patients are welcome from across Manhattan and Brooklyn, including Midtown, Chelsea, the Upper East Side and Cobble Hill."
+    image={img.wellnessDen}
+    imageAlt="The Wellness Den by Cynergy"
+    crumbs={[{ label: 'Home', href: '/' }, { label: 'What We Offer' }]}
+    primary={{ label: 'Book an appointment', href: '/appointment/' }}
+    secondary={{ label: 'Call (212) 974-7252', href: 'tel:+12129747252' }}
+  />
+
+  <section class="py-20 lg:py-28">
+    <div class="container-x">
+      <SectionHeading eyebrow="Programs" title="Find the right program for you." />
+      <ul class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {services.map((s, n) => (
+          <li class="h-full" data-reveal style={`--d:${(n % 3) * 90}ms`}>
+            <a href={servicePath(s)} class="group flex h-full flex-col overflow-hidden rounded-xl border border-pine-900/10 bg-white transition duration-500 hover:-translate-y-1.5 hover:border-transparent hover:shadow-xl hover:shadow-pine-950/15">
+              <div class="relative aspect-[4/3] overflow-hidden bg-sage-200">
+                <img src={s.image} alt={s.imageAlt} loading="lazy" decoding="async" referrerpolicy="no-referrer" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                <span aria-hidden="true" class="absolute inset-x-0 bottom-0 h-1 origin-left scale-x-0 bg-clay-500 transition-transform duration-500 group-hover:scale-x-100"></span>
+              </div>
+              <div class="flex flex-1 flex-col p-7">
+                <p class="text-sm tabular-nums text-clay-600">{String(n + 1).padStart(2, '0')}</p>
+                <h3 class="mt-2 text-2xl text-pine-950">{s.label}</h3>
+                <p class="mt-3 flex-1 text-ink/75">{blurbs[s.slug]}</p>
+                {locationsFor(s).length < 6 && <p class="mt-3 text-sm text-clay-600">At {locationsFor(s).map((l) => l.name).join(', ')}</p>}
+                <span class="mt-6 inline-flex items-center gap-2 font-medium text-pine-900">Learn more <Arrow class="h-4 w-4 transition-transform group-hover:translate-x-1" /></span>
+              </div>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <LocationCards eyebrow="Find a clinic" title="Care at six New York locations." text="Choose the clinic that is closest to you." />
+
+  <CtaBand />
+</BaseLayout>

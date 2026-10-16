@@ -1,0 +1,13 @@
+---
+import SectionHeading from '@components/ui/SectionHeading.astro';
+import Gallery from '@components/islands/Gallery';
+---
+
+<section id="gallery" class="bg-cream-100 py-20 lg:py-28">
+  <div class="container-x">
+    <SectionHeading eyebrow="Gallery" title="A look inside Cynergy." align="center" text="Our spaces, our team and the work we do together. Drag the photos or use the arrows." />
+    <div class="mt-12">
+      <Gallery client:visible />
+    </div>
+  </div>
+</section>
