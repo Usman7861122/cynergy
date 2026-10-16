@@ -153,7 +153,6 @@ export const mainNav: NavItem[] = [
 ];
 
 export const utilityRight: Link[] = [
-  { label: 'Pay Bill Online', href: '/pay-bill-online/' },
   { label: 'Returning Patients', href: 'https://scheduling.go.promptemr.com', external: true },
 ];
 

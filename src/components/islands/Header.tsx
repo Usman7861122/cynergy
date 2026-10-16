@@ -332,7 +332,7 @@ export default function Header({ transparentTop = false }: { transparentTop?: bo
                 </li>
               ))}
               <li>
-                <a href={newPatients.href} className="inline-flex min-h-11 items-center px-3 text-white/80 hover:text-white">{newPatients.label}</a>
+                <a href={newPatients.href} className="inline-flex min-h-8 items-center rounded-md border border-white/30 px-4 font-medium text-white transition hover:border-white hover:bg-white hover:text-pine-950">{newPatients.label}</a>
               </li>
             </ul>
           </div>
