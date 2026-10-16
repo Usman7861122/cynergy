@@ -15,7 +15,6 @@ const { bio } = Astro.props;
 const loc = locations.find((l) => l.id === bio.locationId);
 // People who are not tied to one clinic use the main phone line.
 const home = loc ?? locations[0];
-const place = loc?.name ?? 'Cynergy';
 const first = bio.name.split(' ')[0];
 const teamCount = loc ? (detailsFor(loc.id)?.team.length ?? 1) - 1 : 0;
 const stories = storiesFor(loc?.id);

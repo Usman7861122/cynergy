@@ -1,4 +1,3 @@
-import { img } from '@/data/images';
 import type { Service } from './types';
 
 const U = 'https://cynergypt.com/wp-content/uploads/';

@@ -14,7 +14,6 @@ const partners = [
       {partners.map((p, n) => (
         <li data-reveal style={`--d:${n * 80}ms`}>
           <a href={p.href} class="flex min-h-20 items-center justify-center gap-3 rounded-2xl border border-pine-900/10 bg-white px-4 py-4 text-center font-serif text-lg text-pine-900 transition hover:border-clay-500 hover:shadow-md">
-            {p.logo && <img src={p.logo} alt="" width="36" height="36" loading="lazy" referrerpolicy="no-referrer" class="h-9 w-9 object-contain" />}
             {p.name}
           </a>
         </li>
