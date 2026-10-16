@@ -156,6 +156,8 @@ export const utilityRight: Link[] = [
   { label: 'Returning Patients', href: 'https://scheduling.go.promptemr.com', external: true },
 ];
 
+export const payBill: Link = { label: 'Pay Bill Online', href: '/pay-bill-online/' };
+
 export const newPatients: Link = { label: 'New Patients', href: '/appointment/' };
 
 export const socials = [

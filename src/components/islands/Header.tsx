@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useRef, useState, type ReactNode } from 'react';
-import { mainNav, newPatients, socials, utilityRight, type Group, type Link, type Mega, type NavItem } from '@/data/nav';
+import { mainNav, newPatients, payBill, socials, utilityRight, type Group, type Link, type Mega, type NavItem } from '@/data/nav';
 import { leaders } from '@/data/providers';
 import { locations } from '@/data/locations';
 import { img } from '@/data/images';
@@ -326,6 +326,9 @@ export default function Header({ transparentTop = false }: { transparentTop?: bo
           <div className="container-x flex h-11 items-center justify-between text-[13px]">
             <p className="text-white/70">Physical &amp; Occupational Therapy in New York City</p>
             <ul className="flex items-center gap-1">
+              <li>
+                <a href={payBill.href} className="mr-3 inline-flex min-h-11 items-center px-1 text-white/80 hover:text-white">{payBill.label}</a>
+              </li>
               {utilityRight.map((l) => (
                 <li key={l.label}>
                   <a href={l.href} {...(l.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})} className="mr-2 inline-flex min-h-8 items-center rounded-md border border-white/30 px-4 font-medium text-white transition hover:border-white hover:bg-white hover:text-pine-950">{l.label}</a>
