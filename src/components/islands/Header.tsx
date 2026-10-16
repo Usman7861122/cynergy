@@ -322,7 +322,7 @@ export default function Header({ transparentTop = false }: { transparentTop?: bo
     <>
       <header className={`fixed inset-x-0 top-0 z-50 text-white transition-colors duration-500 ${solid ? 'bg-pine-950/95 shadow-lg shadow-pine-950/20 backdrop-blur-md' : 'bg-transparent'}`}>
         {/* Soft dark tint behind the header so the menu stays easy to read over photos */}
-        <div aria-hidden="true" className={`pointer-events-none absolute inset-x-0 top-0 -z-10 h-[15rem] bg-gradient-to-b from-black/55 via-black/25 to-transparent transition-opacity duration-500 ${solid ? 'opacity-0' : 'opacity-100'}`} />
+        <div aria-hidden="true" className={`pointer-events-none absolute inset-x-0 top-0 -z-10 h-[11rem] bg-gradient-to-b from-pine-950/90 via-pine-950/70 via-45% to-transparent transition-opacity duration-500 ${solid ? 'opacity-0' : 'opacity-100'}`} />
         {/* Utility strip */}
         <div className={`hidden overflow-hidden border-b border-white/10 transition-all duration-500 lg:block ${scrolled ? 'max-h-0 border-transparent opacity-0' : 'max-h-12 opacity-100'}`}>
           <div className="container-x flex h-11 items-center justify-between text-[13px]">
