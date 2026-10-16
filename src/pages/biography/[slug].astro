@@ -1,0 +1,13 @@
+---
+// Provider bio pages: /biography/aaron-lentz/
+// A page is built for every entry in src/data/provider-bios.ts.
+import ProviderPage from '@components/pages/ProviderPage.astro';
+import { providerBios } from '@/data/provider-bios';
+
+export function getStaticPaths() {
+  return providerBios.map((bio) => ({ params: { slug: bio.slug }, props: { bio } }));
+}
+const { bio } = Astro.props;
+---
+
+<ProviderPage bio={bio} />

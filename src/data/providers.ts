@@ -17,8 +17,8 @@ export const leaders: Provider[] = [
   { name: 'Jessica Zaeri', credentials: 'PT, DPT', role: 'Clinical Director, Midtown East', image: U + '2025/10/Jessica-Zaeri.jpeg-e1760120311987.avif', href: '/biography/jessica-zaeri/' },
   { name: 'Laurence V. Agénor', credentials: 'PT, DPT, CSCS', role: 'Clinical Director, The Wellness Den', image: U + '2025/07/Laurence-Agenor-scaled.avif', href: '/biography/laurence-agenor/' },
   { name: 'Amira Murtazaeva', credentials: 'PT, DPT, CFSC', role: 'Director of Mentorship', image: U + '2025/07/IMG_3276-scaled-e1733520227832.jpg', href: '/biography/amira-murtazaeva/' },
-  { name: 'Christine M. Rodriguez', credentials: 'MS, OTR/L, CHT, CLT-UE', role: 'Regional Director, Upper Extremity', image: U + '2025/07/Christine-Rodriguez.jpeg.avif', href: '/biography/christine-rodriguez/' },
-  { name: 'Alvin Dike', credentials: 'PT, DPT, OCS, CSCS', role: 'Clinical Director, ADPT Powered by Rise', image: U + '2025/07/Alvin-Dike.jpeg.avif', href: '/biography/alvin-dike/' },
+  { name: 'Christine M. Rodriguez', credentials: 'MS, OTR/L, CHT, CLT-UE', role: 'Regional Director, Upper Extremity', image: U + '2025/07/Christine-Rodriguez.jpeg.avif', href: '/biography/christine-m-rodriguez/' },
+  { name: 'Alvin Dike', credentials: 'PT, DPT, OCS, CSCS', role: 'Clinical Director, ADPT by Cynergy', image: U + '2025/07/Alvin-Dike.jpeg.avif', href: '/biography/alvin-dike/' },
   { name: 'Melissa Lam', credentials: 'PT, DPT, SFMA', role: 'Regional Director, Midtown East', image: U + '2025/07/Melissa-Lam.jpeg.avif', href: '/biography/melissa-lam/' },
   { name: 'Shereen Tan', credentials: 'PT, CHT', role: 'Regional Director, Chelsea', image: U + '2025/07/Shereen-Tan.jpeg.avif', href: '/biography/shereen-tan/' },
 ];

@@ -23,11 +23,7 @@ export default function LeadersGrid() {
     <div className="relative mt-16 overflow-hidden rounded-[2rem] bg-sage-100 px-4 pb-14 pt-12 sm:px-8 lg:px-12 lg:pb-20 lg:pt-16">
       {/* soft decoration */}
       <span aria-hidden="true" className="pointer-events-none absolute -left-24 -top-24 h-72 w-72 rounded-full bg-sage-200" />
-      <span
-        aria-hidden="true"
-        className="pointer-events-none absolute -bottom-6 -right-4 h-48 w-32 bg-clay-300/30 sm:h-72 sm:w-[191px] lg:-bottom-10 lg:-right-8 lg:h-80 lg:w-[213px]"
-        style={{ WebkitMask: 'url(/images/r-mark.png) center / contain no-repeat', mask: 'url(/images/r-mark.png) center / contain no-repeat' }}
-      />
+      <span aria-hidden="true" className="pointer-events-none absolute -bottom-32 -right-20 h-96 w-96 rounded-full bg-clay-300/25" />
       <span aria-hidden="true" className="pointer-events-none absolute right-10 top-6 hidden select-none font-serif text-[9rem] italic leading-none text-pine-900/[0.06] lg:block">Leaders</span>
 
       <div className="relative flex flex-wrap items-end justify-between gap-6">

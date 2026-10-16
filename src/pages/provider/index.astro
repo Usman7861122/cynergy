@@ -1,0 +1,111 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import PageHero from '@components/sections/PageHero.astro';
+import SectionHeading from '@components/ui/SectionHeading.astro';
+import ProvidersFilter, { type ProviderCard } from '@components/islands/ProvidersFilter';
+import CtaBand from '@components/sections/CtaBand.astro';
+import Arrow from '@components/ui/Arrow.astro';
+import { img } from '@/data/images';
+import { locations } from '@/data/locations';
+import { providerBios } from '@/data/provider-bios';
+
+const founder = providerBios.find((b) => b.slug === 'cynthia-gormezano')!;
+const rank = (t: string) => (t.startsWith('Clinical Director') ? 0 : t.includes('Director') ? 1 : 2);
+
+const items: ProviderCard[] = providerBios
+  .filter((b) => b.slug !== founder.slug)
+  .map((b) => ({
+    name: b.name,
+    credentials: b.credentials,
+    title: b.title,
+    href: `/biography/${b.slug}/`,
+    image: b.image,
+    places: [b.locationId, ...(b.alsoAt ?? [])].filter(Boolean) as string[],
+    leader: b.title.includes('Director'),
+  }))
+  .sort((a, b) => rank(a.title) - rank(b.title) || a.name.localeCompare(b.name));
+
+const places = locations.map((l) => ({ id: l.id, name: l.name }));
+---
+
+<BaseLayout
+  title="Meet Our Providers | Physical Therapists in New York City | Cynergy"
+  description={`Meet the ${items.length + 1} physical, hand and occupational therapists at Cynergy Physical Therapy across Manhattan and Brooklyn.`}
+>
+  <PageHero
+    eyebrow="Our providers"
+    title="Meet the people behind your care."
+    text="Our licensed physical, hand and occupational therapists give one-on-one care at six clinics in Manhattan and Brooklyn. Find your therapist by clinic."
+    areas="Patients are welcome from across Manhattan and Brooklyn, including Midtown, Chelsea, the Upper East Side and Cobble Hill."
+    image={img.portrait}
+    imageAlt="A physical therapist working one-on-one with a patient"
+    crumbs={[{ label: 'Home', href: '/' }, { label: 'Providers' }]}
+    primary={{ label: 'Book an appointment', href: '/appointment/' }}
+    secondary={{ label: 'Call (212) 974-7252', href: 'tel:+12129747252' }}
+  />
+
+  <!-- Founder -->
+  <section class="py-20 lg:py-28">
+    <div class="container-x">
+      <article class="founder group overflow-hidden rounded-xl bg-pine-900 text-white transition duration-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-pine-950/25" data-reveal>
+        <div class="founder-photo relative overflow-hidden">
+          <img src={founder.image} alt={`${founder.name}, ${founder.title}`} loading="lazy" decoding="async" referrerpolicy="no-referrer" class="absolute inset-0 h-full w-full object-cover object-top transition duration-700 group-hover:scale-105" />
+        </div>
+        <div class="relative flex flex-1 flex-col justify-center p-8 sm:p-10 lg:p-14">
+          <span aria-hidden="true" class="pointer-events-none absolute -right-16 -top-16 h-52 w-52 rounded-full bg-pine-800/70 transition-transform duration-700 group-hover:scale-125"></span>
+          <p class="eyebrow relative !text-clay-300">{founder.title}</p>
+          <h2 class="relative mt-3 text-3xl sm:text-4xl lg:text-5xl">{founder.name}</h2>
+          <p class="relative mt-2 text-sm font-semibold uppercase tracking-[0.18em] text-white/70">{founder.credentials}</p>
+          <p class="relative mt-6 max-w-xl font-serif text-xl italic leading-relaxed text-white/90 sm:text-2xl">Professional, energetic and compassionate care. One-on-one, with warmth and humor.</p>
+          <p class="relative mt-5 max-w-xl text-white/75">Cynthia founded Cynergy and leads a team of physical, hand and pelvic floor therapists who are committed to one-on-one care.</p>
+          <div class="relative mt-8"><a href={`/biography/${founder.slug}/`} class="btn btn-primary">Read Cynthia’s bio <Arrow /></a></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Directory -->
+  <section class="bg-cream-100 py-20 lg:py-28">
+    <div class="container-x">
+      <SectionHeading eyebrow="All providers" title="Find your therapist." text="Choose a clinic to see the team there. Select any provider to read their story." />
+      <div class="mt-12">
+        <ProvidersFilter client:load items={items} places={places} />
+      </div>
+    </div>
+  </section>
+
+  <!-- Join the team -->
+  <section class="py-16 lg:py-24">
+    <div class="container-x">
+      <div class="join group relative overflow-hidden rounded-xl border border-pine-900/10 bg-white p-8 transition duration-500 hover:-translate-y-1 hover:border-transparent hover:bg-pine-900 hover:shadow-xl hover:shadow-pine-950/15 sm:p-10" data-reveal>
+        <div>
+          <p class="eyebrow transition-colors group-hover:!text-clay-300">Careers & mentorship</p>
+          <h2 class="mt-3 text-3xl text-pine-950 transition-colors group-hover:text-white sm:text-4xl">Want to learn and grow with us?</h2>
+          <p class="mt-3 max-w-xl text-ink/75 transition-colors group-hover:text-white/80">Our mentorship program helps new therapists build hands-on skills. See open roles and how we teach.</p>
+        </div>
+        <div class="join-actions">
+          <a href="/mentorship-at-cynergy/" class="btn btn-primary">Mentorship <Arrow /></a>
+          <a href="/careers-2/" class="btn btn-outline transition-colors group-hover:!border-white/40 group-hover:!text-white">Careers</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</BaseLayout>
+
+<style>
+  /* Plain CSS for layout, so it never depends on new utility classes. */
+  .founder { display: flex; flex-direction: column; }
+  .founder-photo { width: 100%; height: 24rem; flex-shrink: 0; }
+  .join { display: flex; flex-direction: column; gap: 1.5rem; }
+  .join-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+  @media (min-width: 768px) {
+    .founder { flex-direction: row; }
+    .founder-photo { width: 20rem; height: auto; min-height: 24rem; }
+    .join { flex-direction: row; align-items: center; justify-content: space-between; }
+  }
+  @media (min-width: 1024px) {
+    .founder-photo { width: 26rem; }
+  }
+</style>

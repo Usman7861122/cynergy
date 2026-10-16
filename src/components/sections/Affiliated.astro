@@ -1,10 +1,7 @@
 ---
-import { img } from '@/data/images';
-
 // Partner names come from the current site. Replace with real logos when you have them.
 const partners = [
-  { name: 'Rise Therapy', logo: img.brandmark, href: '/locations/adpt-by-cynergy/' },
-  { name: 'ADPT Powered by Rise', href: '/locations/adpt-by-cynergy/' },
+  { name: 'ADPT by Cynergy', href: '/locations/adpt-by-cynergy/' },
   { name: 'The Wellness Den', href: '/locations/the-wellness-den-by-cynergy/' },
   { name: 'Zocdoc', href: 'https://www.zocdoc.com/' },
 ];
@@ -13,7 +10,7 @@ const partners = [
 <section aria-labelledby="affiliated" class="border-y border-pine-900/10 bg-cream-50 py-14">
   <div class="container-x flex flex-col items-center gap-8 lg:flex-row lg:justify-between">
     <h2 id="affiliated" class="eyebrow shrink-0" data-reveal>Affiliated with</h2>
-    <ul class="grid w-full grid-cols-2 gap-4 lg:grid-cols-4">
+    <ul class="grid w-full grid-cols-2 gap-4 lg:grid-cols-3">
       {partners.map((p, n) => (
         <li data-reveal style={`--d:${n * 80}ms`}>
           <a href={p.href} class="flex min-h-20 items-center justify-center gap-3 rounded-2xl border border-pine-900/10 bg-white px-4 py-4 text-center font-serif text-lg text-pine-900 transition hover:border-clay-500 hover:shadow-md">

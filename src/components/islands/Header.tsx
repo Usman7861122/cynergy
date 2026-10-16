@@ -328,11 +328,11 @@ export default function Header({ transparentTop = false }: { transparentTop?: bo
             <ul className="flex items-center gap-1">
               {utilityRight.map((l) => (
                 <li key={l.label}>
-                  <a href={l.href} {...(l.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})} className="inline-flex min-h-11 items-center px-3 text-white/80 hover:text-white">{l.label}</a>
+                  <a href={l.href} {...(l.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})} className="mr-2 inline-flex min-h-8 items-center rounded-md border border-white/30 px-4 font-medium text-white transition hover:border-white hover:bg-white hover:text-pine-950">{l.label}</a>
                 </li>
               ))}
               <li>
-                <a href={newPatients.href} className="ml-2 inline-flex min-h-8 items-center rounded-md bg-clay-600 px-4 font-medium text-white transition hover:bg-clay-700">{newPatients.label}</a>
+                <a href={newPatients.href} className="inline-flex min-h-11 items-center px-3 text-white/80 hover:text-white">{newPatients.label}</a>
               </li>
             </ul>
           </div>
@@ -341,7 +341,7 @@ export default function Header({ transparentTop = false }: { transparentTop?: bo
         {/* Main row */}
         <div className="container-x flex h-[4.5rem] items-center justify-between gap-6 lg:h-20" onMouseLeave={leave}>
           <a href="/" aria-label="Cynergy Physical Therapy — home" className="shrink-0">
-            <img src={img.logoWhite} alt="Cynergy by Rise Therapy" className="h-11 w-auto lg:h-12" referrerPolicy="no-referrer" />
+            <img src={img.logoWhite} alt="Cynergy Physical Therapy" className="h-7 w-auto lg:h-8" />
           </a>
 
           <nav aria-label="Primary" className="hidden xl:block">
@@ -392,7 +392,7 @@ export default function Header({ transparentTop = false }: { transparentTop?: bo
         {mobile && (
           <motion.div role="dialog" aria-modal="true" aria-label="Menu" initial={{ x: '100%' }} animate={{ x: 0 }} exit={{ x: '100%' }} transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }} className="fixed inset-0 z-[60] overflow-y-auto bg-pine-950 text-white">
             <div className="container-x flex h-[4.5rem] items-center justify-between">
-              <img src={img.logoWhite} alt="Cynergy" className="h-11 w-auto" referrerPolicy="no-referrer" />
+              <img src={img.logoWhite} alt="Cynergy" className="h-7 w-auto" />
               <button type="button" onClick={() => setMobile(false)} aria-label="Close menu" className="flex h-11 w-11 items-center justify-center rounded-md border border-white/30">
                 <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
               </button>

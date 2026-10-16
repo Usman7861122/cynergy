@@ -68,11 +68,7 @@ export default function TreatList() {
                   className={`bf-hidden absolute inset-0 flex flex-col justify-between overflow-hidden rounded-2xl bg-pine-900 p-6 text-white shadow-xl shadow-pine-950/25 ${reduce ? `transition-opacity duration-200 ${flipped ? 'opacity-100' : 'opacity-0'}` : ''}`}
                   style={{ transform: reduce ? 'none' : 'rotateY(180deg)' }}
                 >
-                  <span
-                    aria-hidden="true"
-                    className="pointer-events-none absolute -right-3 -top-3 h-32 w-[85px] bg-pine-700"
-                    style={{ WebkitMask: 'url(/images/r-mark.png) center / contain no-repeat', mask: 'url(/images/r-mark.png) center / contain no-repeat' }}
-                  />
+                  <span aria-hidden="true" className="pointer-events-none absolute -right-6 -top-6 h-28 w-28 rounded-full bg-pine-800" />
                   <div className="relative">
                     <p className="text-xs tabular-nums tracking-[0.25em] text-clay-300">{String(n + 1).padStart(2, '0')}</p>
                     <h3 className="mt-3 font-serif text-2xl leading-snug">{it.label}</h3>

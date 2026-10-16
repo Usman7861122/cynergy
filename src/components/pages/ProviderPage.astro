@@ -1,0 +1,217 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import PageHero from '@components/sections/PageHero.astro';
+import SectionHeading from '@components/ui/SectionHeading.astro';
+import CtaBand from '@components/sections/CtaBand.astro';
+import Arrow from '@components/ui/Arrow.astro';
+import { locations, directionsHref, telHref } from '@/data/locations';
+import { detailsFor } from '@/data/location-details';
+import { storiesFor } from '@/data/reviews';
+import type { ProviderBio } from '@/data/provider-bios';
+
+interface Props { bio: ProviderBio }
+const { bio } = Astro.props;
+
+const loc = locations.find((l) => l.id === bio.locationId);
+// People who are not tied to one clinic use the main phone line.
+const home = loc ?? locations[0];
+const place = loc?.name ?? 'Cynergy';
+const first = bio.name.split(' ')[0];
+const teamCount = loc ? (detailsFor(loc.id)?.team.length ?? 1) - 1 : 0;
+const stories = storiesFor(loc?.id);
+const hasPhotos = !!(bio.photos && bio.photos.length > 0);
+const facts = [
+  loc
+    ? { label: 'Location', value: loc.name, sub: `${loc.line1}, ${loc.city}`, href: loc.href }
+    : { label: 'Clinics', value: 'All six locations', sub: 'Manhattan and Brooklyn', href: '/#locations' },
+  { label: 'Phone', value: home.phone, sub: 'Call to book a visit', href: telHref(home) },
+  { label: 'Credentials', value: bio.credentials, sub: bio.title },
+];
+const cards = [
+  { title: 'Education', items: bio.education },
+  { title: 'Certifications', items: bio.certifications },
+  { title: 'Areas of focus', items: bio.focus },
+].filter((c) => c.items.length);
+---
+
+<BaseLayout
+  title={`${bio.name}, ${bio.credentials} | ${loc ? `${loc.name} Physical Therapist` : bio.title} | Cynergy`}
+  description={`${bio.name} is the ${bio.title} at Cynergy${loc ? ` ${loc.name}` : ''}. Read ${first}’s story, training and areas of focus.`}
+>
+  <PageHero
+    eyebrow={loc ? `${bio.title} · ${loc.name}` : bio.title}
+    title={`${bio.name}, ${bio.credentials}`}
+    text={bio.intro}
+    image={bio.image}
+    imageAlt={`${bio.name}, ${bio.title} at Cynergy`}
+    crumbs={[{ label: 'Home', href: '/' }, { label: 'Providers', href: '/provider/' }, { label: bio.name }]}
+    primary={{ label: `Book with ${first}`, href: '/appointment/' }}
+    secondary={{ label: `Call ${home.phone}`, href: telHref(home) }}
+  />
+
+  <!-- Quick facts -->
+  <section class="pfacts bg-cream-100">
+    <div class="container-x">
+      <ul class="pfacts-grid">
+        {facts.map((f, n) => (
+          <li class="h-full" data-reveal style={`--d:${n * 80}ms`}>
+            {f.href ? (
+              <a href={f.href} class="group relative block h-full overflow-hidden rounded-xl border border-pine-900/10 bg-white p-6 transition duration-500 hover:-translate-y-1 hover:border-transparent hover:bg-pine-900 hover:shadow-xl hover:shadow-pine-950/15">
+                <span aria-hidden="true" class="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-clay-500 transition-transform duration-500 group-hover:scale-x-100"></span>
+                <p class="eyebrow transition-colors group-hover:!text-clay-300">{f.label}</p>
+                <p class="mt-3 font-serif text-xl leading-snug text-pine-950 transition-colors group-hover:text-white">{f.value}</p>
+                <p class="mt-1 text-sm text-ink/65 transition-colors group-hover:text-white/75">{f.sub}</p>
+              </a>
+            ) : (
+              <div class="group relative h-full overflow-hidden rounded-xl border border-pine-900/10 bg-white p-6 transition duration-500 hover:-translate-y-1 hover:border-transparent hover:bg-pine-900 hover:shadow-xl hover:shadow-pine-950/15">
+                <span aria-hidden="true" class="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-clay-500 transition-transform duration-500 group-hover:scale-x-100"></span>
+                <p class="eyebrow transition-colors group-hover:!text-clay-300">{f.label}</p>
+                <p class="mt-3 font-serif text-xl leading-snug text-pine-950 transition-colors group-hover:text-white">{f.value}</p>
+                <p class="mt-1 text-sm text-ink/65 transition-colors group-hover:text-white/75">{f.sub}</p>
+              </div>
+            )}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Story + details -->
+  {bio.story.length > 0 && (
+  <section class="py-20 lg:py-28">
+    <div class="container-x pgrid">
+      <div>
+        <SectionHeading eyebrow={`About ${first}`} title={`${first}’s story.`} />
+        <div class="mt-6 space-y-5 text-lg text-ink/80" data-reveal>
+          {bio.story.map((p) => <p>{p}</p>)}
+        </div>
+        {bio.interests.length > 0 && (
+          <div class="mt-10" data-reveal>
+            <h3 class="text-xl text-pine-950">Outside the clinic</h3>
+            <ul class="mt-4 flex flex-wrap gap-2">
+              {bio.interests.map((i) => (
+                <li class="rounded-md bg-sage-100 px-3 py-1.5 text-sm text-pine-900 transition duration-300 hover:-translate-y-0.5 hover:bg-pine-900 hover:text-white">{i}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+
+      <aside class="pside" data-reveal>
+        {cards.map((c) => (
+          <div class="group/card relative overflow-hidden rounded-xl bg-pine-900 p-7 text-white transition duration-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-pine-950/25 sm:p-8">
+            <span aria-hidden="true" class="pointer-events-none absolute -right-14 -top-14 h-36 w-36 rounded-full bg-pine-800/70 transition-transform duration-700 group-hover/card:scale-125"></span>
+            <p class="eyebrow relative !text-clay-300">{c.title}</p>
+            <ul class="relative mt-5">
+              {c.items.map((it, n) => (
+                <li class:list={['group/item flex items-start gap-3 py-3 transition-transform duration-300 hover:translate-x-1.5', n < c.items.length - 1 && 'border-b border-white/15', n === 0 && '!pt-0']}>
+                  <span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-clay-600 text-white transition-colors duration-300 group-hover/item:bg-clay-500">
+                    <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5" /></svg>
+                  </span>
+                  <span class="text-white/90 transition-colors group-hover/item:text-white">{it}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </aside>
+    </div>
+  </section>
+  )}
+
+  <!-- Lifestyle photos -->
+  {bio.photos && bio.photos.length > 0 && (
+    <section class:list={['py-20 lg:py-28', bio.story.length > 0 && 'bg-cream-100']}>
+      <div class="container-x">
+        <SectionHeading eyebrow={`${first} off the clock`} title={`Life outside the clinic.`} />
+        <ul class="pphotos mt-12">
+          {bio.photos.map((src, n) => (
+            <li data-reveal style={`--d:${(n % 3) * 80}ms`}>
+              <div class="group aspect-square overflow-hidden rounded-xl bg-sage-200">
+                <img src={src} alt={`${bio.name} outside the clinic`} loading="lazy" decoding="async" referrerpolicy="no-referrer" class="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <!-- Where to find them -->
+  {loc && (
+  <section class:list={['py-20 lg:py-28', !hasPhotos && 'bg-cream-100']}>
+    <div class="container-x">
+      <SectionHeading eyebrow="Where to find us" title={`See ${first} at ${loc.name}.`} text={`${first} works one-on-one with patients at our ${loc.name} clinic.`} />
+      <div class="mt-12 pwhere">
+        <article class="rounded-xl border border-pine-900/10 bg-white p-8 sm:p-10" data-reveal>
+          <p class="eyebrow">{loc.name}</p>
+          <address class="mt-4 font-serif text-2xl leading-snug text-pine-950 not-italic">{loc.line1}<br />{loc.city}</address>
+          <a href={telHref(loc)} class="mt-4 inline-flex min-h-11 items-center font-medium text-pine-900 underline-offset-4 hover:underline">{loc.phone}</a>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a href={directionsHref(loc)} target="_blank" rel="noopener noreferrer" class="btn btn-primary">Get directions</a>
+            <a href={loc.href} class="btn btn-outline">Clinic details</a>
+          </div>
+        </article>
+        <article class="group relative overflow-hidden rounded-xl bg-pine-900 p-8 text-white transition duration-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-pine-950/25 sm:p-10" data-reveal style="--d:100ms">
+          <span aria-hidden="true" class="pointer-events-none absolute -right-16 -top-16 h-44 w-44 rounded-full bg-pine-800/70 transition-transform duration-700 group-hover:scale-125"></span>
+          <p class="eyebrow relative !text-clay-300">The {loc.name} team</p>
+          <h3 class="relative mt-3 text-3xl">Meet {teamCount} more providers.</h3>
+          <p class="relative mt-4 max-w-prose text-white/80">Every patient works one-on-one with a licensed therapist. See who else is on the team at {loc.name}.</p>
+          <div class="relative mt-7 flex flex-wrap gap-3">
+            <a href={`${loc.href}#providers`} class="btn btn-primary">Meet the team <Arrow /></a>
+            <a href="/provider/" class="btn btn-outline-light">All providers</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+  )}
+
+  <!-- Patient stories -->
+  <section class:list={['py-20 lg:py-28', (hasPhotos !== !!loc) && 'bg-cream-100']}>
+    <div class="container-x">
+      <div class="flex flex-wrap items-end justify-between gap-6">
+        <SectionHeading eyebrow="Patient stories" title="What patients say about us." />
+        <a href="/patient-testimonials/" class="btn btn-outline" data-reveal>Read more reviews <Arrow /></a>
+      </div>
+      <ul class="mt-12 grid gap-5 md:grid-cols-3">
+        {stories.map((s, n) => (
+          <li data-reveal style={`--d:${n * 100}ms`}>
+            <figure class="flex h-full flex-col rounded-xl border border-pine-900/10 bg-white p-8 transition duration-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-pine-950/10">
+              <svg class="h-8 w-8 text-clay-500" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7.2 6C4.9 7.7 3.5 10 3.5 13v5h6v-6H6.3c0-1.7.9-3.1 2.6-4.1L7.2 6Zm9.5 0c-2.3 1.7-3.7 4-3.7 7v5h6v-6h-3.2c0-1.7.9-3.1 2.6-4.1L16.7 6Z" /></svg>
+              <blockquote class="mt-4 flex-1 text-lg text-ink/80">{s.text}</blockquote>
+              <figcaption class="mt-6 border-t border-pine-900/10 pt-4 text-sm font-semibold uppercase tracking-[0.18em] text-pine-900">{s.name}</figcaption>
+            </figure>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <CtaBand
+    title={`Start your care with ${first} today.`}
+    text={loc ? `Book at ${loc.line1}, ${loc.city}.` : 'Book with our expert therapists at any of our six clinics.'}
+    phoneHref={telHref(home)}
+    phoneLabel={home.phone}
+  />
+</BaseLayout>
+
+<style>
+  /* Plain CSS for layout, so it never depends on new utility classes. */
+  .pfacts { padding-block: 3.5rem; }
+  .pfacts-grid { display: grid; gap: 1.25rem; grid-template-columns: 1fr; }
+  .pgrid { display: grid; gap: 3rem; grid-template-columns: 1fr; align-items: start; }
+  .pside { display: grid; gap: 1.25rem; }
+  .pphotos { display: grid; gap: 0.75rem; grid-template-columns: repeat(2, 1fr); }
+  .pwhere { display: grid; gap: 1.5rem; grid-template-columns: 1fr; }
+  @media (min-width: 768px) {
+    .pfacts-grid { grid-template-columns: repeat(3, 1fr); }
+    .pwhere { grid-template-columns: 1fr 1fr; }
+  }
+  @media (min-width: 1024px) {
+    .pfacts { padding-block: 4.5rem; }
+    .pfacts-grid { gap: 1.5rem; }
+    .pgrid { grid-template-columns: 7fr 5fr; gap: 4rem; }
+    .pphotos { grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+  }
+</style>

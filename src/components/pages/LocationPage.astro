@@ -1,0 +1,338 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import PageHero from '@components/sections/PageHero.astro';
+import SectionHeading from '@components/ui/SectionHeading.astro';
+import CtaBand from '@components/sections/CtaBand.astro';
+import Faq from '@components/islands/Faq';
+import Arrow from '@components/ui/Arrow.astro';
+import { locations, mapSrc, directionsHref, telHref, type Location } from '@/data/locations';
+import type { LocationDetails } from '@/data/location-details';
+import { services, locationsFor } from '@/data/services';
+import { localPath } from '@/data/services/types';
+import { blurbs } from '@/data/services/blurbs';
+import { storiesFor } from '@/data/reviews';
+
+interface Props { loc: Location; details: LocationDetails }
+const { loc, details: d } = Astro.props;
+
+// Every service that has a page for this location.
+const here = services.filter((s) => locationsFor(s).some((l) => l.id === loc.id));
+const treat = here.filter((s) => s.group !== 'offer');
+const offer = here.filter((s) => s.group === 'offer');
+
+const director = d.team[0];
+const team = d.team.slice(1);
+const stories = storiesFor(loc.id);
+const others = locations.filter((l) => l.id !== loc.id);
+---
+
+<BaseLayout
+  title={`${loc.name} Physical Therapy, New York | Cynergy`}
+  description={`Cynergy ${loc.name} at ${loc.line1}, ${loc.city}. One-on-one physical therapy, the services we offer here and the providers you will meet.`}
+>
+  <PageHero
+    eyebrow={d.eyebrow}
+    title={d.heroTitle}
+    text={d.heroText}
+    areas={`Patients come to ${loc.name} from ${loc.nearby} and the rest of New York City.`}
+    image={d.heroImage}
+    imageAlt={d.heroImageAlt}
+    crumbs={[{ label: 'Home', href: '/' }, { label: 'Locations' }, { label: loc.name }]}
+    primary={{ label: 'Book an appointment', href: '/appointment/' }}
+    secondary={{ label: `Call ${loc.phone}`, href: telHref(loc) }}
+  />
+
+  <!-- Quick facts -->
+  <section class="facts bg-cream-100">
+    <div class="container-x">
+      <ul class="facts-grid">
+        {[
+          { label: 'Address', node: 'address' },
+          { label: 'Phone', node: 'phone' },
+          { label: 'Clinic director', node: 'director' },
+        ].map((f, n) => (
+          <li class="h-full" data-reveal style={`--d:${n * 80}ms`}>
+            <div class="group relative h-full overflow-hidden rounded-xl border border-pine-900/10 bg-white p-6 transition duration-500 hover:-translate-y-1 hover:border-transparent hover:bg-pine-900 hover:shadow-xl hover:shadow-pine-950/15">
+              <span aria-hidden="true" class="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-clay-500 transition-transform duration-500 group-hover:scale-x-100"></span>
+              <p class="eyebrow transition-colors group-hover:!text-clay-300">{f.label}</p>
+              {f.node === 'address' && <address class="mt-3 font-serif text-xl leading-snug text-pine-950 not-italic transition-colors group-hover:text-white">{loc.line1}<br />{loc.city}</address>}
+              {f.node === 'phone' && <a href={telHref(loc)} class="mt-3 block font-serif text-xl leading-snug text-pine-950 transition-colors group-hover:text-white">{loc.phone}</a>}
+              {f.node === 'director' && <p class="mt-3 font-serif text-xl leading-snug text-pine-950 transition-colors group-hover:text-white">{d.directorLine ?? `${director.name}, ${director.credentials}`}</p>}
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="py-20 lg:py-28">
+    <div class="container-x grid items-start gap-14 lg:grid-cols-12">
+      <div class="lg:col-span-7">
+        <SectionHeading eyebrow={d.about.eyebrow} title={d.about.title} />
+        <div class="mt-6 space-y-4 text-lg text-ink/80" data-reveal>
+          {d.about.paragraphs.map((p) => <p>{p}</p>)}
+        </div>
+        <div class="mt-9 flex flex-wrap gap-3" data-reveal>
+          <a href={directionsHref(loc)} target="_blank" rel="noopener noreferrer" class="btn btn-primary">Get directions <Arrow /></a>
+          <a href="/appointment/" class="btn btn-outline">Book a visit</a>
+        </div>
+      </div>
+      <div class="lg:col-span-5" data-reveal>
+        <div class="group/card relative overflow-hidden rounded-xl bg-pine-900 p-8 text-white transition duration-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-pine-950/25 sm:p-10">
+          <span aria-hidden="true" class="pointer-events-none absolute -right-16 -top-16 h-44 w-44 rounded-full bg-pine-800/70 transition-transform duration-700 group-hover/card:scale-125"></span>
+          <p class="eyebrow relative !text-clay-300">What you will find here</p>
+          <ul class="relative mt-6">
+            {d.about.features.map((f, n) => (
+              <li class:list={['group/item flex items-start gap-4 py-4 transition-transform duration-300 hover:translate-x-1.5', n < d.about.features.length - 1 && 'border-b border-white/15', n === 0 && '!pt-0']}>
+                <span class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-clay-600 text-white transition-colors duration-300 group-hover/item:bg-clay-500">
+                  <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5" /></svg>
+                </span>
+                <span class="text-white/90 transition-colors group-hover/item:text-white">{f}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Specialties -->
+  <section class="bg-cream-100 py-20 lg:py-28">
+    <div class="container-x">
+      <SectionHeading eyebrow="Specialties" title={`What ${loc.name} does best.`} text="These are the areas our team here is known for." />
+      <ul class="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        {d.specialties.map((s, n) => (
+          <li data-reveal style={`--d:${(n % 3) * 90}ms`} class="h-full">
+            {s.href ? (
+              <a href={s.href} class="group relative flex h-full flex-col overflow-hidden rounded-xl border border-pine-900/10 bg-white p-8 transition duration-500 hover:-translate-y-1.5 hover:border-transparent hover:bg-pine-900 hover:shadow-xl hover:shadow-pine-950/15">
+                <span aria-hidden="true" class="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-clay-500 transition-transform duration-500 group-hover:scale-x-100"></span>
+                <span class="text-sm tabular-nums text-clay-600 transition-colors group-hover:text-clay-300">0{n + 1}</span>
+                <h3 class="mt-4 text-2xl text-pine-950 transition-colors group-hover:text-white">{s.title}</h3>
+                <p class="mt-3 flex-1 text-ink/70 transition-colors group-hover:text-white/80">{s.text}</p>
+                <span class="mt-6 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.16em] text-pine-900 transition-colors group-hover:text-white">Learn more <Arrow class="h-4 w-4 transition-transform group-hover:translate-x-1" /></span>
+              </a>
+            ) : (
+              <div class="group relative flex h-full flex-col overflow-hidden rounded-xl border border-pine-900/10 bg-white p-8 transition duration-500 hover:-translate-y-1.5 hover:border-transparent hover:bg-pine-900 hover:shadow-xl hover:shadow-pine-950/15">
+                <span aria-hidden="true" class="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-clay-500 transition-transform duration-500 group-hover:scale-x-100"></span>
+                <span class="text-sm tabular-nums text-clay-600 transition-colors group-hover:text-clay-300">0{n + 1}</span>
+                <h3 class="mt-4 text-2xl text-pine-950 transition-colors group-hover:text-white">{s.title}</h3>
+                <p class="mt-3 text-ink/70 transition-colors group-hover:text-white/80">{s.text}</p>
+              </div>
+            )}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Services offered here -->
+  <section id="services" class="py-20 lg:py-28">
+    <div class="container-x">
+      <SectionHeading eyebrow="Services at this location" title={`Care you can get at ${loc.name}.`} text={`${here.length} services have a page for this clinic. Pick one to see how we help.`} />
+
+      <div class="mt-12 grid gap-12 lg:grid-cols-2">
+        <div data-reveal>
+          <div class="flex items-center justify-between gap-4 border-b border-pine-900/15 pb-4">
+            <h3 class="text-2xl text-pine-950">What we treat</h3>
+            <span class="text-sm tabular-nums text-ink/60">({treat.length})</span>
+          </div>
+          <ul class="mt-4 grid gap-3">
+            {treat.map((s) => (
+              <li>
+                <a href={localPath(s, loc.id)} class="group flex min-h-16 items-center justify-between gap-4 rounded-lg border border-pine-900/15 bg-white px-5 py-3 transition hover:border-pine-900 hover:bg-pine-900">
+                  <span>
+                    <span class="block font-serif text-lg text-pine-950 transition-colors group-hover:text-white">{s.label}</span>
+                    <span class="mt-0.5 block text-sm text-ink/65 transition-colors group-hover:text-white/75">{blurbs[s.slug]}</span>
+                  </span>
+                  <Arrow class="h-4 w-4 shrink-0 text-pine-900 transition group-hover:translate-x-1 group-hover:text-white" />
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div data-reveal style="--d:100ms">
+          <div class="flex items-center justify-between gap-4 border-b border-pine-900/15 pb-4">
+            <h3 class="text-2xl text-pine-950">What we offer</h3>
+            <span class="text-sm tabular-nums text-ink/60">({offer.length})</span>
+          </div>
+          <ul class="mt-4 grid gap-3">
+            {offer.map((s) => (
+              <li>
+                <a href={localPath(s, loc.id)} class="group flex min-h-16 items-center justify-between gap-4 rounded-lg border border-pine-900/15 bg-white px-5 py-3 transition hover:border-pine-900 hover:bg-pine-900">
+                  <span>
+                    <span class="block font-serif text-lg text-pine-950 transition-colors group-hover:text-white">{s.label}</span>
+                    <span class="mt-0.5 block text-sm text-ink/65 transition-colors group-hover:text-white/75">{blurbs[s.slug]}</span>
+                  </span>
+                  <Arrow class="h-4 w-4 shrink-0 text-pine-900 transition group-hover:translate-x-1 group-hover:text-white" />
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-12 flex justify-center" data-reveal>
+        <a href="/services/" class="btn btn-outline">View all services <Arrow /></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Providers -->
+  <section id="providers" class="bg-cream-100 py-20 lg:py-28">
+    <div class="container-x">
+      <SectionHeading eyebrow="Providers at this location" title={`Meet the ${loc.name} team.`} text="Every patient works one-on-one with a licensed physical therapist." />
+
+      <article class="director group mt-12 overflow-hidden rounded-xl bg-pine-900 text-white transition duration-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-pine-950/25" data-reveal>
+        <div class="director-photo relative overflow-hidden">
+          <img src={director.image} alt={`${director.name}, ${director.role}`} loading="lazy" decoding="async" referrerpolicy="no-referrer" class="absolute inset-0 h-full w-full object-cover object-top transition duration-700 group-hover:scale-105" />
+        </div>
+        <div class="flex flex-1 flex-col justify-center p-8 sm:p-10 lg:p-14">
+          <p class="eyebrow !text-clay-300">Clinical Director</p>
+          <h3 class="mt-3 text-3xl sm:text-4xl">{director.name}</h3>
+          <p class="mt-1 text-sm font-semibold uppercase tracking-[0.18em] text-white/70">{director.credentials}</p>
+          {director.bio && <p class="mt-5 max-w-prose text-lg text-white/80">{director.bio}</p>}
+          <div class="mt-8">
+            <a href={director.href} class="btn btn-primary">Read full bio <Arrow /></a>
+          </div>
+        </div>
+      </article>
+
+      <ul class="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {team.map((p, n) => (
+          <li data-reveal style={`--d:${(n % 3) * 90}ms`} class="h-full">
+            <article class="group flex h-full flex-col overflow-hidden rounded-xl border border-pine-900/10 bg-white transition duration-500 hover:-translate-y-1.5 hover:border-transparent hover:shadow-xl hover:shadow-pine-950/15">
+              <div class="aspect-[4/3] overflow-hidden bg-sage-200">
+                <img src={p.image} alt={p.name} loading="lazy" decoding="async" referrerpolicy="no-referrer" class="h-full w-full object-cover object-top transition duration-700 group-hover:scale-105" />
+              </div>
+              <div class="flex flex-1 flex-col p-6">
+                <h3 class="text-2xl text-pine-950">{p.name}</h3>
+                <p class="mt-1 text-sm font-semibold uppercase tracking-[0.16em] text-clay-600">{p.credentials} · {p.role}</p>
+                {p.bio ? <p class="mt-3 flex-1 text-ink/70">{p.bio}</p> : <span class="flex-1"></span>}
+                <a href={p.href} class="mt-5 inline-flex min-h-11 items-center gap-2 text-sm font-semibold uppercase tracking-[0.16em] text-pine-900 underline-offset-4 hover:underline">Read more <Arrow class="h-4 w-4 transition-transform group-hover:translate-x-1" /></a>
+              </div>
+            </article>
+          </li>
+        ))}
+      </ul>
+
+      <div class="mt-12 flex justify-center" data-reveal>
+        <a href="/provider/" class="btn btn-outline">View all providers <Arrow /></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section class="py-20 lg:py-28">
+    <div class="container-x">
+      <SectionHeading eyebrow="Gallery" title={`A look inside ${loc.name}.`} />
+      <ul class="mt-12 grid grid-cols-2 gap-3 lg:grid-cols-3 lg:gap-5">
+        {d.gallery.map((g, n) => (
+          <li data-reveal style={`--d:${(n % 3) * 80}ms`}>
+            <div class="group aspect-[4/3] overflow-hidden rounded-xl bg-sage-200">
+              <img src={g.src} alt={g.alt} loading="lazy" decoding="async" referrerpolicy="no-referrer" class="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Patient stories -->
+  <section class="bg-cream-100 py-20 lg:py-28">
+    <div class="container-x">
+      <div class="flex flex-wrap items-end justify-between gap-6">
+        <SectionHeading eyebrow="Patient stories" title="What patients say about us." />
+        <a href="/patient-testimonials/" class="btn btn-outline" data-reveal>Read more reviews <Arrow /></a>
+      </div>
+      <ul class="mt-12 grid gap-5 md:grid-cols-3">
+        {stories.map((s, n) => (
+          <li data-reveal style={`--d:${n * 100}ms`}>
+            <figure class="flex h-full flex-col rounded-xl border border-pine-900/10 bg-white p-8">
+              <svg class="h-8 w-8 text-clay-500" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7.2 6C4.9 7.7 3.5 10 3.5 13v5h6v-6H6.3c0-1.7.9-3.1 2.6-4.1L7.2 6Zm9.5 0c-2.3 1.7-3.7 4-3.7 7v5h6v-6h-3.2c0-1.7.9-3.1 2.6-4.1L16.7 6Z" /></svg>
+              <blockquote class="mt-4 flex-1 text-lg text-ink/80">{s.text}</blockquote>
+              <figcaption class="mt-6 border-t border-pine-900/10 pt-4 text-sm font-semibold uppercase tracking-[0.18em] text-pine-900">{s.name}</figcaption>
+            </figure>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Visit -->
+  <section class="py-20 lg:py-28">
+    <div class="container-x">
+      <SectionHeading eyebrow="Visit us" title={`Find ${loc.name}.`} text="Come see us, or call to book your first visit." />
+      <div class="mt-12 grid gap-6 lg:grid-cols-12">
+        <article class="rounded-xl border border-pine-900/10 bg-white p-8 sm:p-10 lg:col-span-5" data-reveal>
+          <p class="eyebrow">{loc.name}</p>
+          <address class="mt-4 font-serif text-2xl leading-snug text-pine-950 not-italic">{loc.line1}<br />{loc.city}</address>
+          <a href={telHref(loc)} class="mt-4 inline-flex min-h-11 items-center font-medium text-pine-900 underline-offset-4 hover:underline">{loc.phone}</a>
+          <p class="mt-4 border-t border-pine-900/10 pt-4 text-sm text-ink/70">{loc.lead}</p>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a href={directionsHref(loc)} target="_blank" rel="noopener noreferrer" class="btn btn-primary">Get directions</a>
+            <a href="/appointment/" class="btn btn-outline">Book a visit</a>
+          </div>
+        </article>
+        <div class="relative min-h-[320px] overflow-hidden rounded-xl bg-sage-200 shadow-xl shadow-pine-950/10 lg:col-span-7" data-reveal style="--d:100ms">
+          <iframe title={`Map of Cynergy ${loc.name}`} src={mapSrc(loc)} loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="absolute inset-0 h-full w-full border-0 [filter:saturate(0.8)]"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="bg-cream-100 py-20 lg:py-28">
+    <div class="container-x grid gap-12 lg:grid-cols-12">
+      <div class="lg:col-span-4">
+        <SectionHeading eyebrow="FAQ" title={`About ${loc.name}.`} text="Still not sure? Call us and we will help." />
+        <a href={telHref(loc)} class="btn btn-outline mt-8" data-reveal>{loc.phone}</a>
+      </div>
+      <div class="lg:col-span-8" data-reveal>
+        <Faq client:visible items={d.faqs} />
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    title={`Start your care in ${loc.name} today.`}
+    text={`Book with our expert therapists at ${loc.line1}, ${loc.city}.`}
+    phoneHref={telHref(loc)}
+    phoneLabel={loc.phone}
+  />
+
+  <!-- Other locations -->
+  <section class="py-16 lg:py-24">
+    <div class="container-x">
+      <SectionHeading eyebrow="Other locations" title="Visit another Cynergy clinic." />
+      <ul class="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-5" data-reveal>
+        {others.map((l) => (
+          <li class="h-full">
+            <a href={l.href} class="group flex h-full min-h-20 items-center justify-between gap-3 rounded-lg border border-pine-900/15 bg-white px-4 py-3 text-pine-950 transition hover:border-pine-900 hover:bg-pine-900 hover:text-white">
+              <span class="font-serif text-lg leading-snug">{l.name}</span>
+              <Arrow class="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-1" />
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Plain CSS so the card layout never depends on generated utility classes. */
+  .facts { padding-block: 3.5rem; }
+  .facts-grid { display: grid; gap: 1.25rem; grid-template-columns: 1fr; }
+  @media (min-width: 768px) { .facts-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 1024px) { .facts { padding-block: 4.5rem; } .facts-grid { gap: 1.5rem; } }
+  .director { display: flex; flex-direction: column; }
+  .director-photo { width: 100%; height: 22rem; flex-shrink: 0; }
+  @media (min-width: 768px) {
+    .director { flex-direction: row; }
+    .director-photo { width: 16rem; height: auto; min-height: 18rem; }
+  }
+  @media (min-width: 1024px) {
+    .director-photo { width: 18rem; }
+  }
+</style>

@@ -3,8 +3,8 @@
 const U = 'https://cynergypt.com/wp-content/uploads/';
 
 export const img = {
-  logoWhite: U + '2025/07/Cyndery_by_Rise_Therapy_Logo_Final_LOCKUP-Wht-e1768397393991.png',
-  brandmark: U + '2026/04/cropped-Rise-Therapy-Logo_Brandmark_Final-270x270.png',
+  // Only the CYNERGY word, cut from the full logo.
+  logoWhite: '/images/cynergy-wordmark.png',
 
   // places & spaces
   wellnessDen: U + '2025/07/TWD-074-1536x1025.jpg.webp',

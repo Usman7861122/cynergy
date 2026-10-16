@@ -1,0 +1,18 @@
+---
+// Location pages: /locations/midtown-west/
+// A page is built for every location that has an entry in src/data/location-details.ts.
+import LocationPage from '@components/pages/LocationPage.astro';
+import { locations } from '@/data/locations';
+import { locationDetails } from '@/data/location-details';
+
+export function getStaticPaths() {
+  return locationDetails.flatMap((d) => {
+    const loc = locations.find((l) => l.id === d.id);
+    if (!loc) return [];
+    return [{ params: { slug: loc.href.split('/').filter(Boolean).pop()! }, props: { loc, details: d } }];
+  });
+}
+const { loc, details } = Astro.props;
+---
+
+<LocationPage loc={loc} details={details} />

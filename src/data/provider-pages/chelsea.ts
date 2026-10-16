@@ -1,0 +1,95 @@
+import type { ProviderBio } from '../provider-bios';
+const U = 'https://cynergypt.com/wp-content/uploads/';
+const up = (...f: string[]) => f.map((x) => U + x);
+
+export const chelsea: ProviderBio[] = [
+  {
+    slug: 'shereen-tan', name: 'Shereen Tan', credentials: 'PT, CHT', title: 'Regional Director, Chelsea', locationId: 'chelsea',
+    image: U + '2025/07/Shereen-Tan.jpeg.avif',
+    intro: 'Shereen is a certified hand therapist who treats hand and arm injuries, before and after surgery, and makes custom splints for athletes, performers and active New Yorkers.',
+    story: [
+      'Shereen is a physical therapist licensed in New York and New Jersey, and a Certified Hand Therapist. Her work covers recovery after surgery, and non-surgical care for fractures, tendon and nerve injuries, and complex ligament reconstruction of the hand and arm.',
+      'She trained in making custom orthoses under respected hand therapists, including clinicians from the Philadelphia Hand Center and Hospital for Special Surgery. She uses these splints to protect injuries, ease pain, improve motion and move patients toward their goals.',
+      'She has treated athletes, performers and active New Yorkers, including members of SAG-AFTRA, the NBA and the NHL, and she works with leading surgeons and hand specialists across the city.',
+    ],
+    education: ['B.S., Velez College', 'Advanced certification in Hand and Upper Extremity, Drexel University'],
+    certifications: ['Certified Hand Therapist (CHT)', 'Licensed physical therapist, New York and New Jersey', 'Member, American Society of Hand Therapists', 'Member, American Physical Therapy Association'],
+    focus: ['Hand and arm rehab after surgery', 'Fractures, tendon and nerve injuries', 'Custom splints (orthoses)', 'Athletes, performers and active adults'],
+    interests: ['Traveling', 'Cooking & eating', 'Snorkeling & swimming', 'Kayaking'],
+    photos: up('2025/07/Shereen-Tan-1.avif', '2025/07/Shereen-Tan-2.avif', '2025/07/Shereen-Tan-3.avif', '2025/07/Shereen-Tan-4.avif', '2025/07/Shereen-Tan-5.avif', '2025/07/Shereen-Tan-6.avif'),
+  },
+  {
+    slug: 'amira-murtazaeva', name: 'Amira Murtazaeva', credentials: 'PT, DPT, CFSC', title: 'Director of Mentorship', locationId: 'chelsea',
+    image: U + '2025/07/amira.jpg',
+    intro: 'Amira is a multilingual physical therapist who focuses on sports performance and orthopedic rehab, and she mentors college students and future physical therapists.',
+    story: [
+      'Amira works in New York City with a focus on sports performance, orthopedic rehabilitation and evidence-based care.',
+      'She has treated sports injuries, recovery after surgery, balance disorders, and neck and low back conditions. She adapts her care to each patient, using manual therapy and functional rehab, and works with physicians and mentors students and aspiring therapists.',
+      'She applies current research and clinical guidelines to plans built around each patient’s goals. She is working toward certification in pelvic floor therapy, and she trains at the gym herself.',
+    ],
+    education: ['Doctorate in Physical Therapy, Gannon University', 'Bachelor’s in Psychology, CUNY Queens College'],
+    certifications: ['Certified Functional Strength Coach (CFSC)', 'McKenzie Institute, Parts A to D', 'Multidisciplinary Care of the Athlete’s Spine, HSS', 'ACL Rehab with Return to Sport Testing', 'Pelvic floor therapy certification (in progress)'],
+    focus: ['Sports performance', 'Orthopedic rehabilitation', 'Recovery after surgery', 'Balance disorders', 'Neck and low back conditions'],
+    interests: ['Weightlifting', 'Cooking and baking', 'Traveling', 'Fashion & style'],
+    photos: up('2025/07/Amira-Murtazaeva.avif', '2025/07/Amira-Murtazaeva-2.avif', '2025/07/Amira-Murtazaeva-3.avif', '2025/07/Amira-Murtazaeva-4.avif', '2025/07/Amira-Murtazaeva-5.avif', '2025/07/Amira-Murtazaeva-6.avif'),
+  },
+  {
+    slug: 'estella-maritza-mejia-dpt', name: 'Estella Maritza Mejia', credentials: 'PT, DPT', title: 'Physical Therapist', locationId: 'chelsea',
+    image: U + '2025/07/Estella-Maritza-Mejia-scaled.avif',
+    intro: 'Estella is a bilingual (English and Spanish) pelvic floor physical therapist with a special interest in hypermobility and connective tissue conditions.',
+    story: [
+      'Estella grew up in South Florida and speaks English and Spanish. She works to make her care open to many people. Her curiosity about the body and her love of art led her to physical therapy.',
+      'She studied Recreation and Sports Management and Interdisciplinary Studies at Florida International University, then earned her Doctor of Physical Therapy at the University of Miami Miller School of Medicine. In her first year she co-founded the Pelvic Floor Special Interest Group, and she completed Herman and Wallace Pelvic Floor Level 1 before she graduated.',
+      'Learning that she is on the hypermobility spectrum led her to a strong interest in connective tissue conditions such as Ehlers-Danlos syndrome, POTS and MCAS. She worked as a pelvic floor physical therapist in Delray Beach, Florida, treating men and women, before moving to New York.',
+    ],
+    education: ['Doctor of Physical Therapy, University of Miami Miller School of Medicine', 'Recreation and Sports Management and Interdisciplinary Studies, Florida International University'],
+    certifications: ['Herman and Wallace Pelvic Floor Level 1'],
+    focus: ['Pelvic floor health for men and women', 'Hypermobility', 'Connective tissue conditions'],
+    interests: ['Dancing', 'Cooking', 'The beach', 'Weightlifting and yoga', 'Traveling', 'Art and thrifting'],
+    photos: up('2025/07/Estella-Maritza-Mejia-1.avif', '2025/07/Estella-Maritza-Mejia-2.avif', '2025/07/Estella-Maritza-Mejia-3.avif', '2025/07/Estella-Maritza-Mejia-4.avif', '2025/07/Estella-Maritza-Mejia-5.avif', '2025/07/Estella-Maritza-Mejia-6.avif'),
+  },
+  {
+    slug: 'kevin-yu', name: 'Kevin Yu', credentials: 'PT, DPT, BRM', title: 'Physical Therapist', locationId: 'chelsea',
+    image: U + '2025/07/Kevin-Yu.avif',
+    intro: 'Kevin takes a whole-body approach to sports injuries, chronic pain and rehab after surgery, with a love of volleyball and dance.',
+    story: [
+      'Kevin was born in Brooklyn and raised on Staten Island. He earned his undergraduate degree in Psychology at Hunter College and his Doctorate in Physical Therapy at Long Island University in downtown Brooklyn. His interest in movement and healing, and his love of sports and dance, led him to physical therapy.',
+      'He grew up playing volleyball and basketball and became interested in hip-hop dance and choreography. These experiences shaped his understanding of how the body moves and what sports and dance demand of it.',
+      'He treats sports injuries, chronic pain and rehab after surgery, and looks for the cause instead of only the symptoms. He aims to give patients tools to stay healthy after treatment, using evidence-based care that is personal to them.',
+    ],
+    education: ['Doctorate in Physical Therapy, Long Island University', 'Undergraduate degree in Psychology, Hunter College'],
+    certifications: [],
+    focus: ['Sports injuries', 'Chronic pain', 'Rehab after surgery', 'Whole-body treatment'],
+    interests: ['Dance', 'Travel', 'Food', 'Volleyball', 'Cafes'],
+    photos: up('2025/07/Kevin-Yu-1.avif', '2025/07/Kevin-Yu-2.avif', '2025/07/Kevin-Yu-3.avif'),
+  },
+  {
+    slug: 'jared-orwell', name: 'Jared Orwell', credentials: 'PT, DPT', title: 'Physical Therapist', locationId: 'chelsea',
+    image: U + '2026/04/Jared-O-2-e1776446144278.jpg',
+    intro: 'Jared is a runner and former college baseball player who helps patients get back to the activities that matter to them.',
+    story: [
+      'Jared grew up in Pittsburgh and moved to the New York City area after earning his doctorate at Chatham University. He holds an undergraduate degree in Exercise Science from John Carroll University, where he played baseball. His clinical rotations covered outpatient orthopedics, outpatient neurology and inpatient rehabilitation.',
+      'His interest in physical therapy began with sports injuries when he was young. An injury during his college baseball career brought him back to rehab and deepened his respect for the recovery process.',
+      'Outside the clinic he runs marathons and lifts weights, which helps him relate to patients who want to return to their own activities.',
+    ],
+    education: ['Doctorate in Physical Therapy, Chatham University', 'Exercise Science, John Carroll University'],
+    certifications: [], focus: ['Outpatient orthopedics', 'Outpatient neurology', 'Inpatient rehabilitation'],
+    interests: ['Baseball', 'Running & traveling', 'Time with friends and family'],
+    photos: up('2026/02/7.png', '2026/02/8.jpg', '2026/02/9.jpg'),
+  },
+  {
+    slug: 'adeola-okediji', name: 'Adeola Okediji', credentials: 'PT, DPT, CHT', title: 'Physical Therapist', locationId: 'chelsea',
+    image: U + '2026/04/img12.jpg',
+    intro: 'Adeola is a certified hand therapist with over 20 years of practice, focused on arm and hand rehab for orthopedic, neurological and pediatric patients.',
+    story: [
+      'Adeola is a physical therapist and Certified Hand Therapist with more than 20 years of clinical practice. She is licensed in New York, New Jersey and California and focuses on upper extremity rehabilitation for orthopedic, neurological and pediatric patients.',
+      'She trained at the Rusk Institute at NYU, building skills in neurological, acute care, vestibular and pediatric rehab. She later worked in home care and school-based programs, to improve how adults and children function and live.',
+      'Her core areas are hand therapy, rehab after injury and neurological recovery. She earned her CHT credential in May 2021 and keeps learning. Her approach is caring and hands-on, and she gives each patient the same respect and attention she would want for herself.',
+    ],
+    education: ['Doctorate in Physical Therapy, Stony Brook University', 'M.S. in Physical Therapy, Loma Linda University'],
+    certifications: ['Certified Hand Therapist (CHT), 2021'],
+    focus: ['Hand therapy', 'Arm and hand rehabilitation', 'Rehab after injury', 'Neurological recovery'],
+    interests: ['Languages', 'Cultures', 'Traveling', 'Cuisine'],
+    photos: up('2026/04/img7.jpg', '2026/04/img8.jpg'),
+  },
+];
