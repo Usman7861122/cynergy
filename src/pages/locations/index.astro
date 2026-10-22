@@ -1,0 +1,44 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import PageHero from '@components/sections/PageHero.astro';
+import SectionHeading from '@components/ui/SectionHeading.astro';
+import LocationsExplorer from '@components/islands/LocationsExplorer';
+import LocationCards from '@components/sections/LocationCards.astro';
+import CtaBand from '@components/sections/CtaBand.astro';
+import { img } from '@/data/images';
+import type { Location } from '@/data/locations';
+---
+
+<BaseLayout
+  title="Locations | Cynergy Physical Therapy"
+  description="Six Cynergy clinics in Manhattan and Brooklyn: Midtown West, Midtown East, Chelsea, Cobble Hill, ADPT by Cynergy and The Wellness Den."
+>
+  <PageHero
+    eyebrow="Locations"
+    title="Six clinics, close to you."
+    text="Find a Cynergy clinic in Manhattan or Brooklyn. Every visit is one-on-one with a licensed therapist."
+    image={img.cobbleHill}
+    imageAlt="Inside a Cynergy clinic"
+    crumbs={[{ label: 'Home', href: '/' }, { label: 'Locations' }]}
+    primary={{ label: 'Book an appointment', href: '/appointment/' }}
+    secondary={{ label: 'Call (212) 974-7252', href: 'tel:+12129747252' }}
+    areas="Patients come from across Midtown, Chelsea, the Upper East Side, Cobble Hill and the rest of New York City."
+  />
+
+  <section class="py-20 lg:py-28">
+    <div class="container-x">
+      <SectionHeading eyebrow="Find us" title="Pick a clinic on the map." text="Open a clinic to see its address, phone number and directions." />
+      <div class="mt-12"><LocationsExplorer client:visible /></div>
+    </div>
+  </section>
+
+  <LocationCards
+    eyebrow="Visit a clinic"
+    title="Learn about each clinic."
+    text="See the team, services and neighborhood for every location."
+    serviceHref={(l: Location) => l.href}
+    serviceLabel={(l: Location) => `Visit Cynergy ${l.name}`}
+  />
+
+  <CtaBand />
+</BaseLayout>
