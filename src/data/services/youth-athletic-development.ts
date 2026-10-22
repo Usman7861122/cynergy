@@ -1,4 +1,3 @@
-import { img } from '@/data/images';
 import type { Service } from './types';
 
 const U = 'https://cynergypt.com/wp-content/uploads/2025/07/';
@@ -14,10 +13,10 @@ export const youthAthletic: Service = {
   heroTitle: 'Youth athletic development in New York City.',
   seoTitle: 'Youth Athletic Development in New York City',
   heroText: 'A step-by-step, research-based way to build young athletes. We train strength, power, speed, agility, coordination and endurance, and use physical therapy to fix movement habits that raise injury risk.',
-  image: U + 'IMG_4031-1536x2048.jpeg.avif',
+  image: '/images/sports/youth-athletic-development-1.jpg',
   imageAlt: 'A young athlete training',
   overviewImage: U + 'IMG_8522-1508x2048.jpeg.avif',
-  whyImage: img.sportsPerformance,
+  whyImage: '/images/sports/youth-athletic-development-2.jpg',
   whyImageAlt: 'Young athletes in a training session',
   overview: { eyebrow: 'At ADPT', title: 'Plans that grow with your child.', text: 'Every plan is personal and changes over time. We build core athletic skills and help young athletes move with more ease.' },
   causes: { title: 'Program focus', items: ['Strength and power', 'Speed in all directions', 'Footwork and agility', 'Coordination', 'Endurance', 'Finding movement weak links'] },

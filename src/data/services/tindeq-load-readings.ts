@@ -1,8 +1,6 @@
 import { img } from '@/data/images';
 import type { Service } from './types';
 
-const U = 'https://cynergypt.com/wp-content/uploads/';
-
 // Content comes from https://cynergypt.com/tindeq-load-readings/ (shortened and simplified).
 export const tindeq: Service = {
   dir: '',
@@ -14,10 +12,10 @@ export const tindeq: Service = {
   heroTitle: 'Tindeq load readings in New York City.',
   seoTitle: 'Tindeq Load Readings in New York City',
   heroText: 'Tindeq is a precise tool that measures your strength and tracks your rehab. It helps athletes and active people see real progress in numbers.',
-  image: U + '2025/10/1d3b24f2-88fc-47f4-9a2f-af5637565d4a.png',
+  image: '/images/sports/tindeq-load-readings-1.jpg',
   imageAlt: 'Tindeq device measuring strength',
   overviewImage: img.sportsRecovery,
-  whyImage: img.sports,
+  whyImage: '/images/sports/tindeq-load-readings-2.jpg',
   whyImageAlt: 'Strength testing with a therapist',
   overview: { eyebrow: 'What is Tindeq?', title: 'A small device with big insight.', text: 'Tindeq is a light, wireless force sensor. It measures load, tension and force in real time, from finger strength to full-body effort.' },
   causes: { title: 'Who benefits', items: ['After surgery', 'Overuse injuries', 'Strength athletes', 'Anyone who wants clear progress'] },

@@ -1,8 +1,6 @@
 import { img } from '@/data/images';
 import type { Service } from './types';
 
-const U = 'https://cynergypt.com/wp-content/uploads/';
-
 // Content comes from https://cynergypt.com/running-gait-analysis-nyc/ (shortened and simplified).
 export const runningGait: Service = {
   dir: '',
@@ -14,10 +12,10 @@ export const runningGait: Service = {
   heroTitle: 'Running gait analysis in New York City.',
   seoTitle: 'Running Gait Analysis in New York City',
   heroText: 'Improve performance, prevent injuries and run smarter. Our program is for runners of every level, from a first 5K to a marathon, and is led by licensed physical therapists.',
-  image: U + '2025/09/Screenshot-2025-09-29-at-10.50.45-AM.png',
+  image: '/images/sports/running-gait-analysis-nyc-1.jpg',
   imageAlt: 'A runner during a gait analysis',
   overviewImage: img.sportsRecovery,
-  whyImage: img.sports,
+  whyImage: '/images/sports/running-gait-analysis-nyc-2.jpg',
   whyImageAlt: 'Runner training outdoors',
   overview: { eyebrow: 'What is gait analysis?', title: 'A close look at how you run.', text: 'We use slow-motion video, motion capture and careful observation to study your stride, posture, joint angles and foot strike. Then we find habits that may lead to injury.' },
   causes: { title: 'Who it is for', items: ['New runners learning form', 'Race-day athletes', 'Runners coming back from injury', 'People with pain when walking or jogging', 'Older adults who want safer running'] },

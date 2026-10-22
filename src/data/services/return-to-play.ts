@@ -1,8 +1,6 @@
 import { img } from '@/data/images';
 import type { Service } from './types';
 
-const U = 'https://cynergypt.com/wp-content/uploads/';
-
 // Content comes from https://cynergypt.com/return-to-play/ (shortened and simplified).
 export const returnToPlay: Service = {
   dir: '',
@@ -14,10 +12,10 @@ export const returnToPlay: Service = {
   heroTitle: 'Return-to-play physical therapy in New York City.',
   seoTitle: 'Return-to-Play (RTP) Physical Therapy in New York City',
   heroText: 'Get back in the game with a personal plan that rebuilds strength, prevents re-injury and shows you are ready, whether or not you had surgery.',
-  image: U + '2025/09/Screenshot-2025-09-29-at-10.51.35-AM.png',
+  image: '/images/sports/return-to-play-1.jpg',
   imageAlt: 'An athlete during return-to-play rehab',
   overviewImage: img.sportsMedicine,
-  whyImage: img.sports,
+  whyImage: '/images/sports/return-to-play-2.jpg',
   whyImageAlt: 'Athletes training',
   overview: { eyebrow: 'What is RTP?', title: 'A clear path back to your sport.', text: 'Return-to-play is a step-by-step rehab process. It helps you go back to sport safely after an injury, with or without surgery. The goal is full function and lower risk of getting hurt again.' },
   causes: { title: 'After surgery', items: ['ACL reconstruction', 'Rotator cuff repair', 'Meniscus surgery'] },

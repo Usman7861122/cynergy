@@ -1,4 +1,3 @@
-import { img } from '@/data/images';
 import type { Service } from './types';
 
 const U = 'https://cynergypt.com/wp-content/uploads/';
@@ -14,10 +13,10 @@ export const femaleAthleteTriad: Service = {
   heroTitle: 'Female athlete triad care in New York City.',
   seoTitle: 'Female Athlete Triad Treatment in New York City',
   heroText: 'The Female Athlete Triad affects active women and teen girls. Early screening matters, because untreated cases can lead to tiredness, stress fractures, hormone changes and long-term bone loss.',
-  image: U + '2025/07/Female-Athlete-Triad-768x521.jpg.avif',
+  image: '/images/sports/female-athlete-triad-care-1.jpg',
   imageAlt: 'A female athlete during a screening',
   overviewImage: U + '2025/07/triad-1.jpg.avif',
-  whyImage: img.sports,
+  whyImage: '/images/sports/female-athlete-triad-care-2.jpg',
   whyImageAlt: 'Athletes training together',
   overview: { eyebrow: 'The triad', title: 'Three linked concerns.', text: 'The triad is made of low energy availability, changes in the menstrual cycle and low bone density. They affect each other, so we look at all three together.' },
   causes: { title: 'When to get screened', items: ['Missed or irregular periods', 'Fast weight loss or under-fueling', 'Repeated stress fractures', 'Constant tiredness', 'A history of overtraining'] },

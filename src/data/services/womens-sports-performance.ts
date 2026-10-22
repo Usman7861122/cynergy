@@ -1,4 +1,3 @@
-import { img } from '@/data/images';
 import type { Service } from './types';
 
 const U = 'https://cynergypt.com/wp-content/uploads/2025/07/';
@@ -14,10 +13,10 @@ export const womensSports: Service = {
   heroTitle: "Women's sports performance program in New York City.",
   seoTitle: "Women's Sports Performance Program in New York City",
   heroText: 'Specialized training for the female athlete. Train, recover and improve with licensed health professionals who focus on injury prevention, pelvic floor health and bone strength.',
-  image: U + 'IMG_8521-1536x2048.jpeg.avif',
+  image: '/images/sports/womens-sports-performance-program-1.jpg',
   imageAlt: 'A female athlete training',
   overviewImage: U + 'IMG_8523-1536x2048.jpeg.avif',
-  whyImage: img.sports,
+  whyImage: '/images/sports/womens-sports-performance-program-2.jpg',
   whyImageAlt: 'Women training together',
   overview: { eyebrow: 'A tailored approach', title: 'Women face different risks in sport.', text: 'Our program looks at body mechanics, hormones and muscles and bones, so your training fits you.' },
   causes: { title: 'What we watch for', items: ['Higher ACL injury risk', 'Pelvic floor problems', 'Female Athlete Triad', 'Bone density concerns'] },
