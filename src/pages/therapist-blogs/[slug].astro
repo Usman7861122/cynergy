@@ -1,0 +1,111 @@
+---
+// Article pages: /therapist-blogs/<slug>/
+// A page is built for every entry in src/data/media-posts.ts.
+import BaseLayout from '@layouts/BaseLayout.astro';
+import PageHero from '@components/sections/PageHero.astro';
+import SectionHeading from '@components/ui/SectionHeading.astro';
+import CtaBand from '@components/sections/CtaBand.astro';
+import Arrow from '@components/ui/Arrow.astro';
+import Faq from '@components/islands/Faq';
+import { mediaPosts, postHref, formatDate, type MediaPost } from '@/data/media-posts';
+import { locations } from '@/data/locations';
+
+export function getStaticPaths() {
+  return mediaPosts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
+}
+
+const { post } = Astro.props as { post: MediaPost };
+const loc = locations.find((l) => l.id === post.locationId);
+const more = mediaPosts.filter((p) => p.slug !== post.slug).slice(0, 3);
+const phoneHref = loc ? `tel:+1${loc.phone.replace(/\D/g, '')}` : 'tel:+12129747252';
+const phoneLabel = loc ? loc.phone : '(212) 974-7252';
+---
+
+<BaseLayout title={`${post.title} | Cynergy Physical Therapy`} description={post.excerpt}>
+  <PageHero
+    eyebrow={`${post.category} · ${formatDate(post.date)}`}
+    title={post.short}
+    text={post.excerpt}
+    image={post.image}
+    imageAlt={post.imageAlt}
+    crumbs={[{ label: 'Home', href: '/' }, { label: 'Media', href: '/media/' }, { label: 'Articles' }]}
+    primary={{ label: 'Book an appointment', href: '/appointment/' }}
+    secondary={{ label: `Call ${phoneLabel}`, href: phoneHref }}
+  />
+
+  <section class="py-20 lg:py-28">
+    <div class="container-x grid gap-14 lg:grid-cols-12">
+      <article class="lg:col-span-8">
+        <h2 class="text-3xl leading-tight text-pine-950 sm:text-4xl" data-reveal>{post.title}</h2>
+        {post.intro && <p class="mt-6 text-xl text-ink/85" data-reveal>{post.intro}</p>}
+
+        {post.sections.map((s) => (
+          <section class="mt-12" data-reveal>
+            <h2 class="text-2xl text-pine-950 sm:text-3xl">{s.h}</h2>
+            {s.p?.map((t) => <p class="mt-4 text-lg text-ink/80">{t}</p>)}
+            {s.list && (s.ordered
+              ? <ol class="mt-5 list-decimal space-y-2 pl-6 text-lg text-ink/80 marker:font-semibold marker:text-clay-600">{s.list.map((li) => <li>{li}</li>)}</ol>
+              : <ul class="mt-5 space-y-2 text-lg text-ink/80">{s.list.map((li) => <li class="flex items-start gap-3"><span class="mt-3 h-1.5 w-4 shrink-0 rounded-sm bg-clay-500"></span>{li}</li>)}</ul>)}
+            {s.sub?.map((b) => (
+              <div class="mt-7 rounded-xl border border-pine-900/10 bg-cream-100 p-6 transition duration-300 hover:-translate-y-0.5 hover:border-pine-900/30 hover:shadow-lg hover:shadow-pine-950/10">
+                <h3 class="text-xl text-pine-950">{b.h}</h3>
+                {b.p?.map((t) => <p class="mt-3 text-ink/80">{t}</p>)}
+                {b.list && <ul class="mt-4 space-y-2 text-ink/80">{b.list.map((li) => <li class="flex items-start gap-3"><span class="mt-2.5 h-1.5 w-4 shrink-0 rounded-sm bg-clay-500"></span>{li}</li>)}</ul>}
+              </div>
+            ))}
+          </section>
+        ))}
+      </article>
+
+      <aside class="lg:col-span-4">
+        <div class="space-y-5 lg:sticky lg:top-32">
+          <div class="rounded-xl bg-pine-950 p-7 text-white" data-reveal>
+            <p class="eyebrow !text-clay-300">Related care</p>
+            <p class="mt-3 text-2xl">{post.related.label}</p>
+            <a href={post.related.href} class="btn btn-primary mt-6">Learn more <Arrow /></a>
+          </div>
+          {loc && (
+            <div class="rounded-xl border border-pine-900/10 bg-white p-7" data-reveal style="--d:100ms">
+              <p class="eyebrow">Visit us</p>
+              <p class="mt-3 text-xl text-pine-950">Cynergy {loc.name}</p>
+              <p class="mt-2 text-ink/75">{loc.line1}<br />{loc.city}</p>
+              <a href={phoneHref} class="mt-3 inline-block font-semibold text-pine-900 hover:text-clay-600">{loc.phone}</a>
+              <a href={loc.href} class="mt-5 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.16em] text-pine-900 hover:text-clay-600">See this clinic <Arrow class="h-4 w-4" /></a>
+            </div>
+          )}
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  {post.faqs && (
+    <section class="bg-cream-100 py-20 lg:py-28">
+      <div class="container-x grid gap-12 lg:grid-cols-12">
+        <div class="lg:col-span-4"><SectionHeading eyebrow="FAQ" title="Quick answers." text="Still have questions? Call us and we will help." /></div>
+        <div class="lg:col-span-8"><Faq client:visible items={post.faqs} /></div>
+      </div>
+    </section>
+  )}
+
+  <section class="py-20 lg:py-28">
+    <div class="container-x">
+      <SectionHeading eyebrow="Keep reading" title="More from Cynergy." />
+      <ul class="mt-12 grid gap-5 md:grid-cols-3">
+        {more.map((p, i) => (
+          <li data-reveal style={`--d:${i * 100}ms`}>
+            <a href={postHref(p)} class="group block h-full overflow-hidden rounded-xl border border-pine-900/10 bg-white transition duration-500 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-pine-950/15">
+              <div class="aspect-[16/10] overflow-hidden bg-sage-200"><img src={p.image} alt={p.imageAlt} loading="lazy" referrerpolicy="no-referrer" class="h-full w-full object-cover transition duration-700 group-hover:scale-105" /></div>
+              <div class="p-6">
+                <p class="text-xs font-semibold uppercase tracking-[0.16em] text-clay-600">{p.category}</p>
+                <h3 class="mt-2 text-xl text-pine-950">{p.short}</h3>
+              </div>
+            </a>
+          </li>
+        ))}
+      </ul>
+      <div class="mt-10 text-center"><a href="/media/" class="btn btn-outline">View all media <Arrow /></a></div>
+    </div>
+  </section>
+
+  <CtaBand />
+</BaseLayout>

@@ -4,7 +4,6 @@ import PageHero from '@components/sections/PageHero.astro';
 import SectionHeading from '@components/ui/SectionHeading.astro';
 import ReviewsFilter, { type ReviewCard } from '@components/islands/ReviewsFilter';
 import CtaBand from '@components/sections/CtaBand.astro';
-import { img } from '@/data/images';
 import { locations } from '@/data/locations';
 import { patientReviews, googleReviews, googleStats } from '@/data/patient-reviews';
 
@@ -31,8 +30,8 @@ const places = locations
     eyebrow="Patient reviews"
     title="What our patients are saying."
     text="Real words from the people we care for. Filter by clinic to read stories from the place nearest you, and see our ratings on Google."
-    image={img.reviews}
-    imageAlt="Smiling patients"
+    image="/images/reviews-hero.jpg"
+    imageAlt="A smiling patient during a shoulder stretch with her therapist"
     crumbs={[{ label: 'Home', href: '/' }, { label: 'At Cynergy', href: '/about/' }, { label: 'Patient Reviews' }]}
     primary={{ label: 'Book an appointment', href: '/appointment/' }}
     secondary={{ label: 'Call (212) 974-7252', href: 'tel:+12129747252' }}
