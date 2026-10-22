@@ -16,6 +16,7 @@ import { storiesFor } from '@/data/reviews';
 import { commonFaqs } from '@/data/services/common';
 import { servicePath, localPath, type Service } from '@/data/services/types';
 import { locationsFor } from '@/data/services';
+import { locations } from '@/data/locations';
 
 // One template for every "What we treat" page.
 // Without `loc` it is the general page. With `loc` it is the same page for one location.
@@ -23,6 +24,7 @@ interface Props { svc: Service; loc?: Location }
 const { svc, loc } = Astro.props;
 
 const offer = svc.group === 'offer';
+const sports = svc.group === 'sports';
 const base = servicePath(svc);
 const localHref = (l: Location) => localPath(svc, l.id);
 const phoneLabel = loc ? loc.phone : '(212) 974-7252';
@@ -45,9 +47,11 @@ if (loc) faqs.push({ q: `Where is the ${loc.name} clinic?`, a: `You can find us 
 
 const stories = storiesFor(loc?.id);
 const director = loc ? leaders.find((p) => p.name === loc.director) : undefined;
-const related = ((mainNav.find((n) => n.label === 'Services')?.mega as any)?.groups?.[offer ? 1 : 0]?.links ?? []).filter((l: any) => l.href !== base);
-const parent = offer ? { label: 'What We Offer', href: '/what-we-offer/' } : { label: 'What We Treat', href: '/what-we-treat/' };
-const places = locationsFor(svc);
+const sportsLinks = ((mainNav.find((n) => n.label === 'Sports')?.mega as any)?.groups ?? []).flatMap((g: any) => g.links ?? []);
+const uniqueSports = sportsLinks.filter((l: any, i: number) => sportsLinks.findIndex((x: any) => x.href === l.href) === i);
+const related = (sports ? uniqueSports : ((mainNav.find((n) => n.label === 'Services')?.mega as any)?.groups?.[offer ? 1 : 0]?.links ?? [])).filter((l: any) => l.href !== base);
+const parent = sports ? { label: 'Sports', href: '/sports-physical-therapy/' } : offer ? { label: 'What We Offer', href: '/what-we-offer/' } : { label: 'What We Treat', href: '/what-we-treat/' };
+const places = sports ? locations : locationsFor(svc);
 const nums = ['', 'one', 'two', 'three', 'four', 'five', 'six'];
 const showBoth = !!(svc.causes && svc.approach);
 ---
@@ -226,10 +230,10 @@ const showBoth = !!(svc.causes && svc.approach);
     <LocationCards
       eyebrow="Where we offer it"
       ids={places.map((l) => l.id)}
-      title={`${svc.careName} at ${places.length === 6 ? 'all six locations' : `${nums[places.length]} of our locations`}.`}
+      title={sports ? `${svc.careName} across all six locations.` : `${svc.careName} at ${places.length === 6 ? 'all six locations' : `${nums[places.length]} of our locations`}.`}
       text="Choose the clinic that is closest to you. Every location offers one-on-one care."
-      serviceHref={localHref}
-      serviceLabel={(l) => `${svc.careName} in ${l.name}`}
+      serviceHref={sports ? ((l: Location) => l.href) : localHref}
+      serviceLabel={(l) => sports ? `Visit Cynergy ${l.name}` : `${svc.careName} in ${l.name}`}
     />
   )}
 
@@ -243,7 +247,7 @@ const showBoth = !!(svc.causes && svc.approach);
   <!-- Related conditions -->
   <section class="py-16 lg:py-24">
     <div class="container-x">
-      <SectionHeading eyebrow="More to explore" title={offer ? "More of what we offer." : "Other conditions we treat."} />
+      <SectionHeading eyebrow="More to explore" title={sports ? "More sports care." : offer ? "More of what we offer." : "Other conditions we treat."} />
       <ul class="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4" data-reveal>
         {related.map((l: { label: string; href: string }) => (
           <li class="h-full">

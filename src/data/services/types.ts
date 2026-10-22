@@ -6,7 +6,7 @@ export type Service = {
   /** URL folder. Empty string means the page sits at the site root, like the live site. */
   dir: 'what-we-treat' | 'injuries' | '';
   /** Which menu group the page belongs to (default: treat) */
-  group?: 'treat' | 'offer';
+  group?: 'treat' | 'offer' | 'sports';
   /** Only these locations get a page. Leave out for all six. */
   locationIds?: string[];
   slug: string;
