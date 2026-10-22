@@ -6,13 +6,20 @@ import ReviewsFilter, { type ReviewCard } from '@components/islands/ReviewsFilte
 import CtaBand from '@components/sections/CtaBand.astro';
 import { img } from '@/data/images';
 import { locations } from '@/data/locations';
-import { patientReviews } from '@/data/patient-reviews';
+import { patientReviews, googleReviews, googleStats } from '@/data/patient-reviews';
 
 // Reviews come from https://cynergypt.com/testimonials/ (short excerpts and summaries).
 const nameOf = (id?: string) => locations.find((l) => l.id === id)?.name;
-const items: ReviewCard[] = patientReviews.map((r) => ({ ...r, placeLabel: nameOf(r.place) }));
+// Mix website and Google reviews so neither source bunches up.
+const mixed: typeof patientReviews = [];
+for (let i = 0; i < Math.max(patientReviews.length, googleReviews.length); i++) {
+  if (patientReviews[i]) mixed.push(patientReviews[i]);
+  if (googleReviews[i]) mixed.push(googleReviews[i]);
+}
+const all = mixed;
+const items: ReviewCard[] = all.map((r) => ({ ...r, placeLabel: nameOf(r.place) }));
 const places = locations
-  .filter((l) => patientReviews.some((r) => r.place === l.id))
+  .filter((l) => all.some((r) => r.place === l.id))
   .map((l) => ({ id: l.id, label: l.name }));
 ---
 
@@ -23,7 +30,7 @@ const places = locations
   <PageHero
     eyebrow="Patient reviews"
     title="What our patients are saying."
-    text="Real words from the people we care for. Filter by clinic to read stories from the place nearest you."
+    text="Real words from the people we care for. Filter by clinic to read stories from the place nearest you, and see our ratings on Google."
     image={img.reviews}
     imageAlt="Smiling patients"
     crumbs={[{ label: 'Home', href: '/' }, { label: 'At Cynergy', href: '/about/' }, { label: 'Patient Reviews' }]}
@@ -33,9 +40,9 @@ const places = locations
 
   <section class="py-20 lg:py-28">
     <div class="container-x">
-      <SectionHeading eyebrow="Stories" title="Better movement, in their words." text="Excerpts from reviews on our previous site." />
+      <SectionHeading eyebrow="Stories" title="Better movement, in their words." text="Short excerpts from reviews on our website and our Google profiles. Filter by clinic or by source." />
       <div class="mt-10" data-reveal>
-        <ReviewsFilter client:load items={items} places={places} />
+        <ReviewsFilter client:load items={items} places={places} stats={googleStats} />
       </div>
     </div>
   </section>
