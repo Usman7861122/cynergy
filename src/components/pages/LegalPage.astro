@@ -1,0 +1,58 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { legalDocs, type LegalDoc } from '@/data/legal';
+
+interface Props { doc: LegalDoc }
+const { doc } = Astro.props;
+const others = legalDocs.filter((d) => d.slug !== doc.slug);
+---
+
+<BaseLayout title={`${doc.title} | Cynergy Physical Therapy`} description={doc.description}>
+  <section class="bg-pine-950 pb-14 pt-36 text-white lg:pb-20 lg:pt-44">
+    <div class="container-x">
+      <nav aria-label="Breadcrumb" class="text-sm text-white/65">
+        <a href="/" class="hover:text-white">Home</a> <span aria-hidden="true">/</span> <span class="text-white" aria-current="page">{doc.title}</span>
+      </nav>
+      <h1 class="mt-6 text-4xl font-medium sm:text-5xl">{doc.title}</h1>
+      <p class="mt-4 text-white/70">Last updated: {doc.updated}</p>
+    </div>
+  </section>
+
+  <section class="py-16 lg:py-24">
+    <div class="container-x grid gap-12 lg:grid-cols-12">
+      <article class="lg:col-span-8">
+        <p class="text-lg text-ink/85">{doc.intro}</p>
+        {doc.sections.map((s) => (
+          <section class="mt-10">
+            <h2 class="text-2xl text-pine-950">{s.h}</h2>
+            {s.p?.map((t) => <p class="mt-3 text-ink/80">{t}</p>)}
+            {s.list && <ul class="mt-4 space-y-2 text-ink/80">{s.list.map((li) => <li class="flex items-start gap-3"><span class="mt-2.5 h-1.5 w-4 shrink-0 rounded-sm bg-clay-500"></span>{li}</li>)}</ul>}
+            {s.sub?.map((b) => (
+              <div class="mt-5">
+                <h3 class="text-lg text-pine-950">{b.h}</h3>
+                {b.p?.map((t) => <p class="mt-2 text-ink/80">{t}</p>)}
+                {b.list && <ul class="mt-3 space-y-2 text-ink/80">{b.list.map((li) => <li class="flex items-start gap-3"><span class="mt-2.5 h-1.5 w-4 shrink-0 rounded-sm bg-clay-500"></span>{li}</li>)}</ul>}
+              </div>
+            ))}
+          </section>
+        ))}
+      </article>
+      <aside class="lg:col-span-4">
+        <div class="space-y-4 lg:sticky lg:top-32">
+          <div class="rounded-xl border border-pine-900/10 bg-cream-100 p-6">
+            <p class="eyebrow">Other policies</p>
+            <ul class="mt-3 space-y-1">
+              {others.map((d) => <li><a href={`/${d.slug}/`} class="inline-flex min-h-10 items-center font-medium text-pine-900 hover:text-clay-600">{d.title}</a></li>)}
+            </ul>
+            <button type="button" data-cookie-settings class="btn btn-outline mt-4">Cookie settings</button>
+          </div>
+          <div class="rounded-xl bg-pine-950 p-6 text-white">
+            <p class="text-lg">Questions?</p>
+            <p class="mt-2 text-white/75">Call (212) 974-7252 or use our contact page.</p>
+            <a href="/contact-us/" class="btn btn-primary mt-5">Contact us</a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,7 +1,7 @@
 ---
 import { img } from '@/data/images';
 import { locations, telHref } from '@/data/locations';
-import { socials, utilityRight, newPatients } from '@/data/nav';
+import { socials, utilityRight, newPatients, payBill } from '@/data/nav';
 
 const quick = [
   { label: 'Services', href: '/services/' },
@@ -12,9 +12,8 @@ const quick = [
   { label: 'Sports', href: '/sports-physical-therapy/' },
   { label: 'Contact Us', href: '/contact-us/' },
   { label: 'Careers', href: '/careers-2/' },
-  { label: 'Store', href: '/store/' },
 ];
-const more: { label: string; href: string; external?: boolean }[] = [...utilityRight, newPatients, { label: 'FAQ', href: '/faq/' }, { label: 'Patient Reviews', href: '/patient-testimonials/' }];
+const more: { label: string; href: string; external?: boolean }[] = [payBill, ...utilityRight, newPatients, { label: 'FAQ', href: '/faq/' }, { label: 'Patient Reviews', href: '/patient-testimonials/' }];
 const year = new Date().getFullYear();
 
 const icons: Record<string, string> = {
@@ -81,7 +80,12 @@ const icons: Record<string, string> = {
   <div class="border-t border-white/10">
     <div class="container-x flex flex-col gap-2 py-6 text-sm text-white/55 sm:flex-row sm:justify-between">
       <p>© {year} Cynergy Physical Therapy. All rights reserved.</p>
-      <p>Physical &amp; Occupational Therapy · New York City</p>
+      <ul class="flex flex-wrap gap-x-5 gap-y-1">
+        <li><a href="/privacy-policy/" class="inline-flex min-h-8 items-center hover:text-white">Privacy Policy</a></li>
+        <li><a href="/terms-of-use/" class="inline-flex min-h-8 items-center hover:text-white">Terms of Use</a></li>
+        <li><a href="/cookie-policy/" class="inline-flex min-h-8 items-center hover:text-white">Cookie Policy</a></li>
+        <li><button type="button" data-cookie-settings class="inline-flex min-h-8 items-center hover:text-white">Cookie settings</button></li>
+      </ul>
     </div>
   </div>
 </footer>

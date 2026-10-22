@@ -1,0 +1,122 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import PageHero from '@components/sections/PageHero.astro';
+import SectionHeading from '@components/ui/SectionHeading.astro';
+import SiteForm from '@components/islands/SiteForm';
+import CtaBand from '@components/sections/CtaBand.astro';
+import Arrow from '@components/ui/Arrow.astro';
+import { img } from '@/data/images';
+import { locations } from '@/data/locations';
+
+// Content comes from https://cynergypt.com/careers-2/ (shortened and simplified).
+const values = ['Empathy and compassion', 'Diversity and community', 'Teamwork', 'Open talk', 'Fresh ideas', 'Integrity', 'Always getting better'];
+
+const jobs = [
+  {
+    title: 'Physical Therapist',
+    text: 'Give one-on-one physical therapy for orthopedic, post-surgery and performance conditions.',
+    needs: ['Doctor of Physical Therapy (DPT)', 'Active New York PT license', 'Strong knowledge of orthopedic and post-surgery rehab', 'Hands-on skills and a focus on personal care', 'Good people and communication skills', 'Ability to work with a team of different specialists'],
+    note: 'New graduates are welcome to apply!',
+  },
+  {
+    title: 'Pelvic Floor Therapist',
+    text: 'Give research-based, one-on-one care for pelvic health at every stage of life.',
+    needs: ['DPT and an active New York PT license', 'Experience in, or strong interest in, pelvic floor therapy (mentoring is available)', 'Knowledge of pelvic floor problems, pregnancy and postpartum rehab, pelvic pain, bowel and bladder care, and core rehab', 'Strong orthopedic evaluation and manual therapy skills', 'Warmth, good communication and patient teaching', 'Teamwork with doctors, OTs and fitness pros'],
+    note: 'Nice to have: pelvic health courses from Herman & Wallace, APTA Pelvic Health or similar.',
+  },
+];
+
+const benefits = ['Competitive pay', 'Room to grow your career', 'Health insurance for you and your family', '401(k) contribution', 'Yearly CEU allowance that resets each year', 'Mentorship for new and junior grads'];
+const positions = [...jobs.map((j) => j.title), 'Other / general application'];
+---
+
+<BaseLayout
+  title="Careers | Cynergy Physical Therapy"
+  description="Join Cynergy Physical Therapy in New York City. See open roles for physical therapists and pelvic floor therapists, our benefits, and apply online."
+>
+  <PageHero
+    eyebrow="Careers at Cynergy"
+    title="Grow your career with people first."
+    text="We are a people-first team of therapists who care about each other and our patients. See our open roles and apply today."
+    image={img.reformer}
+    imageAlt="A Cynergy therapist on the Pilates reformer"
+    crumbs={[{ label: 'Home', href: '/' }, { label: 'Careers' }]}
+    primary={{ label: 'Apply now', href: '#apply' }}
+    secondary={{ label: 'Call (212) 974-7252', href: 'tel:+12129747252' }}
+  />
+
+  <section class="py-20 lg:py-28">
+    <div class="container-x">
+      <SectionHeading eyebrow="Open positions" title="Join our team." text="Click apply and the role is filled in for you." />
+      <ul class="mt-12 grid gap-6 lg:grid-cols-2">
+        {jobs.map((j, i) => (
+          <li data-reveal style={`--d:${i * 100}ms`}>
+            <article class="group relative flex h-full flex-col overflow-hidden rounded-xl border border-pine-900/10 bg-white p-8 transition duration-500 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-pine-950/15">
+              <span aria-hidden="true" class="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-clay-500 transition-transform duration-500 group-hover:scale-x-100"></span>
+              <h3 class="text-3xl text-pine-950">{j.title}</h3>
+              <p class="mt-3 text-ink/75">{j.text}</p>
+              <p class="eyebrow mt-6">What you bring</p>
+              <ul class="mt-3 space-y-2 text-ink/80">
+                {j.needs.map((n) => <li class="flex items-start gap-3"><span class="mt-2.5 h-1.5 w-4 shrink-0 rounded-sm bg-clay-500"></span>{n}</li>)}
+              </ul>
+              <p class="mt-5 rounded-md bg-sage-100 px-4 py-3 text-sm text-pine-950">{j.note}</p>
+              <a href="#apply" data-job={j.title} class="job-apply btn btn-primary mt-8 self-start">Apply for this role <Arrow /></a>
+            </article>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="bg-cream-100 py-20 lg:py-28">
+    <div class="container-x grid gap-14 lg:grid-cols-2">
+      <div>
+        <SectionHeading eyebrow="Benefits" title="We look after our people." />
+        <ul class="mt-8 grid gap-3 sm:grid-cols-2" data-reveal>
+          {benefits.map((b) => (
+            <li class="flex items-start gap-3 rounded-lg border border-pine-900/10 bg-white px-4 py-3 text-ink/85 transition hover:border-pine-900 hover:bg-pine-900 hover:text-white">
+              <span class="mt-2.5 h-1.5 w-4 shrink-0 rounded-sm bg-clay-500"></span>{b}
+            </li>
+          ))}
+        </ul>
+        <a href="/mentorship-at-cynergy/" class="btn btn-outline mt-8">Our mentorship program <Arrow /></a>
+      </div>
+      <div>
+        <SectionHeading eyebrow="Our values" title="What we stand for." />
+        <ul class="mt-8 flex flex-wrap gap-2" data-reveal>
+          {values.map((v) => <li class="rounded-md border border-pine-900/15 bg-white px-4 py-2 text-pine-950 transition hover:border-pine-900 hover:bg-pine-900 hover:text-white">{v}</li>)}
+        </ul>
+        <p class="mt-6 max-w-lg text-ink/80" data-reveal>Mentorship is led by Amira Murtazaeva, PT, DPT, CFSC, our Director of Mentorship.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="apply" class="scroll-mt-24 py-20 lg:py-28">
+    <div class="container-x grid gap-14 lg:grid-cols-12">
+      <div class="lg:col-span-4">
+        <SectionHeading eyebrow="Apply" title="Send us your application." text="It takes about five minutes. Add your resume and tell us about yourself." />
+        <p class="mt-6 text-sm text-ink/70">Prefer to talk first? Call <a href="tel:+12129747252" class="font-semibold text-pine-900">(212) 974-7252</a>.</p>
+      </div>
+      <div class="lg:col-span-8" data-reveal>
+        <SiteForm client:visible kind="careers" positions={positions} locations={locations.map((l) => l.name)} />
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+
+  <script>
+    // Choose the role in the form when someone clicks "Apply for this role".
+    document.querySelectorAll<HTMLAnchorElement>('.job-apply').forEach((a) =>
+      a.addEventListener('click', () => {
+        const title = a.dataset.job;
+        const set = () => {
+          const sel = document.getElementById('job-position') as HTMLSelectElement | null;
+          if (sel && title) sel.value = title;
+        };
+        set();
+        setTimeout(set, 400);
+      })
+    );
+  </script>
+</BaseLayout>
