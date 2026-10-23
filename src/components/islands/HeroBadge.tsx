@@ -1,16 +1,20 @@
-import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
+import { motion, useReducedMotion, useScroll, useSpring, useTransform } from 'framer-motion';
 
 // Round badge for the hero: the Cynergy mark in the middle, our words turning slowly around it.
-// The ring turns by itself, and turns a little more as you scroll.
+// The ring turns by itself. As you scroll down the badge grows, and it shrinks back when you scroll up.
 const WORDS = 'HEAL WELL  •  MOVE WELL  •  LIVE WELL  •  ';
 
 export default function HeroBadge() {
   const reduce = useReducedMotion();
   const { scrollY } = useScroll();
   const scrollTurn = useTransform(scrollY, [0, 1000], [0, reduce ? 0 : 120]);
+  const grow = useTransform(scrollY, [0, 700], [1, reduce ? 1 : 1.45]);
+  const scale = useSpring(grow, { stiffness: 120, damping: 24, mass: 0.4 });
+  const fade = useTransform(scrollY, [500, 900], [1, 0.25]);
 
   return (
     <div aria-hidden="true" className="pointer-events-none absolute right-[4%] top-1/2 hidden aspect-square w-[21rem] -translate-y-1/2 lg:block xl:right-[6%] xl:w-[27rem]">
+      <motion.div style={{ scale, opacity: fade }} className="absolute inset-0">
       <motion.div style={{ rotate: scrollTurn }} className="absolute inset-0">
         <motion.svg
           viewBox="0 0 400 400"
@@ -34,6 +38,7 @@ export default function HeroBadge() {
         transition={{ duration: 1.1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
         className="absolute left-1/2 top-1/2 w-[38%] -translate-x-1/2 -translate-y-1/2 drop-shadow-[0_4px_18px_rgba(0,0,0,0.35)]"
       />
+      </motion.div>
     </div>
   );
 }
