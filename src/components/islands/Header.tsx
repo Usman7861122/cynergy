@@ -292,17 +292,6 @@ export default function Header({ transparentTop = false }: { transparentTop?: bo
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState<string | null>(null);
   const [mobile, setMobile] = useState(false);
-  const [book, setBook] = useState(false);
-  const bookRef = useRef<HTMLLIElement>(null);
-
-  useEffect(() => {
-    if (!book) return;
-    const away = (e: MouseEvent) => { if (!bookRef.current?.contains(e.target as Node)) setBook(false); };
-    const esc = (e: KeyboardEvent) => e.key === 'Escape' && setBook(false);
-    document.addEventListener('mousedown', away);
-    document.addEventListener('keydown', esc);
-    return () => { document.removeEventListener('mousedown', away); document.removeEventListener('keydown', esc); };
-  }, [book]);
   const timer = useRef<number | undefined>(undefined);
 
   useEffect(() => {
@@ -335,42 +324,20 @@ export default function Header({ transparentTop = false }: { transparentTop?: bo
         {/* Soft dark tint behind the header so the menu stays easy to read over photos */}
         <div aria-hidden="true" className={`pointer-events-none absolute inset-x-0 top-0 -z-10 h-[15rem] bg-gradient-to-b from-pine-950/90 via-pine-950/60 via-50% to-transparent transition-opacity duration-500 ${solid ? 'opacity-0' : 'opacity-100'}`} />
         {/* Utility strip */}
-        <div className={`relative hidden border-b border-white/10 transition-all duration-500 lg:block ${scrolled ? 'max-h-0 overflow-hidden border-transparent opacity-0' : 'max-h-12 opacity-100'}`}>
+        <div className={`hidden overflow-hidden border-b border-white/10 transition-all duration-500 lg:block ${scrolled ? 'max-h-0 border-transparent opacity-0' : 'max-h-12 opacity-100'}`}>
           <div className="container-x flex h-11 items-center justify-between text-[14px]">
             <p className="text-white/70">Physical &amp; Occupational Therapy in New York City</p>
             <ul className="flex items-center gap-1">
               <li>
                 <a href={payBill.href} className="mr-2 inline-flex min-h-8 items-center rounded-md border border-white/30 px-4 font-medium text-white transition hover:border-white hover:bg-white hover:text-pine-950">{payBill.label}</a>
               </li>
-              <li ref={bookRef} className="relative">
-                <button
-                  type="button"
-                  aria-haspopup="menu"
-                  aria-expanded={book}
-                  onClick={() => setBook(!book)}
-                  className="inline-flex min-h-8 items-center gap-2 rounded-md border border-clay-500 bg-clay-500 px-4 font-semibold text-pine-950 transition hover:border-clay-400 hover:bg-clay-400"
-                >
-                  Book Online
-                  <svg className={`h-3.5 w-3.5 transition-transform ${book ? 'rotate-180' : ''}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
-                </button>
-                {book && (
-                  <ul role="menu" className="absolute right-0 top-full z-[60] mt-2 w-64 overflow-hidden rounded-md border border-pine-900/10 bg-cream-50 py-2 text-pine-950 shadow-2xl shadow-pine-950/30">
-                    <li role="none">
-                      <a role="menuitem" href={newPatients.href} onClick={() => setBook(false)} className="block px-5 py-3 transition hover:bg-cream-100">
-                        <span className="block font-semibold">New Patients</span>
-                        <span className="block text-sm text-ink/65">Request your first appointment</span>
-                      </a>
-                    </li>
-                    {utilityRight.map((l) => (
-                      <li role="none" key={l.label}>
-                        <a role="menuitem" href={l.href} {...(l.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})} className="block px-5 py-3 transition hover:bg-cream-100">
-                          <span className="block font-semibold">Returning Patients</span>
-                          <span className="block text-sm text-ink/65">Schedule your next visit</span>
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                )}
+              {utilityRight.map((l) => (
+                <li key={l.label}>
+                  <a href={l.href} {...(l.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})} className="mr-2 inline-flex min-h-8 items-center rounded-md border border-white bg-white px-4 font-medium text-pine-950 transition hover:border-cream-200 hover:bg-cream-200">{l.label}</a>
+                </li>
+              ))}
+              <li>
+                <a href={newPatients.href} className="inline-flex min-h-8 items-center rounded-md border border-clay-500 bg-clay-500 px-4 font-medium text-pine-950 transition hover:border-clay-400 hover:bg-clay-400">{newPatients.label}</a>
               </li>
             </ul>
           </div>
@@ -437,13 +404,9 @@ export default function Header({ transparentTop = false }: { transparentTop?: bo
             </div>
             <div className="container-x pb-12 pt-4">
               <ul>{mainNav.map((item) => <MobileItem key={item.label} item={item} close={() => setMobile(false)} />)}</ul>
-              <p className="eyebrow mt-8 !text-clay-300">Book Online</p>
-              <div className="mt-3 grid grid-cols-2 gap-3">
-                <a href={newPatients.href} className="btn btn-primary !px-3 text-center">New Patients</a>
-                {utilityRight.map((l) => <a key={l.label} href={l.href} {...(l.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})} className="btn btn-outline-light !px-3 text-center">Returning Patients</a>)}
-              </div>
+              <a href={newPatients.href} className="btn btn-primary mt-8 w-full">{newPatients.label}</a>
               <ul className="mt-6 grid grid-cols-2 gap-x-4 text-sm text-white/75">
-                <li><a href={payBill.href} className="flex min-h-11 items-center">{payBill.label}</a></li>
+                {[payBill, ...utilityRight].map((l) => <li key={l.label}><a href={l.href} {...(l.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})} className="flex min-h-11 items-center">{l.label}</a></li>)}
               </ul>
             </div>
           </motion.div>
