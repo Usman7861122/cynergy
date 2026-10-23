@@ -6,7 +6,7 @@ export const img = {
   // Logos (transparent PNG): horizontal and full with tagline, white versions for dark backgrounds.
   logoWhite: '/images/cynergy-logo-horizontal-light.png',
   logoDark: '/images/cynergy-logo-horizontal.png',
-  logoFullWhite: '/images/cynergy-logo-light.png',
+  logoFullWhite: '/images/cynergy-logo-header-light.png',
 
   // places & spaces
   wellnessDen: U + '2025/07/TWD-074-1536x1025.jpg.webp',
