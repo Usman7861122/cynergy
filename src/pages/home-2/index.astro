@@ -1,0 +1,37 @@
+---
+// Home 2: the same page as Home, but the top banner plays the video from the live site.
+import BaseLayout from '@layouts/BaseLayout.astro';
+import HeroSlider from '@components/islands/HeroSlider';
+import WhoWeAre from '@components/sections/WhoWeAre.astro';
+import Services from '@components/sections/Services.astro';
+import WellnessDen from '@components/sections/WellnessDen.astro';
+import ParallaxBand from '@components/sections/ParallaxBand.astro';
+import WhatWeTreat from '@components/sections/WhatWeTreat.astro';
+import GallerySection from '@components/sections/GallerySection.astro';
+import Providers from '@components/sections/Providers.astro';
+import Affiliated from '@components/sections/Affiliated.astro';
+import TestimonialsSection from '@components/sections/TestimonialsSection.astro';
+import LocationsSection from '@components/sections/LocationsSection.astro';
+
+// Videos are streamed from the live site's video host (the same files cynergypt.com plays).
+// To use your own files later, put them in /public/videos/ and change these three links.
+const video = {
+  desktop: 'https://d216ujrdi95jbi.cloudfront.net/Synthia+Desktop.mp4',
+  mobile: 'https://d216ujrdi95jbi.cloudfront.net/Synthia+Mobile.mp4',
+  poster: 'https://cynergypt.com/wp-content/uploads/2025/10/untitled-7405238-scaled-e1761663760295.jpg',
+};
+---
+
+<BaseLayout title="Cynergy Physical Therapy | Home 2" description="Physical and occupational therapy, Pilates and performance care in New York City. One-on-one care at six locations." transparentHeader>
+  <HeroSlider client:load video={video} />
+  <WhoWeAre />
+  <Services />
+  <WellnessDen />
+  <ParallaxBand />
+  <WhatWeTreat />
+  <GallerySection />
+  <Providers />
+  <Affiliated />
+  <TestimonialsSection />
+  <LocationsSection />
+</BaseLayout>

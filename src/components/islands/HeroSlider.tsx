@@ -30,7 +30,10 @@ const wordVariants = {
   show: { y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const } },
 };
 
-export default function HeroSlider() {
+export type HeroVideo = { desktop: string; mobile: string; poster: string };
+
+// With a `video`, the hero shows one message over a looping background video (used on Home 2).
+export default function HeroSlider({ video }: { video?: HeroVideo }) {
   const reduce = useReducedMotion();
   const [i, setI] = useState(0);
   const [w, setW] = useState(0);
@@ -44,7 +47,8 @@ export default function HeroSlider() {
     return () => window.clearInterval(t);
   }, [reduce, paused]);
 
-  const slide = slides[i];
+  const slide = video ? slides[1] : slides[i];
+  const showSlides = !video;
 
   return (
     <section
@@ -56,8 +60,25 @@ export default function HeroSlider() {
       onFocus={() => setPaused(true)}
       onBlur={() => setPaused(false)}
     >
+      {/* Background video (Home 2) */}
+      {video && (
+        <>
+          <img src={video.poster} alt="" aria-hidden="true" referrerPolicy="no-referrer" className="absolute inset-0 h-full w-full object-cover" />
+          {!reduce && (
+            <>
+              <video autoPlay muted loop playsInline preload="auto" poster={video.poster} aria-hidden="true" className="absolute inset-0 hidden h-full w-full object-cover sm:block">
+                <source src={video.desktop} type="video/mp4" />
+              </video>
+              <video autoPlay muted loop playsInline preload="auto" poster={video.poster} aria-hidden="true" className="absolute inset-0 h-full w-full object-cover sm:hidden">
+                <source src={video.mobile} type="video/mp4" />
+              </video>
+            </>
+          )}
+        </>
+      )}
+
       {/* Images */}
-      {slides.map((s, n) => {
+      {showSlides && slides.map((s, n) => {
         const active = n === i;
         return (
           <motion.img
@@ -139,7 +160,7 @@ export default function HeroSlider() {
       </div>
 
       {/* Controls */}
-      <div className="absolute inset-x-0 bottom-0">
+      {showSlides && <div className="absolute inset-x-0 bottom-0">
         <div className="container-x flex items-center justify-between pb-6 sm:pb-8">
           <div className="flex items-center gap-2" role="group" aria-label="Choose slide">
             {slides.map((_, n) => (
@@ -175,7 +196,7 @@ export default function HeroSlider() {
             </button>
           </div>
         </div>
-      </div>
+      </div>}
     </section>
   );
 }
