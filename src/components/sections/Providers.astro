@@ -3,6 +3,7 @@ import SectionHeading from '@components/ui/SectionHeading.astro';
 import Arrow from '@components/ui/Arrow.astro';
 import LeadersGrid from '@components/islands/LeadersGrid';
 import { ceo } from '@/data/providers';
+import { book } from '@/data/book';
 ---
 
 <section id="providers" class="py-20 lg:py-28">
@@ -27,7 +28,13 @@ import { ceo } from '@/data/providers';
           <p class="mt-6 max-w-xl text-white/75">
             Cynthia leads a team of physical, hand and pelvic floor therapists who are committed to individualised, one on one care.
           </p>
-          <a href={ceo.href} class="btn btn-primary mt-9">Meet our providers <Arrow /></a>
+          <p class="mt-6 max-w-xl text-white/75">
+            Cynthia is also the author of <a href="#book" class="font-semibold text-clay-300 underline underline-offset-4 hover:text-white"><em>{book.title}</em></a>, a physical therapist’s guide to overcoming grief, illness and other challenges.
+          </p>
+          <div class="mt-9 flex flex-wrap gap-3">
+            <a href={ceo.href} class="btn btn-primary">Meet our providers <Arrow /></a>
+            <a href={book.buyUrl} target="_blank" rel="noopener noreferrer" class="btn btn-outline-light">Get her book</a>
+          </div>
         </div>
       </div>
     </article>

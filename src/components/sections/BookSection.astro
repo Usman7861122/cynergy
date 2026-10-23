@@ -1,0 +1,29 @@
+---
+import Arrow from '@components/ui/Arrow.astro';
+import { book } from '@/data/book';
+---
+
+<section id="book" class="relative overflow-hidden bg-cream-100 py-20 lg:py-28">
+  <span aria-hidden="true" class="pointer-events-none absolute -left-32 top-10 h-96 w-96 rounded-full bg-sage-100"></span>
+  <div class="container-x relative grid items-center gap-14 lg:grid-cols-12">
+    <div class="relative mx-auto w-full max-w-md lg:col-span-5 lg:max-w-none" data-reveal>
+      <div class="relative mx-auto aspect-[4/4.4] w-full max-w-[26rem]">
+        <img src={book.ebook} alt="" loading="lazy" decoding="async" class="absolute -right-2 bottom-0 w-[58%] drop-shadow-2xl transition duration-700 hover:-translate-y-2 sm:right-0" />
+        <img src={book.cover} alt={`Cover of the book ${book.title} by ${book.author}`} loading="lazy" decoding="async" class="absolute bottom-0 left-0 w-[62%] drop-shadow-2xl transition duration-700 hover:-translate-y-2" />
+      </div>
+    </div>
+
+    <div class="lg:col-span-7">
+      <p class="eyebrow" data-reveal>A book by our founder</p>
+      <h2 class="mt-3 text-4xl leading-tight text-pine-950 sm:text-5xl lg:text-[3.4rem]" data-reveal style="--d:60ms">{book.title}</h2>
+      <p class="mt-4 max-w-xl font-serif text-xl italic text-pine-800 sm:text-2xl" data-reveal style="--d:120ms">{book.subtitle}</p>
+      <p class="mt-6 max-w-xl text-lg text-ink/80" data-reveal style="--d:180ms">
+        {book.author}, PT, MPT, is the founder and CEO of Cynergy. As a physical therapist and endurance athlete, she shares how strength, movement and a never-give-up spirit can help you through hard times.
+      </p>
+      <div class="mt-9 flex flex-wrap items-center gap-3" data-reveal style="--d:240ms">
+        <a href={book.buyUrl} target="_blank" rel="noopener noreferrer" class="btn btn-primary">Buy on Amazon <Arrow /></a>
+        <span class="text-sm text-ink/60">Opens Amazon in a new tab</span>
+      </div>
+    </div>
+  </div>
+</section>
