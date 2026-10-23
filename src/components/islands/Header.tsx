@@ -333,11 +333,11 @@ export default function Header({ transparentTop = false }: { transparentTop?: bo
               </li>
               {utilityRight.map((l) => (
                 <li key={l.label}>
-                  <a href={l.href} {...(l.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})} className="mr-2 inline-flex min-h-8 items-center rounded-md border border-white/30 px-4 font-medium text-white transition hover:border-white hover:bg-white hover:text-pine-950">{l.label}</a>
+                  <a href={l.href} {...(l.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})} className="mr-2 inline-flex min-h-8 items-center rounded-md border border-white bg-white px-4 font-medium text-pine-950 transition hover:border-cream-200 hover:bg-cream-200">{l.label}</a>
                 </li>
               ))}
               <li>
-                <a href={newPatients.href} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-8 items-center rounded-md border border-white/30 px-4 font-medium text-white transition hover:border-white hover:bg-white hover:text-pine-950">{newPatients.label}</a>
+                <a href={newPatients.href} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-8 items-center rounded-md border border-clay-600 bg-clay-600 px-4 font-medium text-white transition hover:border-clay-700 hover:bg-clay-700">{newPatients.label}</a>
               </li>
             </ul>
           </div>
