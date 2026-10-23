@@ -67,7 +67,7 @@ export const midtownEast: ProviderBio[] = [
   {
     slug: 'jeffrey-hudson', name: 'Jeffrey Hudson', credentials: 'PT, DPT, CSCS', title: 'Physical Therapist', locationId: 'midtown-east',
     image: U + '2025/08/Jeffrey-H.-06.jpg',
-    intro: 'Jeffrey combines exercise science, strength training and one-on-one care to build a recovery plan that fits you.',
+    intro: 'Jeffrey combines exercise science, strength training and one on one care to build a recovery plan that fits you.',
     story: [
       'Jeffrey grew up in Brooklyn and first became interested in physical therapy at age 12, when he went to PT sessions with his mother.',
       'He earned an undergraduate degree in Exercise Science at Ohio Wesleyan University, where he played varsity basketball, and then returned to New York for his Doctor of Physical Therapy at NYU.',

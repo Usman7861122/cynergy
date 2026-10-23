@@ -11,7 +11,7 @@ const items = [
   { label: 'Knee', href: '/what-we-treat/knee-pain/', image: img.sportsRecovery, text: 'Rebuild strength and stability after an injury, surgery or arthritis.' },
   { label: 'Foot & Ankle', href: '/what-we-treat/foot-ankle-pain/', image: img.sports, text: 'Care for sprains, heel pain and balance, from the ground up.' },
   { label: 'Neurological Impairments', href: '/what-we-treat/neurological-impairments/', image: img.neuro, text: 'Therapy to improve movement, balance and daily function.' },
-  { label: 'Pelvic Floor Health', href: '/what-we-treat/pelvic-floor-health/', image: img.pelvic, text: 'Private, one-on-one care for pelvic pain, leaks and core support.' },
+  { label: 'Pelvic Floor Health', href: '/what-we-treat/pelvic-floor-health/', image: img.pelvic, text: 'Private, one on one care for pelvic pain, leaks and core support.' },
   { label: 'TMJ/TMD', href: '/what-we-treat/temporomandibular-disorder/', image: img.portrait, text: 'Relief for jaw pain, clicking and tension headaches.' },
   { label: 'Vestibular Dysfunction', href: '/what-we-treat/vestibular-dysfunction/', image: img.reformer, text: 'Treatment for dizziness, vertigo and balance problems.' },
   { label: 'Chronic Pain', href: '/what-we-treat/chronic-pain/', image: img.wide, text: 'A steady, whole-person plan to manage pain that does not go away.' },

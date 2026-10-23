@@ -14,10 +14,10 @@ import { img } from '@/data/images';
 type Slide = { image: string; title: string; description: string; badge: string };
 
 const slides: Slide[] = [
-  { image: img.cobbleHill, title: 'Cobble Hill', description: 'Our Brooklyn clinic, built around one-on-one care.', badge: 'Clinic' },
+  { image: img.cobbleHill, title: 'Cobble Hill', description: 'Our Brooklyn clinic, built around one on one care.', badge: 'Clinic' },
   { image: img.reformer, title: 'Pilates Reformer', description: 'Therapist-led sessions for strength and control.', badge: 'Pilates' },
   { image: img.wellnessDen, title: 'The Wellness Den', description: 'Movement and wellness on the Upper East Side.', badge: 'Studio' },
-  { image: img.portrait, title: 'One-on-one care', description: 'Private sessions focused on your goals.', badge: 'Therapy' },
+  { image: img.portrait, title: 'One on one care', description: 'Private sessions focused on your goals.', badge: 'Therapy' },
   { image: img.pilatesStudio, title: 'Pilates studio', description: 'Bright space for classes and private sessions.', badge: 'Studio' },
   { image: img.backTherapy, title: 'Back care', description: 'Hands-on treatment for stiff, sore backs.', badge: 'Treatment' },
   { image: img.sports, title: 'Sports performance', description: 'Training for athletes of every level.', badge: 'Sports' },

@@ -15,7 +15,7 @@ export const wellnessDen: LocationDetails = {
     eyebrow: 'About this clinic',
     title: 'Therapy and movement, under one roof.',
     paragraphs: [
-      'The Wellness Den is made to support healing and self-confidence. You can work one-on-one with a physical therapist toward your own goals, or join Pilates Reformer and Barre classes that are led mainly by physical therapists.',
+      'The Wellness Den is made to support healing and self-confidence. You can work one on one with a physical therapist toward your own goals, or join Pilates Reformer and Barre classes that are led mainly by physical therapists.',
       'When rehab ends, you can step straight into group classes. The signature Pilates Reformer and Barre classes were designed by Dr. Laurence Agénor.',
     ],
     features: [
@@ -26,7 +26,7 @@ export const wellnessDen: LocationDetails = {
     ],
   },
   specialties: [
-    { title: 'Pelvic Floor Therapy', text: 'Private, one-on-one care for pelvic pain, leaks and core support.', href: '/what-we-treat/pelvic-floor-health-wellness-den/' },
+    { title: 'Pelvic Floor Therapy', text: 'Private, one on one care for pelvic pain, leaks and core support.', href: '/what-we-treat/pelvic-floor-health-wellness-den/' },
     { title: 'Prenatal & Postpartum Care', text: 'Care for the changes and new aches of pregnancy and the months after birth.', href: '/pre-and-postnatal-physical-therapy-wellness-den/' },
     { title: 'Pilates Reformer & Barre', text: 'Group classes and private sessions, mainly led by physical therapists.', href: '/pilates-wellness-den/' },
     { title: 'Dance Medicine', text: 'Care for dancers, built around the demands of movement and performance.' },

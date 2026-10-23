@@ -12,22 +12,22 @@ import { ceo, leaders } from '@/data/providers';
 const needs = [
   { title: 'Physical therapy', text: 'Care for pain, injuries, surgery recovery and movement goals, from head to toe.', href: '/what-we-treat/' },
   { title: 'Hand and occupational therapy', text: 'Therapists who focus on the hands, wrists, elbows and shoulders, including custom splints.', href: '/injuries/upper-extremity-conditions/' },
-  { title: 'Pelvic floor therapy', text: 'Private, one-on-one care for pelvic health, from pregnancy to digestive and bladder concerns.', href: '/what-we-treat/pelvic-floor-health/' },
+  { title: 'Pelvic floor therapy', text: 'Private, one on one care for pelvic health, from pregnancy to digestive and bladder concerns.', href: '/what-we-treat/pelvic-floor-health/' },
 ];
 
-const values = ['Patient-focused, one-on-one care', 'Ongoing education for every therapist', 'Modern, well-kept equipment', 'Empathy and compassion', 'Community and diversity', 'Teamwork and steady improvement'];
+const values = ['Patient-focused, one on one care', 'Ongoing education for every therapist', 'Modern, well-kept equipment', 'Empathy and compassion', 'Community and diversity', 'Teamwork and steady improvement'];
 
 const team = [ceo, ...leaders].slice(0, 8);
 ---
 
 <BaseLayout
   title="About Cynergy | Cynergy Physical Therapy"
-  description="Cynergy Physical Therapy and Occupational Therapy: one-on-one care from highly trained therapists, with warmth and humor, across six New York City locations."
+  description="Cynergy Physical Therapy and Occupational Therapy: one on one care from highly trained therapists, with warmth and humor, across six New York City locations."
 >
   <PageHero
     eyebrow="About us"
     title="Our style of care."
-    text="Highly trained, experienced therapists treat patients of all ages, from head to toe. Every visit is one-on-one, and we bring warmth and humor to the work."
+    text="Highly trained, experienced therapists treat patients of all ages, from head to toe. Every visit is one on one, and we bring warmth and humor to the work."
     image={img.backTherapy}
     imageAlt="A Cynergy therapist treating a patient"
     crumbs={[{ label: 'Home', href: '/' }, { label: 'At Cynergy' }]}
@@ -116,7 +116,7 @@ const team = [ceo, ...leaders].slice(0, 8);
     </div>
   </section>
 
-  <LocationCards eyebrow="Six clinics" title="Find a Cynergy near you." text="Every location offers one-on-one care. Choose the clinic that is closest to you." />
+  <LocationCards eyebrow="Six clinics" title="Find a Cynergy near you." text="Every location offers one on one care. Choose the clinic that is closest to you." />
 
   <CtaBand />
 </BaseLayout>

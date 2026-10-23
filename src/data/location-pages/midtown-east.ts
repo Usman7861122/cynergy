@@ -16,7 +16,7 @@ export const midtownEast: LocationDetails = {
     title: 'Room to treat, train and recover.',
     paragraphs: [
       'The Midtown East clinic is over 4,500 square feet. It has several private treatment rooms and a large open gym for strengthening, neuromuscular re-education, and gait and biomechanical training.',
-      'Care is always one-on-one. Our team works with you to reach your best level of function, with Cynergy Upper Extremity in the same clinic for hand and arm care.',
+      'Care is always one on one. Our team works with you to reach your best level of function, with Cynergy Upper Extremity in the same clinic for hand and arm care.',
     ],
     features: [
       'Over 4,500 square feet with private treatment rooms',

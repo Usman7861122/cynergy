@@ -18,7 +18,7 @@ export const prenatal: Service = {
   overviewImage: img.cobbleHill,
   whyImage: img.reformer,
   whyImageAlt: 'A therapist guiding an exercise',
-  overview: { eyebrow: 'Care from pregnancy onward', title: 'Support for every stage.', text: 'Our highly trained therapists give personal, one-on-one care from your first evaluation and at every session after. Programs change as your pregnancy moves forward.' },
+  overview: { eyebrow: 'Care from pregnancy onward', title: 'Support for every stage.', text: 'Our highly trained therapists give personal, one on one care from your first evaluation and at every session after. Programs change as your pregnancy moves forward.' },
   causes: { title: 'Common problems we address', items: ['Diastasis recti', 'Pelvic floor dysfunction', 'Back, hip and pelvic pain', 'Recovery after childbirth', 'Swelling and circulation issues'] },
   benefits: {
     eyebrow: 'Benefits', title: 'Feel stronger before and after birth.', text: 'Good care can make pregnancy more comfortable and recovery smoother.',

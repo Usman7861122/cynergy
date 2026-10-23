@@ -13,7 +13,7 @@ const slides = [
   },
   {
     image: img.wellnessDen,
-    title: 'Therapy that is always one-on-one.',
+    title: 'Therapy that is always one on one.',
     text: 'Performance, Pilates, Physical and Occupational Therapy in New York City.',
   },
   {

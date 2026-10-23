@@ -33,7 +33,7 @@ const pageTitle = loc
   ? `${svc.careName} in ${loc.name}, New York | Cynergy Physical Therapy`
   : `${svc.seoTitle} | Cynergy Physical Therapy`;
 const pageDesc = loc
-  ? `One-on-one, evidence-based ${svc.careName.toLowerCase()} at Cynergy ${loc.name}, ${loc.line1}, ${loc.city}.`
+  ? `One on one, evidence-based ${svc.careName.toLowerCase()} at Cynergy ${loc.name}, ${loc.line1}, ${loc.city}.`
   : svc.heroText;
 
 const heroText = loc
@@ -231,7 +231,7 @@ const showBoth = !!(svc.causes && svc.approach);
       eyebrow="Where we offer it"
       ids={places.map((l) => l.id)}
       title={sports ? `${svc.careName} across all six locations.` : `${svc.careName} at ${places.length === 6 ? 'all six locations' : `${nums[places.length]} of our locations`}.`}
-      text="Choose the clinic that is closest to you. Every location offers one-on-one care."
+      text="Choose the clinic that is closest to you. Every location offers one on one care."
       serviceHref={sports ? ((l: Location) => l.href) : localHref}
       serviceLabel={(l) => sports ? `Visit Cynergy ${l.name}` : `${svc.careName} in ${l.name}`}
     />

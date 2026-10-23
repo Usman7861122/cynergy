@@ -69,7 +69,7 @@ export const backPain: Service = {
   careName: 'Back & spine care',
   heroTitle: 'Back pain therapy in New York City.',
   seoTitle: 'Back Pain Therapy in New York City',
-  heroText: 'Back pain can affect your work, exercise, sleep and movement. At Cynergy, your goals come first. We offer one-on-one, evidence-based care to help you find relief, rebuild strength and feel better for the long term.',
+  heroText: 'Back pain can affect your work, exercise, sleep and movement. At Cynergy, your goals come first. We offer one on one, evidence-based care to help you find relief, rebuild strength and feel better for the long term.',
   image: img.back,
   imageAlt: 'A woman holding her lower back in pain',
   whyImage: img.backTherapy,

@@ -20,7 +20,7 @@ export const pelvicGut: Service = {
   locationIds: ['midtown-west', 'chelsea', 'wellness-den'],
   overview: { eyebrow: 'The pelvic floor’s role', title: 'A sling of muscles that does a lot.', text: 'The pelvic floor supports pelvic stability, the bladder, rectum and uterus, control of bowel movements, and sexual function. When these muscles are too tight, too weak or not working together, they can cause digestive problems.' },
   causes: { title: 'Common causes', items: ['Childbirth strain or injury', 'Straining from constipation or heavy lifting', 'Surgery or pelvic radiation', 'Poor posture or movement patterns', 'Nerve damage, such as from diabetes', 'Stress or anxiety'] },
-  approach: { items: ['A specialized assessment of how the muscles work', 'One-on-one treatment', 'Targeted exercises', 'Manual therapy', 'Biofeedback'] },
+  approach: { items: ['A specialized assessment of how the muscles work', 'One on one treatment', 'Targeted exercises', 'Manual therapy', 'Biofeedback'] },
   benefits: {
     eyebrow: 'Benefits', title: 'Better control, less pressure.', text: 'Therapy aims to improve how your pelvic floor works.',
     items: [

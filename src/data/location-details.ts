@@ -42,14 +42,14 @@ const midtownWest: LocationDetails = {
     eyebrow: 'Our flagship clinic',
     heroTitle: 'Cynergy Midtown West.',
     heroText:
-      'Our flagship clinic sits on 57th Street, between 6th and 7th Avenues. You will find a warm front desk and licensed physical therapists who give you one-on-one, personal care.',
+      'Our flagship clinic sits on 57th Street, between 6th and 7th Avenues. You will find a warm front desk and licensed physical therapists who give you one on one, personal care.',
     heroImage: img.portrait,
-    heroImageAlt: 'A physical therapist working one-on-one with a patient',
+    heroImageAlt: 'A physical therapist working one on one with a patient',
     about: {
       eyebrow: 'About this clinic',
       title: 'Our flagship clinic in the heart of Midtown.',
       paragraphs: [
-        'Cynergy Midtown West is on 57th Street between 6th and 7th Avenues. When you walk in, our front desk team welcomes you, and your licensed physical therapist works with you one-on-one.',
+        'Cynergy Midtown West is on 57th Street between 6th and 7th Avenues. When you walk in, our front desk team welcomes you, and your licensed physical therapist works with you one on one.',
         'The clinic has therapists for pelvic floor care, certified hand therapists, strength and conditioning specialists and orthopedic clinical specialists. Many patients also join our Pilates Bridge Program when therapy ends.',
       ],
       features: [
@@ -60,7 +60,7 @@ const midtownWest: LocationDetails = {
       ],
     },
     specialties: [
-      { title: 'Pelvic Floor Therapy', text: 'Private, one-on-one care for pelvic pain, leaks and core support.', href: '/what-we-treat/pelvic-floor-health-midtown-west/' },
+      { title: 'Pelvic Floor Therapy', text: 'Private, one on one care for pelvic pain, leaks and core support.', href: '/what-we-treat/pelvic-floor-health-midtown-west/' },
       { title: 'Hand Therapy & Splinting', text: 'Certified hand therapists make custom orthoses so you can leave with your splint the same day.', href: '/injuries/upper-extremity-conditions-midtown-west/' },
       { title: 'Strength & Conditioning', text: 'Specialists who build strength, speed and control, with TRX suspension training on site.' },
       { title: 'Orthopedic Clinical Specialists', text: 'Expert care for joint, muscle and bone problems, before and after surgery.' },
@@ -86,7 +86,7 @@ const midtownWest: LocationDetails = {
       { q: 'Where is Cynergy Midtown West?', a: 'We are at 119 West 57th Street, Suite 600, New York, NY 10019, on 57th Street between 6th and 7th Avenues.' },
       { q: 'How do I book a visit?', a: 'Call (212) 974-7252, or book online. New patients can send an appointment request, and returning patients can schedule online.' },
       { q: 'Can I get a splint on the same day?', a: 'Yes. Our certified hand therapists make custom orthoses at this clinic for same-day splinting.' },
-      { q: 'Do you offer pelvic floor therapy here?', a: 'Yes. Midtown West has pelvic floor therapists who give private, one-on-one care.' },
+      { q: 'Do you offer pelvic floor therapy here?', a: 'Yes. Midtown West has pelvic floor therapists who give private, one on one care.' },
       { q: 'What is the Pilates Bridge Program?', a: 'It helps you move from physical therapy back to recreational exercise, with the support of your therapist.' },
       { q: 'What is ADPT by Cynergy?', a: 'ADPT by Cynergy is our sports and performance clinic. It is in the same building at 119 West 57th Street, Suite 200.' },
     ],

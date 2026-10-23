@@ -11,7 +11,7 @@ export const footAnkle: Service = {
   careName: 'Foot & ankle care',
   heroTitle: 'Foot and ankle physical therapy in New York City.',
   seoTitle: 'Foot and Ankle Physical Therapy in New York City',
-  heroText: 'Foot and ankle pain can change how you walk, stand and move. At Cynergy, you get a personal plan and one-on-one care from therapists who focus on foot and ankle conditions, to help you move well again.',
+  heroText: 'Foot and ankle pain can change how you walk, stand and move. At Cynergy, you get a personal plan and one on one care from therapists who focus on foot and ankle conditions, to help you move well again.',
   image: U + '2025/09/shutterstock_2384539239.jpg',
   imageAlt: 'Foot and ankle physical therapy',
   overviewImage: img.pilatesStudio,

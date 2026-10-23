@@ -10,7 +10,7 @@ export const knee: Service = {
   careName: 'Knee pain care',
   heroTitle: 'Knee pain treatment in New York City.',
   seoTitle: 'Knee Pain Treatment in New York City',
-  heroText: 'Knee pain can come from sports, a fall or years of wear. At Cynergy, our therapists give you one-on-one care to rebuild strength and stability, so you can get back to the activities you love.',
+  heroText: 'Knee pain can come from sports, a fall or years of wear. At Cynergy, our therapists give you one on one care to rebuild strength and stability, so you can get back to the activities you love.',
   image: img.sportsMedicine,
   imageAlt: 'Physical therapy for knee pain',
   overviewImage: img.pilatesStudio,

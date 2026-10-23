@@ -8,7 +8,7 @@ export const cobbleHill: LocationDetails = {
   eyebrow: 'Our Brooklyn clinic',
   heroTitle: 'Cynergy Cobble Hill.',
   heroText:
-    'Move well. Move strong. Our first Brooklyn clinic gives you one-on-one physical therapy for injury recovery, pain, sports training and pelvic floor care, in a calm, modern space.',
+    'Move well. Move strong. Our first Brooklyn clinic gives you one on one physical therapy for injury recovery, pain, sports training and pelvic floor care, in a calm, modern space.',
   heroImage: img.cobbleHill,
   heroImageAlt: 'Inside the Cynergy Cobble Hill clinic in Brooklyn',
   about: {
@@ -19,7 +19,7 @@ export const cobbleHill: LocationDetails = {
       'It is a short walk from the Bergen Street F/G station, and close to the Hoyt-Schermerhorn Street, Borough Hall and Jay Street-MetroTech stations. We welcome patients from Cobble Hill, Carroll Gardens, Boerum Hill, Brooklyn Heights and Downtown Brooklyn.',
     ],
     features: [
-      'One-on-one sessions with your own physical therapist',
+      'One on one sessions with your own physical therapist',
       'Pelvic floor therapy for all genders and life stages, in a private, trauma-informed setting',
       'Sports performance and running specialists',
       'A calm, modern clinic near Bergen Street (F/G)',

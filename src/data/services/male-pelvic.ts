@@ -21,7 +21,7 @@ export const malePelvic: Service = {
   locationIds: ['midtown-west', 'chelsea', 'wellness-den'],
   overview: { eyebrow: 'Understanding male pelvic health', title: 'Muscles that can be tight, weak or out of sync.', text: 'The pelvic floor muscles support the bladder, bowel and sexual organs. When they become tight, weak or uncoordinated, it can affect daily life. Men often report groin or testicular pain, trouble urinating, painful ejaculation or discomfort when sitting.' },
   causes: { title: 'Conditions we treat', items: ['Pelvic or perineal pain', 'Pain with sitting', 'Erectile dysfunction or painful ejaculation', 'Incontinence or painful urination', 'Chronic prostatitis', 'Overactive bladder', 'Peyronie’s disease', 'Constipation and IBS discomfort', 'Post-prostatectomy rehab', 'Enlarged prostate (BPH)', 'Chronic back, hip or abdominal pain that has not responded to traditional PT'] },
-  approach: { items: ['A private, one-on-one evaluation', 'Pelvic floor muscle assessment', 'Manual therapy to release tension', 'Posture and movement analysis', 'Breathing and relaxation techniques', 'Bladder and bowel retraining', 'Home exercise programs'] },
+  approach: { items: ['A private, one on one evaluation', 'Pelvic floor muscle assessment', 'Manual therapy to release tension', 'Posture and movement analysis', 'Breathing and relaxation techniques', 'Bladder and bowel retraining', 'Home exercise programs'] },
   benefits: {
     eyebrow: 'Why choose Cynergy', title: 'Discreet, caring and evidence-based.', text: 'Our approach is whole-person and fits you, and it treats both the symptoms and what is behind them.',
     items: [
@@ -33,7 +33,7 @@ export const malePelvic: Service = {
   conditions: {
     eyebrow: 'Male pelvic health', title: 'What to expect.', text: 'Choose a topic to learn more.', ariaLabel: 'Male pelvic health topics',
     items: [
-      { id: 'first-visit', title: 'Your First Visit', what: 'Care begins with a private, one-on-one evaluation. Your therapist checks how your pelvic floor muscles work, looks at your posture and movement, and builds a plan around your goals.' },
+      { id: 'first-visit', title: 'Your First Visit', what: 'Care begins with a private, one on one evaluation. Your therapist checks how your pelvic floor muscles work, looks at your posture and movement, and builds a plan around your goals.' },
       { id: 'recovery', title: 'Recovery Is Possible', what: 'With the right guidance, recovery is absolutely possible. Your plan can include manual therapy, breathing and relaxation, retraining for the bladder and bowel, and exercises to do at home for long-term relief.' },
     ],
   },

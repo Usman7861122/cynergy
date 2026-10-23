@@ -118,7 +118,7 @@ export const mainNav: NavItem[] = [
       kind: 'about',
       blurbTitle: 'Our style of care',
       blurb:
-        'Professional, energetic and compassionate. We treat the whole person, one-on-one, with warmth and humor.',
+        'Professional, energetic and compassionate. We treat the whole person, one on one, with warmth and humor.',
       cta: { label: 'More About Cynergy', href: '/about/' },
       heading: 'Learn more',
       links: [

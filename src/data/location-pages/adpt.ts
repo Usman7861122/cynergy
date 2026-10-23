@@ -8,14 +8,14 @@ export const adpt: LocationDetails = {
   directorLine: 'Alvin Dike & Michael Lazara',
   heroTitle: 'ADPT by Cynergy.',
   heroText:
-    'Our physical therapy and sports performance clinic. Work one-on-one with orthopedic and strength specialists in a 5,000-square-foot gym built to bridge rehab and performance training.',
+    'Our physical therapy and sports performance clinic. Work one on one with orthopedic and strength specialists in a 5,000-square-foot gym built to bridge rehab and performance training.',
   heroImage: U + '2025/07/oksanadoesntplay-16-1536x1024.jpg.webp',
   heroImageAlt: 'An athlete training at ADPT by Cynergy',
   about: {
     eyebrow: 'About this clinic',
     title: 'Where physical therapy meets performance.',
     paragraphs: [
-      'ADPT gives you one-on-one care with Orthopedic Clinical Specialists (OCS) and Certified Strength and Conditioning Specialists (CSCS). It is made for athletes who want more from their recovery than typical physical therapy offers.',
+      'ADPT gives you one on one care with Orthopedic Clinical Specialists (OCS) and Certified Strength and Conditioning Specialists (CSCS). It is made for athletes who want more from their recovery than typical physical therapy offers.',
       'We also offer early education and training for youth athletes, and we work with your doctors, athletic trainers, coaches and parents to keep everyone on the same plan. ADPT is in the same building as Cynergy Midtown West.',
     ],
     features: [

@@ -27,7 +27,7 @@ export const chelsea: LocationDetails = {
   },
   specialties: [
     { title: 'Hand Therapy & Splinting', text: 'Certified hand therapists make custom orthoses for same-day splinting needs.', href: '/injuries/upper-extremity-conditions-chelsea/' },
-    { title: 'Pelvic Floor Rehabilitation', text: 'Private, one-on-one care for pelvic pain, leaks and core support.', href: '/what-we-treat/pelvic-floor-health-chelsea/' },
+    { title: 'Pelvic Floor Rehabilitation', text: 'Private, one on one care for pelvic pain, leaks and core support.', href: '/what-we-treat/pelvic-floor-health-chelsea/' },
     { title: 'The McKenzie Method (MDT)', text: 'An exercise-based method that helps you find the cause of pain and treat it yourself.', href: '/mckenzie-method-mdt-chelsea/' },
     { title: 'Dance Medicine', text: 'Care for dancers, built around the demands of movement and performance.' },
     { title: 'Hip Preservation', text: 'Specialists who help protect and strengthen the hip joint.' },
@@ -55,7 +55,7 @@ export const chelsea: LocationDetails = {
     { q: 'Where is Cynergy Chelsea?', a: 'We are at 135 West 27th Street, 2nd Floor, New York, NY 10001, on 27th Street between 6th and 7th Avenues.' },
     { q: 'How do I book a visit?', a: 'Call (212) 255-8080, or book online. New patients can send an appointment request, and returning patients can schedule online.' },
     { q: 'Do you offer the McKenzie Method here?', a: 'Yes. The McKenzie Method (MDT) is one of the specialties at Chelsea.' },
-    { q: 'Do you offer pelvic floor therapy here?', a: 'Yes. Chelsea has pelvic floor therapists who give private, one-on-one care.' },
+    { q: 'Do you offer pelvic floor therapy here?', a: 'Yes. Chelsea has pelvic floor therapists who give private, one on one care.' },
     { q: 'Can I get a splint on the same day?', a: 'Yes. Our certified hand therapists make custom orthoses at this clinic for same-day splinting.' },
   ],
 };

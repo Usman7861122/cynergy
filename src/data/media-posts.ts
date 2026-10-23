@@ -56,7 +56,7 @@ export const mediaPosts: MediaPost[] = [
         ],
       },
       {
-        h: 'The Cynergy difference: one-on-one sports care',
+        h: 'The Cynergy difference: one on one sports care',
         p: ['Every session is with a licensed physical therapist, never an aide. Your plan is built around your schedule and your training. It has four parts:'],
         list: ['Running gait and movement analysis to find the cause of pain', 'Strength and stability work for your hips, core and calves', 'Hands-on therapy and joint mobilization to ease tightness and restore motion', 'Cross-training and taper planning to keep your fitness without extra stress on your joints'],
         ordered: true,
@@ -97,7 +97,7 @@ export const mediaPosts: MediaPost[] = [
       },
       {
         h: 'How hand therapy in Chelsea helps',
-        p: ['At our Chelsea clinic you work one-on-one with a licensed physical or occupational therapist. The plan has four parts.'],
+        p: ['At our Chelsea clinic you work one on one with a licensed physical or occupational therapist. The plan has four parts.'],
         sub: [
           { h: '1. Full arm and hand check', p: ['We test wrist motion, thumb pinch strength, joint movement, nerve function and your desk setup, to find the exact cause.'] },
           { h: '2. Custom splints', p: ['Store-bought braces often fit poorly and can press on nerves. Our Certified Hand Therapists make custom splints in the clinic. They hold your thumb and wrist in a supportive position so the tendons can heal while you go about your day.'] },
@@ -146,8 +146,8 @@ export const mediaPosts: MediaPost[] = [
       },
       {
         h: 'Hand therapy and rehab at Cynergy',
-        p: ['When desk changes are not enough, we treat the cause of the irritation. Every visit is one-on-one with a licensed therapist.'],
-        list: ['Custom splints made on site to protect irritated tendons', 'Ergonomic checks of your typing, posture and desk', 'Hands-on soft tissue work and nerve-gliding exercises', 'Strength work for hand and forearm endurance', 'Dedicated one-on-one care, with no aides or assistants'],
+        p: ['When desk changes are not enough, we treat the cause of the irritation. Every visit is one on one with a licensed therapist.'],
+        list: ['Custom splints made on site to protect irritated tendons', 'Ergonomic checks of your typing, posture and desk', 'Hands-on soft tissue work and nerve-gliding exercises', 'Strength work for hand and forearm endurance', 'Dedicated one on one care, with no aides or assistants'],
       },
       {
         h: 'Take back your pain-free workdays',
@@ -175,7 +175,7 @@ export const mediaPosts: MediaPost[] = [
       },
       {
         h: 'Custom splints and hand therapy at Cynergy',
-        p: ['We focus on upper extremity rehab after hand surgery. Every session is one-on-one with a licensed therapist.'],
+        p: ['We focus on upper extremity rehab after hand surgery. Every session is one on one with a licensed therapist.'],
         sub: [
           { h: 'Custom static and dynamic splints', p: ['Right after surgery the repair must be shielded from stretch. We mold splints on site that hold your wrist and fingers at set angles. They take stress off the tendon and still allow safe, controlled movement.'] },
           { h: 'Controlled movement plans', p: ['We follow trusted protocols, such as Kleinert or Duran for flexor tendons. Gentle, guided motion helps the tendon glide in its sheath and stops sticky scar tissue.'] },
@@ -190,7 +190,7 @@ export const mediaPosts: MediaPost[] = [
       },
       {
         h: 'Restore your hand function in Chelsea',
-        p: ['If you have had tendon repair surgery or have it coming up, call our Chelsea clinic at (212) 255-8080 or visit us at 135 West 27th Street, 2nd Floor, to book a one-on-one hand therapy evaluation.'],
+        p: ['If you have had tendon repair surgery or have it coming up, call our Chelsea clinic at (212) 255-8080 or visit us at 135 West 27th Street, 2nd Floor, to book a one on one hand therapy evaluation.'],
       },
     ],
     related: { label: 'Hand and upper extremity therapy', href: '/injuries/upper-extremity-conditions/' },
@@ -213,7 +213,7 @@ export const mediaPosts: MediaPost[] = [
         list: ['Rushed appointments', 'Generic treatment plans', 'Working with aides instead of licensed professionals', 'No real progress'],
       },
       {
-        h: 'A true one-on-one experience, every time',
+        h: 'A true one on one experience, every time',
         p: ['Every patient is treated by a licensed physical or occupational therapist, with no assistants. This leads to better assessments, changes to your care in real time, and faster progress.'],
         list: ['More accurate assessments', 'Real-time adjustments', 'Faster, more effective results', 'A deeper understanding of your body and goals'],
       },
@@ -233,7 +233,7 @@ export const mediaPosts: MediaPost[] = [
       },
       {
         h: 'Why patients across NYC choose Cynergy',
-        list: ['More than two decades of experience (since 2001)', 'A large, varied team', 'One-on-one care with licensed therapists', 'Several locations across the city', 'Personal, goal-based plans'],
+        list: ['More than two decades of experience (since 2001)', 'A large, varied team', 'One on one care with licensed therapists', 'Several locations across the city', 'Personal, goal-based plans'],
       },
       {
         h: 'Conditions we treat',
@@ -241,7 +241,7 @@ export const mediaPosts: MediaPost[] = [
       },
     ],
     faqs: [
-      { q: 'How do I choose the best physical therapist in NYC?', a: 'Look for a clinic with one-on-one care, experienced specialists and plans made for you, rather than high-volume care.' },
+      { q: 'How do I choose the best physical therapist in NYC?', a: 'Look for a clinic with one on one care, experienced specialists and plans made for you, rather than high-volume care.' },
       { q: 'Do I need a referral for physical therapy in NYC?', a: 'Often you do not need a referral to start. It is still wise to check with your doctor or insurance first.' },
       { q: 'How often should I go to physical therapy?', a: 'It depends on your condition. Most patients benefit from one to three visits a week.' },
       { q: 'How quickly will I see results?', a: 'Many patients feel better within the first few visits, especially with a plan built for them.' },
@@ -274,7 +274,7 @@ export const mediaPosts: MediaPost[] = [
         list: ['Weight-bearing exercise matched to your condition', 'Resistance training for bone density', 'Balance and stability work', 'Posture correction'],
       },
       {
-        h: 'Why one-on-one physical therapy matters',
+        h: 'Why one on one physical therapy matters',
         p: ['Generic gym programs often fall short for people with osteoporosis. At Cynergy you work directly with a licensed therapist, your program changes as you improve, and we track your progress closely.'],
       },
       {
@@ -317,7 +317,7 @@ export const mediaPosts: MediaPost[] = [
         list: ['Core and belly recovery, including diastasis recti', 'Pelvic floor rehab', 'Scar care after a C-section or tearing', 'A safe return to exercise', 'Preventing long-term problems'],
       },
       {
-        h: 'One-on-one, expert care',
+        h: 'One on one, expert care',
         p: ['Your sessions are with a licensed therapist, not an aide. This is especially important before and after birth.'],
         list: ['Precise treatment made for you', 'Real-time changes as you progress', 'A deeper understanding of your body and goals'],
       },
@@ -366,7 +366,7 @@ export const mediaPosts: MediaPost[] = [
       },
       {
         h: 'Vestibular rehab at Cynergy',
-        p: ['We offer vestibular and BPPV care at Midtown West, Midtown East, Chelsea, Cobble Hill and the Upper East Side. You work one-on-one with a licensed therapist, not an aide.'],
+        p: ['We offer vestibular and BPPV care at Midtown West, Midtown East, Chelsea, Cobble Hill and the Upper East Side. You work one on one with a licensed therapist, not an aide.'],
       },
       {
         h: 'Start feeling steady again',
@@ -408,7 +408,7 @@ export const mediaPosts: MediaPost[] = [
       },
       {
         h: 'Why choose Cynergy?',
-        p: ['You get one-on-one care in a private, supportive setting. Our therapists focus on pelvic health and use methods backed by research.'],
+        p: ['You get one on one care in a private, supportive setting. Our therapists focus on pelvic health and use methods backed by research.'],
       },
       {
         h: 'Book a pelvic floor evaluation',

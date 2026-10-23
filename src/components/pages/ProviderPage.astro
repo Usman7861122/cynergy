@@ -140,7 +140,7 @@ const cards = [
   {loc && (
   <section class:list={['py-20 lg:py-28', !hasPhotos && 'bg-cream-100']}>
     <div class="container-x">
-      <SectionHeading eyebrow="Where to find us" title={`See ${first} at ${loc.name}.`} text={`${first} works one-on-one with patients at our ${loc.name} clinic.`} />
+      <SectionHeading eyebrow="Where to find us" title={`See ${first} at ${loc.name}.`} text={`${first} works one on one with patients at our ${loc.name} clinic.`} />
       <div class="mt-12 pwhere">
         <article class="rounded-xl border border-pine-900/10 bg-white p-8 sm:p-10" data-reveal>
           <p class="eyebrow">{loc.name}</p>
@@ -155,7 +155,7 @@ const cards = [
           <span aria-hidden="true" class="pointer-events-none absolute -right-16 -top-16 h-44 w-44 rounded-full bg-pine-800/70 transition-transform duration-700 group-hover:scale-125"></span>
           <p class="eyebrow relative !text-clay-300">The {loc.name} team</p>
           <h3 class="relative mt-3 text-3xl">Meet {teamCount} more providers.</h3>
-          <p class="relative mt-4 max-w-prose text-white/80">Every patient works one-on-one with a licensed therapist. See who else is on the team at {loc.name}.</p>
+          <p class="relative mt-4 max-w-prose text-white/80">Every patient works one on one with a licensed therapist. See who else is on the team at {loc.name}.</p>
           <div class="relative mt-7 flex flex-wrap gap-3">
             <a href={`${loc.href}#providers`} class="btn btn-primary">Meet the team <Arrow /></a>
             <a href="/provider/" class="btn btn-outline-light">All providers</a>
