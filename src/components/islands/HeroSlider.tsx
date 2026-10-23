@@ -1,6 +1,7 @@
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { useCallback, useEffect, useState } from 'react';
 import { img } from '@/data/images';
+import HeroBadge from './HeroBadge';
 
 const INTERVAL = 7000;
 
@@ -80,6 +81,8 @@ export default function HeroSlider() {
       })}
       <div className="absolute inset-0 bg-gradient-to-r from-pine-950/85 via-pine-950/45 to-pine-950/10" />
       <div className="absolute inset-0 bg-gradient-to-t from-pine-950/80 via-transparent to-pine-950/40" />
+
+      <HeroBadge />
 
       {/* Text layer */}
       <div className="container-x relative flex h-full flex-col justify-center pb-28 pt-28 lg:pt-36">
