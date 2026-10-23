@@ -100,13 +100,18 @@ export default function HeroSlider({ video }: { video?: HeroVideo }) {
           />
         );
       })}
-      <div className="absolute inset-0 bg-gradient-to-r from-pine-950/85 via-pine-950/45 to-pine-950/10" />
-      <div className="absolute inset-0 bg-gradient-to-t from-pine-950/80 via-transparent to-pine-950/40" />
+      {/* Tint for readability on photos. The video hero has no tint. */}
+      {!video && (
+        <>
+          <div className="absolute inset-0 bg-gradient-to-r from-pine-950/85 via-pine-950/45 to-pine-950/10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-pine-950/80 via-transparent to-pine-950/40" />
+        </>
+      )}
 
       <HeroBadge />
 
       {/* Text layer */}
-      <div className="container-x relative flex h-full flex-col justify-center pb-28 pt-28 lg:pt-36">
+      <div className={`container-x relative flex h-full flex-col justify-center pb-28 pt-28 lg:pt-36${video ? ' [text-shadow:0_2px_18px_rgba(0,0,0,0.45)]' : ''}`}>
         <div className="max-w-3xl">
           <p className="sr-only">Physical Therapy, Occupational Therapy, Pilates and Performance in New York City</p>
           <div className="flex items-center gap-4" aria-hidden="true">
