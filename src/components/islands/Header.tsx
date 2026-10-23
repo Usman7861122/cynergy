@@ -344,9 +344,9 @@ export default function Header({ transparentTop = false }: { transparentTop?: bo
         </div>
 
         {/* Main row */}
-        <div className="container-x flex h-[4.5rem] items-center justify-between gap-6 lg:h-20" onMouseLeave={leave}>
+        <div className="container-x flex h-[5rem] items-center justify-between gap-6 lg:h-24" onMouseLeave={leave}>
           <a href="/" aria-label="Cynergy Physical Therapy — home" className="shrink-0">
-            <img src={img.logoWhite} alt="Cynergy Physical Therapy" className="h-9 w-auto lg:h-10" />
+            <img src={img.logoFullWhite} alt="Cynergy Physical Therapy. Heal well. Move well. Live well." className="h-16 w-auto lg:h-20" />
           </a>
 
           <nav aria-label="Primary" className="hidden xl:block">
@@ -396,8 +396,8 @@ export default function Header({ transparentTop = false }: { transparentTop?: bo
       <AnimatePresence>
         {mobile && (
           <motion.div role="dialog" aria-modal="true" aria-label="Menu" initial={{ x: '100%' }} animate={{ x: 0 }} exit={{ x: '100%' }} transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }} className="fixed inset-0 z-[60] overflow-y-auto bg-pine-950 text-white">
-            <div className="container-x flex h-[4.5rem] items-center justify-between">
-              <img src={img.logoWhite} alt="Cynergy" className="h-9 w-auto" />
+            <div className="container-x flex h-[5rem] items-center justify-between">
+              <img src={img.logoFullWhite} alt="Cynergy" className="h-14 w-auto" />
               <button type="button" onClick={() => setMobile(false)} aria-label="Close menu" className="flex h-11 w-11 items-center justify-center rounded-md border border-white/30">
                 <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
               </button>
