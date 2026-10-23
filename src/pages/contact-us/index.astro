@@ -29,13 +29,13 @@ const ways = [
     image={img.wide}
     imageAlt="A Cynergy therapist talking with a patient"
     crumbs={[{ label: 'Home', href: '/' }, { label: 'Contact us' }]}
-    primary={{ label: 'Book an appointment', href: newPatients.href, external: true }}
+    primary={{ label: 'Send us a message', href: '#contact-form' }}
     secondary={{ label: 'Call (212) 974-7252', href: 'tel:+12129747252' }}
   />
 
   <section class="py-20 lg:py-28">
     <div class="container-x grid gap-14 lg:grid-cols-12">
-      <div class="lg:col-span-7">
+      <div id="contact-form" class="scroll-mt-28 lg:col-span-7">
         <SectionHeading eyebrow="Send a message" title="How can we help?" text="Tell us a little and we will reply soon." />
         <div class="mt-10" data-reveal><SiteForm client:visible kind="contact" /></div>
       </div>

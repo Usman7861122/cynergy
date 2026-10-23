@@ -329,7 +329,7 @@ export default function Header({ transparentTop = false }: { transparentTop?: bo
             <p className="text-white/70">Physical &amp; Occupational Therapy in New York City</p>
             <ul className="flex items-center gap-1">
               <li>
-                <a href={payBill.href} target="_blank" rel="noopener noreferrer" className="mr-2 inline-flex min-h-8 items-center rounded-md border border-white/30 px-4 font-medium text-white transition hover:border-white hover:bg-white hover:text-pine-950">{payBill.label}</a>
+                <a href={payBill.href} className="mr-2 inline-flex min-h-8 items-center rounded-md border border-white/30 px-4 font-medium text-white transition hover:border-white hover:bg-white hover:text-pine-950">{payBill.label}</a>
               </li>
               {utilityRight.map((l) => (
                 <li key={l.label}>
@@ -337,7 +337,7 @@ export default function Header({ transparentTop = false }: { transparentTop?: bo
                 </li>
               ))}
               <li>
-                <a href={newPatients.href} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-8 items-center rounded-md border border-clay-500 bg-clay-500 px-4 font-medium text-pine-950 transition hover:border-clay-400 hover:bg-clay-400">{newPatients.label}</a>
+                <a href={newPatients.href} className="inline-flex min-h-8 items-center rounded-md border border-clay-500 bg-clay-500 px-4 font-medium text-pine-950 transition hover:border-clay-400 hover:bg-clay-400">{newPatients.label}</a>
               </li>
             </ul>
           </div>
@@ -404,9 +404,9 @@ export default function Header({ transparentTop = false }: { transparentTop?: bo
             </div>
             <div className="container-x pb-12 pt-4">
               <ul>{mainNav.map((item) => <MobileItem key={item.label} item={item} close={() => setMobile(false)} />)}</ul>
-              <a href={newPatients.href} target="_blank" rel="noopener noreferrer" className="btn btn-primary mt-8 w-full">{newPatients.label}</a>
+              <a href={newPatients.href} className="btn btn-primary mt-8 w-full">{newPatients.label}</a>
               <ul className="mt-6 grid grid-cols-2 gap-x-4 text-sm text-white/75">
-                {[payBill, ...utilityRight].map((l) => <li key={l.label}><a href={l.href} target="_blank" rel="noopener noreferrer" className="flex min-h-11 items-center">{l.label}</a></li>)}
+                {[payBill, ...utilityRight].map((l) => <li key={l.label}><a href={l.href} {...(l.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})} className="flex min-h-11 items-center">{l.label}</a></li>)}
               </ul>
             </div>
           </motion.div>

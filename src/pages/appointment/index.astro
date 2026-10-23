@@ -1,0 +1,57 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import PageHero from '@components/sections/PageHero.astro';
+import SectionHeading from '@components/ui/SectionHeading.astro';
+import SiteForm from '@components/islands/SiteForm';
+import CtaBand from '@components/sections/CtaBand.astro';
+import Arrow from '@components/ui/Arrow.astro';
+import { img } from '@/data/images';
+import { locations } from '@/data/locations';
+
+// Fields and options follow https://cynergypt.com/appointment/.
+const options = [
+  { title: 'Book online', text: 'Pick a time on Zocdoc.', label: 'Book on Zocdoc', href: 'https://www.zocdoc.com/practice/cynergy-physical-therapy-p-c-147257?lock=true&isNewPatient=false&referrerType=widget' },
+  { title: 'Returning patients', text: 'Use our online scheduling.', label: 'Schedule online', href: 'https://scheduling.go.promptemr.com/onlineScheduling?w=1143&s=DL' },
+];
+---
+
+<BaseLayout
+  title="Request an Appointment | Cynergy Physical Therapy"
+  description="Request an appointment at Cynergy Physical Therapy in New York City. Tell us what you need and a patient liaison will contact you."
+>
+  <PageHero
+    eyebrow="New patients"
+    title="Request an appointment."
+    text="Fill out the short form and a patient liaison will contact you to find a time. Prefer to book yourself? Use the links below."
+    image={img.backTherapy}
+    imageAlt="A Cynergy therapist treating a patient"
+    crumbs={[{ label: 'Home', href: '/' }, { label: 'Request an appointment' }]}
+    primary={{ label: 'Fill out the form', href: '#appointment-form' }}
+    secondary={{ label: 'Call (212) 974-7252', href: 'tel:+12129747252' }}
+  />
+
+  <section id="appointment-form" class="scroll-mt-24 py-20 lg:py-28">
+    <div class="container-x grid gap-14 lg:grid-cols-12">
+      <div class="lg:col-span-8">
+        <SectionHeading eyebrow="Appointment request" title="Tell us about you." text="Fields marked * are needed. Please do not share private medical details here." />
+        <div class="mt-10" data-reveal><SiteForm client:visible kind="appointment" locations={locations.map((l) => l.name)} /></div>
+      </div>
+      <aside class="space-y-5 lg:col-span-4">
+        {options.map((o, i) => (
+          <a href={o.href} target="_blank" rel="noopener noreferrer" class="group block rounded-xl border border-pine-900/10 bg-white p-7 transition duration-500 hover:-translate-y-1 hover:bg-pine-900 hover:shadow-xl hover:shadow-pine-950/20" data-reveal style={`--d:${i * 100}ms`}>
+            <h3 class="text-2xl text-pine-950 group-hover:text-white">{o.title}</h3>
+            <p class="mt-2 text-ink/75 group-hover:text-white/80">{o.text}</p>
+            <span class="mt-5 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.16em] text-pine-900 group-hover:text-white">{o.label} <Arrow class="h-4 w-4" /></span>
+          </a>
+        ))}
+        <div class="rounded-xl bg-pine-950 p-7 text-white" data-reveal style="--d:200ms">
+          <p class="eyebrow !text-clay-300">Office hours</p>
+          <p class="mt-2 text-xl">Monday to Friday, 7 AM – 7 PM</p>
+          <a href="tel:+12129747252" class="mt-4 inline-flex min-h-11 items-center text-xl font-semibold hover:text-clay-300">(212) 974-7252</a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <CtaBand />
+</BaseLayout>

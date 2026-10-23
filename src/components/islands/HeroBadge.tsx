@@ -4,7 +4,7 @@ import { motion, useReducedMotion, useScroll, useSpring, useTransform } from 'fr
 // The ring turns by itself. As you scroll down the badge grows, and it shrinks back when you scroll up.
 const WORDS = 'HEAL WELL  •  MOVE WELL  •  LIVE WELL  •  ';
 
-export default function HeroBadge() {
+export default function HeroBadge({ className = 'hidden lg:block' }: { className?: string }) {
   const reduce = useReducedMotion();
   const { scrollY } = useScroll();
   const scrollTurn = useTransform(scrollY, [0, 1000], [0, reduce ? 0 : 120]);
@@ -13,7 +13,7 @@ export default function HeroBadge() {
   const fade = useTransform(scrollY, [500, 900], [1, 0.25]);
 
   return (
-    <div aria-hidden="true" className="pointer-events-none absolute right-[4%] top-1/2 hidden aspect-square w-[21rem] -translate-y-1/2 lg:block xl:right-[6%] xl:w-[27rem]">
+    <div aria-hidden="true" className={`pointer-events-none ${className} ${className.includes('relative') ? '' : 'absolute right-[4%] top-1/2 aspect-square w-[21rem] -translate-y-1/2 xl:right-[6%] xl:w-[27rem]'}`}>
       <motion.div style={{ scale, opacity: fade }} className="absolute inset-0">
       <motion.div style={{ rotate: scrollTurn }} className="absolute inset-0">
         <motion.svg

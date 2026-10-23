@@ -85,7 +85,7 @@ export default function CookieConsent() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 24 }}
             transition={{ duration: 0.35 }}
-            className="fixed inset-x-4 bottom-4 z-[90] max-w-xl rounded-xl border border-pine-900/15 bg-white p-6 shadow-2xl shadow-pine-950/25 sm:left-6 sm:right-auto"
+            className="fixed inset-x-4 bottom-24 z-[90] lg:bottom-4 max-w-xl rounded-xl border border-pine-900/15 bg-white p-6 shadow-2xl shadow-pine-950/25 sm:left-6 sm:right-auto"
           >
             <p className="font-serif text-xl text-pine-950">We use cookies</p>
             <p className="mt-2 text-sm text-ink/80">

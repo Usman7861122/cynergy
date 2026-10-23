@@ -54,12 +54,14 @@ export default function HeroSlider({ video }: { video?: HeroVideo }) {
     <section
       aria-roledescription="carousel"
       aria-label="Welcome to Cynergy"
-      className="relative h-[100svh] min-h-[640px] overflow-hidden bg-pine-950 text-white"
+      className="relative overflow-hidden bg-pine-950 text-white lg:h-[100svh] lg:min-h-[640px]"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocus={() => setPaused(true)}
       onBlur={() => setPaused(false)}
     >
+      {/* Picture area. On phones it sits on top and the text comes after it. */}
+      <div className="relative h-[72svh] overflow-hidden lg:absolute lg:inset-0 lg:h-auto">
       {/* Background video (Home 2) */}
       {video && (
         <>
@@ -108,10 +110,20 @@ export default function HeroSlider({ video }: { video?: HeroVideo }) {
         </>
       )}
 
-      <HeroBadge />
+        <HeroBadge className="hidden lg:block" />
+
+        {/* Phones: round logo and two equal buttons, centered */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-8 px-6 pb-20 pt-24 lg:hidden">
+          <HeroBadge className="relative aspect-square w-60 shrink-0" />
+          <div className="grid w-full max-w-sm grid-cols-2 gap-3">
+            <a href="/appointment/" className="btn btn-primary !px-3 text-center">Book an appointment</a>
+            <a href="/services/" className="btn btn-outline-light !px-3 text-center">Explore our services</a>
+          </div>
+        </div>
+      </div>
 
       {/* Text layer */}
-      <div className={`container-x relative flex h-full flex-col justify-center pb-28 pt-28 lg:pt-36${video ? ' [text-shadow:0_2px_18px_rgba(0,0,0,0.45)]' : ''}`}>
+      <div className={`container-x relative flex flex-col justify-center py-12 lg:absolute lg:inset-0 lg:h-full lg:py-0 lg:pb-28 lg:pt-36${video ? ' [text-shadow:0_2px_18px_rgba(0,0,0,0.45)]' : ''}`}>
         <div className="max-w-3xl">
           <p className="sr-only">Physical Therapy, Occupational Therapy, Pilates and Performance in New York City</p>
           <div className="flex items-center gap-4" aria-hidden="true">
@@ -154,7 +166,7 @@ export default function HeroSlider({ video }: { video?: HeroVideo }) {
               </motion.p>
               <motion.div
                 variants={{ hidden: { opacity: 0, y: 18 }, show: { opacity: 1, y: 0, transition: { duration: 0.8, delay: 0.7 } } }}
-                className="mt-9 flex flex-wrap gap-3"
+                className="mt-9 hidden flex-wrap gap-3 lg:flex"
               >
                 <a href="/appointment/" className="btn btn-primary">Book an appointment</a>
                 <a href="/services/" className="btn btn-outline-light">Explore our services</a>
@@ -165,7 +177,7 @@ export default function HeroSlider({ video }: { video?: HeroVideo }) {
       </div>
 
       {/* Controls */}
-      {showSlides && <div className="absolute inset-x-0 bottom-0">
+      {showSlides && <div className="absolute inset-x-0 top-[calc(72svh-4.5rem)] lg:bottom-0 lg:top-auto">
         <div className="container-x flex items-center justify-between pb-6 sm:pb-8">
           <div className="flex items-center gap-2" role="group" aria-label="Choose slide">
             {slides.map((_, n) => (

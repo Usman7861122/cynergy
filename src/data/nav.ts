@@ -157,9 +157,9 @@ export const utilityRight: Link[] = [
 ];
 
 // The three top buttons use the links from the live site.
-export const payBill: Link = { label: 'Pay Bill Online', href: 'https://cynergypt.com/pay-bill-online/', external: true };
+export const payBill: Link = { label: 'Pay Bill Online', href: '/pay-bill-online/' };
 
-export const newPatients: Link = { label: 'New Patients', href: 'https://cynergypt.com/appointment/', external: true };
+export const newPatients: Link = { label: 'New Patients', href: '/appointment/' };
 
 export const socials = [
   { label: 'Facebook', href: 'https://www.facebook.com/Cynergy-Physical-Therapy-NYC-109463420552253' },

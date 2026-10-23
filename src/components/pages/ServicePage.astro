@@ -79,7 +79,7 @@ const showBoth = !!(svc.causes && svc.approach);
       <div class="lg:col-span-5" data-reveal>
         {svc.stat ? (
           <div class="rounded-xl bg-pine-900 p-8 text-white sm:p-10">
-            <p class="font-serif text-7xl leading-none text-clay-300 sm:text-8xl">{svc.stat.big}{svc.stat.unit && <span class="text-5xl">{svc.stat.unit}</span>}</p>
+            <p class:list={['whitespace-nowrap font-serif leading-none text-clay-300', svc.stat.big.length > 5 ? 'text-5xl sm:text-6xl' : 'text-7xl sm:text-8xl']}>{svc.stat.big}{svc.stat.unit && <span class="text-5xl">{svc.stat.unit}</span>}</p>
             <p class="mt-4 text-lg text-white/85">{svc.stat.text}</p>
             {svc.stat.extra && (<><span class="my-6 block h-px w-12 bg-clay-300"></span><p class="text-white/75">{svc.stat.extra}</p></>)}
           </div>

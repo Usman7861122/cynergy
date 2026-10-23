@@ -14,7 +14,7 @@ export const handTherapy: Service = {
   imageAlt: 'A therapist treating a patient’s wrist',
   whyImage: '/images/hand-therapy/hand-therapy-2.jpg',
   whyImageAlt: 'A hand therapist treating a patient’s hand during a one on one visit',
-  stat: { big: 'Same-day', text: 'custom splinting. Walk-ins are welcome.', extra: 'Certified Hand Therapists (CHTs) are at every Cynergy location.' },
+  stat: { big: 'Same\u2011day', text: 'custom splinting. Walk-ins are welcome.', extra: 'Certified Hand Therapists (CHTs) are at every Cynergy location.' },
   overview: { eyebrow: 'Hand, wrist and fingers', title: 'Expert care for the way you use your hands.', text: 'We start with careful, hands-on care and clear advice. Every visit is one on one with a licensed therapist, and your plan is made for your work, hobbies and goals.' },
   causes: { title: 'Common causes', items: ['Typing and phone use', 'Repeated hand movements', 'Poor desk setup (ergonomics)', 'Tool or machine work', 'Past injuries', 'Surgery on the hand or wrist'] },
   approach: { items: ['Custom splints made on site', 'Stretching and strengthening', 'Hands-on therapy and tendon gliding', 'Pain relief techniques', 'Ergonomic checks and advice', 'Care before and after surgery', 'Home exercise program'] },

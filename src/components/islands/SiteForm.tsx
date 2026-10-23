@@ -5,7 +5,7 @@ import { useState, type SyntheticEvent } from 'react';
 const ENDPOINT = (import.meta.env.PUBLIC_FORM_ENDPOINT as string | undefined) ?? '';
 
 type Props = {
-  kind: 'contact' | 'careers';
+  kind: 'contact' | 'careers' | 'appointment';
   positions?: string[];
   locations?: string[];
   defaultPosition?: string;
@@ -18,13 +18,14 @@ export default function SiteForm({ kind, positions = [], locations = [], default
   const [state, setState] = useState<'idle' | 'sending' | 'done' | 'error'>('idle');
   const [msg, setMsg] = useState('');
   const careers = kind === 'careers';
+  const appt = kind === 'appointment';
 
   async function onSubmit(e: SyntheticEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = e.currentTarget;
     const data = new FormData(form);
     if (data.get('company_website')) return; // spam trap
-    data.append('_subject', careers ? 'Cynergy job application' : 'Cynergy website message');
+    data.append('_subject', careers ? 'Cynergy job application' : appt ? 'Cynergy appointment request' : 'Cynergy website message');
     if (!ENDPOINT) {
       setState('error');
       setMsg('This form is not connected yet. Please call (212) 974-7252 and we will help you.');
@@ -45,8 +46,8 @@ export default function SiteForm({ kind, positions = [], locations = [], default
   if (state === 'done') {
     return (
       <div role="status" className="rounded-xl border border-pine-900/15 bg-sage-100 p-8">
-        <p className="font-serif text-2xl text-pine-950">{careers ? 'Thank you for applying.' : 'Thank you. We got your message.'}</p>
-        <p className="mt-3 text-ink/80">{careers ? 'Our team will read your application and contact you soon.' : 'A member of our team will reply as soon as we can. For urgent needs, please call (212) 974-7252.'}</p>
+        <p className="font-serif text-2xl text-pine-950">{careers ? 'Thank you for applying.' : appt ? 'Thank you. We got your request.' : 'Thank you. We got your message.'}</p>
+        <p className="mt-3 text-ink/80">{careers ? 'Our team will read your application and contact you soon.' : appt ? 'A patient liaison will call or email you soon to find a time. For urgent needs, please call (212) 974-7252.' : 'A member of our team will reply as soon as we can. For urgent needs, please call (212) 974-7252.'}</p>
         <button type="button" onClick={() => setState('idle')} className="btn btn-outline mt-6">Send another</button>
       </div>
     );
@@ -65,8 +66,8 @@ export default function SiteForm({ kind, positions = [], locations = [], default
         <input id={`${kind}-email`} name="email" type="email" required autoComplete="email" className={field} />
       </div>
       <div>
-        <label htmlFor={`${kind}-phone`} className={label}>Phone number {careers ? '*' : ''}</label>
-        <input id={`${kind}-phone`} name="phone" type="tel" required={careers} autoComplete="tel" className={field} />
+        <label htmlFor={`${kind}-phone`} className={label}>Phone number {careers || appt ? '*' : ''}</label>
+        <input id={`${kind}-phone`} name="phone" type="tel" required={careers || appt} autoComplete="tel" className={field} />
       </div>
 
       {careers ? (
@@ -115,9 +116,56 @@ export default function SiteForm({ kind, positions = [], locations = [], default
         </>
       ) : null}
 
+      {appt ? (
+        <>
+          <div>
+            <label htmlFor="appt-dob" className={label}>Date of birth *</label>
+            <input id="appt-dob" name="dob" type="date" required autoComplete="bday" className={field} />
+          </div>
+          <div>
+            <label htmlFor="appt-location" className={label}>Preferred location *</label>
+            <select id="appt-location" name="location" required defaultValue="" className={field}>
+              <option value="" disabled>Select a location</option>
+              {locations.map((l) => <option key={l}>{l}</option>)}
+              <option>Flexible</option>
+            </select>
+          </div>
+          <div>
+            <label htmlFor="appt-interest" className={label}>I’m interested in *</label>
+            <select id="appt-interest" name="interested_in" required defaultValue={defaultPosition ?? ''} className={field}>
+              <option value="" disabled>Choose one</option>
+              {['Physical Therapy', 'Occupational/Hand Therapy', 'Performance Therapy', 'Sports Performance', 'Other'].map((o) => <option key={o}>{o}</option>)}
+            </select>
+          </div>
+          <div>
+            <label htmlFor="appt-source" className={label}>How did you hear about us?</label>
+            <select id="appt-source" name="referral_source" defaultValue="" className={field}>
+              <option value="">Choose one</option>
+              {['Doctor referral', 'Friend', 'Returning patient', 'Social media', 'General online search'].map((o) => <option key={o}>{o}</option>)}
+            </select>
+          </div>
+          <div className="sm:col-span-2">
+            <label htmlFor="appt-ref" className={label}>Name of referral source</label>
+            <input id="appt-ref" name="referral_name" type="text" className={field} />
+          </div>
+          <div>
+            <label htmlFor="appt-ins" className={label}>Insurance carrier</label>
+            <input id="appt-ins" name="insurance_carrier" type="text" className={field} />
+          </div>
+          <div>
+            <label htmlFor="appt-member" className={label}>Member ID #</label>
+            <input id="appt-member" name="member_id" type="text" className={field} />
+          </div>
+          <div>
+            <label htmlFor="appt-group" className={label}>Group number #</label>
+            <input id="appt-group" name="group_number" type="text" className={field} />
+          </div>
+        </>
+      ) : null}
+
       <div className="sm:col-span-2">
-        <label htmlFor={`${kind}-message`} className={label}>{careers ? 'Tell us about yourself' : 'Message *'}</label>
-        <textarea id={`${kind}-message`} name="message" rows={5} required={!careers} className={field} />
+        <label htmlFor={`${kind}-message`} className={label}>{careers ? 'Tell us about yourself' : appt ? 'Anything else we should know?' : 'Message *'}</label>
+        <textarea id={`${kind}-message`} name="message" rows={5} required={!careers && !appt} className={field} />
       </div>
 
       <div className="sm:col-span-2">
@@ -133,7 +181,7 @@ export default function SiteForm({ kind, positions = [], locations = [], default
 
       <div className="sm:col-span-2">
         <button type="submit" disabled={state === 'sending'} className="btn btn-primary disabled:opacity-60">
-          {state === 'sending' ? 'Sending…' : careers ? 'Send application' : 'Send message'}
+          {state === 'sending' ? 'Sending…' : careers ? 'Send application' : appt ? 'Request appointment' : 'Send message'}
         </button>
         {state === 'error' && <p role="alert" className="mt-4 text-sm font-medium text-clay-700">{msg}</p>}
         <p className="mt-4 text-sm text-ink/60">Please do not send private medical details in this form.</p>
