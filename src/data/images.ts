@@ -4,7 +4,8 @@ const U = 'https://cynergypt.com/wp-content/uploads/';
 
 export const img = {
   // Only the CYNERGY word, cut from the full logo.
-  logoWhite: '/images/cynergy-wordmark.png',
+  logoWhite: '/images/cynergy-logo-horizontal-light.png',
+  logoDark: '/images/cynergy-logo-horizontal.png',
 
   // places & spaces
   wellnessDen: U + '2025/07/TWD-074-1536x1025.jpg.webp',
