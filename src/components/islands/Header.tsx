@@ -26,7 +26,7 @@ const icons: Record<string, string> = {
 };
 
 const IconChip = ({ name, active }: { name: string; active?: boolean }) => (
-  <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border transition ${active ? 'border-clay-500 bg-clay-600 text-white' : 'border-pine-900/15 bg-white text-pine-800'}`}>
+  <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border transition ${active ? 'border-clay-500 bg-clay-500 text-pine-950' : 'border-pine-900/15 bg-white text-pine-800'}`}>
     <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <path d={icons[name] ?? icons.treat} />
     </svg>
@@ -43,7 +43,7 @@ const LinkRow = ({ link }: { link: Link }) => (
     {...(link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
     className="group/link flex min-h-11 items-start gap-3 rounded-lg px-2 py-2 text-pine-950 transition hover:bg-cream-100"
   >
-    <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-sage-100 text-pine-800 transition group-hover/link:bg-clay-600 group-hover/link:text-white">
+    <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-sage-100 text-pine-800 transition group-hover/link:bg-clay-500 group-hover/link:text-pine-950">
       <Arrow className="h-3.5 w-3.5" />
     </span>
     <span>
@@ -337,7 +337,7 @@ export default function Header({ transparentTop = false }: { transparentTop?: bo
                 </li>
               ))}
               <li>
-                <a href={newPatients.href} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-8 items-center rounded-md border border-clay-600 bg-clay-600 px-4 font-medium text-white transition hover:border-clay-700 hover:bg-clay-700">{newPatients.label}</a>
+                <a href={newPatients.href} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-8 items-center rounded-md border border-clay-500 bg-clay-500 px-4 font-medium text-pine-950 transition hover:border-clay-400 hover:bg-clay-400">{newPatients.label}</a>
               </li>
             </ul>
           </div>

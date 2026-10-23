@@ -26,10 +26,11 @@
   --color-cream-200: #ebe4d4;
 
   /* Clay: warm accent */
-  --color-clay-300: #e4b08d;
-  --color-clay-500: #b8683f;
-  --color-clay-600: #9c532f;
-  --color-clay-700: #7f4224;
+  --color-clay-300: #ebcda6;
+  --color-clay-400: #cfa374;
+  --color-clay-500: #dfb88b;
+  --color-clay-600: #8f6a3c; /* darker shade of the same tan, for text on light backgrounds */
+  --color-clay-700: #6f522d;
 
   --color-ink: #1b2a27;
 
@@ -65,7 +66,7 @@
   .btn {
     @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-md px-6 py-3 text-sm font-medium tracking-wide transition duration-300 active:scale-[0.98];
   }
-  .btn-primary { @apply bg-clay-600 text-white hover:bg-clay-700; }
+  .btn-primary { @apply bg-clay-500 text-pine-950 hover:bg-clay-400; }
   .btn-light { @apply bg-white text-pine-950 hover:bg-cream-200; }
   .btn-outline { @apply border border-pine-800 text-pine-900 hover:bg-pine-900 hover:text-white; }
   .btn-outline-light { @apply border border-white/60 text-white hover:bg-white hover:text-pine-950; }

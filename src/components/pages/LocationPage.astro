@@ -85,7 +85,7 @@ const others = locations.filter((l) => l.id !== loc.id);
           <ul class="relative mt-6">
             {d.about.features.map((f, n) => (
               <li class:list={['group/item flex items-start gap-4 py-4 transition-transform duration-300 hover:translate-x-1.5', n < d.about.features.length - 1 && 'border-b border-white/15', n === 0 && '!pt-0']}>
-                <span class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-clay-600 text-white transition-colors duration-300 group-hover/item:bg-clay-500">
+                <span class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-clay-500 text-pine-950 transition-colors duration-300 group-hover/item:bg-clay-500">
                   <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5" /></svg>
                 </span>
                 <span class="text-white/90 transition-colors group-hover/item:text-white">{f}</span>

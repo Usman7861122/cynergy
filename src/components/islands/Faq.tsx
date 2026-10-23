@@ -20,7 +20,7 @@ export default function Faq({ items }: { items: FaqItem[] }) {
                 className="group flex min-h-16 w-full items-center justify-between gap-6 py-4 text-left"
               >
                 <span className={`font-serif text-xl transition-colors sm:text-2xl ${isOpen ? 'text-clay-600' : 'text-pine-950 group-hover:text-clay-600'}`}>{it.q}</span>
-                <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-md border transition duration-300 ${isOpen ? 'rotate-45 border-clay-600 bg-clay-600 text-white' : 'border-pine-900/30 text-pine-900'}`}>
+                <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-md border transition duration-300 ${isOpen ? 'rotate-45 border-clay-500 bg-clay-500 text-pine-950' : 'border-pine-900/30 text-pine-900'}`}>
                   <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14" /></svg>
                 </span>
               </button>

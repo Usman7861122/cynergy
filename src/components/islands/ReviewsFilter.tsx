@@ -33,7 +33,7 @@ export default function ReviewsFilter({ items, places, stats = {} }: { items: Re
             aria-pressed={src === c.id}
             onClick={() => setSrc(c.id)}
             className={`inline-flex min-h-10 items-center rounded-md border px-4 text-sm font-semibold transition-colors ${
-              src === c.id ? 'border-clay-600 bg-clay-600 text-white' : 'border-pine-900/20 bg-white text-pine-900 hover:border-clay-600'
+              src === c.id ? 'border-clay-500 bg-clay-500 text-pine-950' : 'border-pine-900/20 bg-white text-pine-900 hover:border-clay-600'
             }`}
           >
             {c.label}

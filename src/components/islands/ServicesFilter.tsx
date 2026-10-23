@@ -59,7 +59,7 @@ export default function ServicesFilter({ items }: { items: ServiceCard[] }) {
                 <div className="relative aspect-[4/3] overflow-hidden bg-sage-200">
                   <img src={s.image} alt={s.alt} loading="lazy" decoding="async" referrerPolicy="no-referrer" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
                   <span aria-hidden="true" className="absolute inset-x-0 bottom-0 h-1 origin-left scale-x-0 bg-clay-500 transition-transform duration-500 group-hover:scale-x-100" />
-                  <span className={`absolute left-3 top-3 inline-flex items-center gap-2 rounded-md px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-white shadow-md shadow-black/20 ${s.group === 'treat' ? 'bg-pine-900' : 'bg-clay-600'}`}>
+                  <span className={`absolute left-3 top-3 inline-flex items-center gap-2 rounded-md px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-white shadow-md shadow-black/20 ${s.group === 'treat' ? 'bg-pine-900' : 'bg-clay-500 !text-pine-950'}`}>
                     <span aria-hidden="true" className="h-2 w-2 rounded-full bg-white" />
                     {s.group === 'treat' ? 'We treat' : 'We offer'}
                   </span>
