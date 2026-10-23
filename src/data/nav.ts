@@ -40,6 +40,7 @@ export const mainNav: NavItem[] = [
             { label: 'Knee', href: '/what-we-treat/knee-pain/' },
             { label: 'Vestibular Dysfunction', href: '/what-we-treat/vestibular-dysfunction/' },
             { label: 'Upper Extremity', href: '/injuries/upper-extremity-conditions/' },
+            { label: 'Hand Therapy', href: '/what-we-treat/hand-therapy/' },
             { label: 'Pelvic Floor Health', href: '/what-we-treat/pelvic-floor-health/' },
             { label: 'TMJ/TMD', href: '/what-we-treat/temporomandibular-disorder/' },
             { label: 'Chronic Pain/Pain Management', href: '/what-we-treat/chronic-pain/' },

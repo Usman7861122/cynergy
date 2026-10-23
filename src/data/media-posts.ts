@@ -110,7 +110,7 @@ export const mediaPosts: MediaPost[] = [
         p: ['You do not have to live with daily pain. Early care from a hand therapist is the fastest way to feel better. Our Chelsea clinic is at 135 West 27th Street, 2nd Floor, and is close to Midtown West, Flatiron, Hudson Yards and Gramercy.'],
       },
     ],
-    related: { label: 'Hand and upper extremity therapy', href: '/injuries/upper-extremity-conditions/' },
+    related: { label: 'Hand therapy', href: '/what-we-treat/hand-therapy/' },
     locationId: 'chelsea',
   },
   {
@@ -154,7 +154,7 @@ export const mediaPosts: MediaPost[] = [
         p: ['Desk changes plus hand therapy can ease wrist pain, protect your joints and help you work well again. Visit our Chelsea clinic at 135 West 27th Street, 2nd Floor, or call (212) 255-8080.'],
       },
     ],
-    related: { label: 'Hand and upper extremity therapy', href: '/injuries/upper-extremity-conditions/' },
+    related: { label: 'Hand therapy', href: '/what-we-treat/hand-therapy/' },
     locationId: 'chelsea',
   },
   {
@@ -193,7 +193,7 @@ export const mediaPosts: MediaPost[] = [
         p: ['If you have had tendon repair surgery or have it coming up, call our Chelsea clinic at (212) 255-8080 or visit us at 135 West 27th Street, 2nd Floor, to book a one on one hand therapy evaluation.'],
       },
     ],
-    related: { label: 'Hand and upper extremity therapy', href: '/injuries/upper-extremity-conditions/' },
+    related: { label: 'Hand therapy', href: '/what-we-treat/hand-therapy/' },
     locationId: 'chelsea',
   },
   {

@@ -4,6 +4,7 @@ import { hip } from './hip';
 import { knee } from './knee';
 import { vestibular } from './vestibular';
 import { upperExtremity } from './upper-extremity';
+import { handTherapy } from './hand-therapy';
 import { pelvicFloor } from './pelvic-floor';
 import { tmj } from './tmj';
 import { chronicPain } from './chronic-pain';
@@ -26,7 +27,7 @@ import { sportsPerformanceTraining } from './sports-performance-training';
 import { executiveEdge } from './adult-athletic-development';
 import { youthAthletic } from './youth-athletic-development';
 
-export const treatServices = [backPain, footAnkle, hip, knee, vestibular, upperExtremity, pelvicFloor, tmj, chronicPain];
+export const treatServices = [backPain, footAnkle, hip, knee, vestibular, upperExtremity, handTherapy, pelvicFloor, tmj, chronicPain];
 export const offerServices = [musicians, pilates, prenatal, osteoporosis, mckenzie, pelvicGut, malePelvic];
 export const services = [...treatServices, ...offerServices];
 export const sportsServices = [sportsMedicine, danceMedicine, femaleAthleteTriad, kettlebell, runningGait, returnToPlay, tindeq, womensSports, sportsPerformanceTraining, executiveEdge, youthAthletic];
