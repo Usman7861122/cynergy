@@ -6,6 +6,8 @@ export const img = {
   // Logos (transparent PNG): horizontal and full with tagline, white versions for dark backgrounds.
   logoWhite: '/images/cynergy-logo-horizontal-light.png',
   logoDark: '/images/cynergy-logo-horizontal.png',
+  // Exact brand colours (dark green + gold) for light backgrounds
+  logoFull: '/images/cynergy-logo.png',
   logoFullWhite: '/images/cynergy-logo-header-light.png',
 
   // places & spaces

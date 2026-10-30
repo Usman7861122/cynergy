@@ -320,11 +320,9 @@ export default function Header({ transparentTop = false }: { transparentTop?: bo
 
   return (
     <>
-      <header className={`fixed inset-x-0 top-0 z-50 text-white transition-colors duration-500 ${solid ? 'bg-pine-950/95 shadow-lg shadow-pine-950/20 backdrop-blur-md' : 'bg-transparent'}`}>
-        {/* Soft dark tint behind the header so the menu stays easy to read over photos */}
-        <div aria-hidden="true" className={`pointer-events-none absolute inset-x-0 top-0 -z-10 h-[15rem] bg-gradient-to-b from-pine-950/90 via-pine-950/60 via-50% to-transparent transition-opacity duration-500 ${solid ? 'opacity-0' : 'opacity-100'}`} />
+      <header className={`fixed inset-x-0 top-0 z-50 bg-cream-50/95 text-pine-950 backdrop-blur-md transition-shadow duration-500 ${solid ? 'shadow-lg shadow-pine-950/15' : 'shadow-sm shadow-pine-950/10'}`}>
         {/* Utility strip */}
-        <div className={`hidden overflow-hidden border-b border-white/10 transition-all duration-500 lg:block ${scrolled ? 'max-h-0 border-transparent opacity-0' : 'max-h-12 opacity-100'}`}>
+        <div className={`hidden overflow-hidden border-b border-white/10 bg-pine-950 text-white transition-all duration-500 lg:block ${scrolled ? 'max-h-0 border-transparent opacity-0' : 'max-h-12 opacity-100'}`}>
           <div className="container-x flex h-11 items-center justify-between text-[14px]">
             <p className="text-white/70">Physical &amp; Occupational Therapy in New York City</p>
             <ul className="flex items-center gap-1">
@@ -346,7 +344,7 @@ export default function Header({ transparentTop = false }: { transparentTop?: bo
         {/* Main row */}
         <div className="container-x flex h-[5.5rem] items-center justify-between gap-6 lg:h-28" onMouseLeave={leave}>
           <a href="/" aria-label="Cynergy Physical Therapy — home" className="shrink-0">
-            <img src={img.logoFullWhite} alt="Cynergy Physical Therapy. Heal well. Move well. Live well." className="h-[4.5rem] w-auto lg:h-24" />
+            <img src={img.logoFull} alt="Cynergy Physical Therapy. Heal well. Move well. Live well." className="h-[4.5rem] w-auto lg:h-24" />
           </a>
 
           <nav aria-label="Primary" className="hidden xl:block">
@@ -354,11 +352,11 @@ export default function Header({ transparentTop = false }: { transparentTop?: bo
               {mainNav.map((item) => (
                 <li key={item.label} onMouseEnter={() => (item.mega ? enter(item.label) : (keep(), setOpen(null)))}>
                   <div className="flex items-center">
-                    <a href={item.href} className={`inline-flex min-h-11 items-center whitespace-nowrap rounded-md px-3 text-[15px] font-medium tracking-wide 2xl:text-[16px] transition hover:text-white ${open === item.label ? 'text-white' : 'text-white/90'}`}>
+                    <a href={item.href} className={`inline-flex min-h-11 items-center whitespace-nowrap rounded-md px-3 text-[15px] font-medium tracking-wide 2xl:text-[16px] transition hover:text-clay-600 ${open === item.label ? 'text-clay-600' : 'text-pine-950'}`}>
                       {item.label}
                     </a>
                     {item.mega && (
-                      <button type="button" aria-expanded={open === item.label} aria-label={`${item.label} menu`} onClick={() => setOpen(open === item.label ? null : item.label)} className="-ml-2 flex h-8 w-6 items-center justify-center text-white/70 hover:text-white">
+                      <button type="button" aria-expanded={open === item.label} aria-label={`${item.label} menu`} onClick={() => setOpen(open === item.label ? null : item.label)} className="-ml-2 flex h-8 w-6 items-center justify-center text-pine-950/70 hover:text-clay-600">
                         <Chevron open={open === item.label} />
                       </button>
                     )}
@@ -368,7 +366,7 @@ export default function Header({ transparentTop = false }: { transparentTop?: bo
             </ul>
           </nav>
 
-          <button type="button" onClick={() => setMobile(true)} aria-label="Open menu" aria-expanded={mobile} className="flex h-11 w-11 items-center justify-center rounded-md border border-white/30 xl:hidden">
+          <button type="button" onClick={() => setMobile(true)} aria-label="Open menu" aria-expanded={mobile} className="flex h-11 w-11 items-center justify-center rounded-md border border-pine-950/30 text-pine-950 xl:hidden">
             <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10" /></svg>
           </button>
         </div>
