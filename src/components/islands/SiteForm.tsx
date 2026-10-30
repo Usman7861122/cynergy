@@ -170,7 +170,7 @@ export default function SiteForm({ kind, positions = [], locations = [], default
 
       <div className="sm:col-span-2">
         <label className="flex items-start gap-3 text-sm text-ink/80">
-          <input type="checkbox" name="sms_consent" value="yes" className="mt-1 h-5 w-5 shrink-0 accent-[#123530]" />
+          <input type="checkbox" name="sms_consent" value="yes" className="mt-1 h-5 w-5 shrink-0 accent-[#102825]" />
           <span>
             I agree to get text messages from Cynergy about appointments, offers and two-way chat. Message and data rates may apply. Reply HELP for help or STOP to stop. This is optional. See our{' '}
             <a href="/privacy-policy/" className="font-medium text-pine-900 underline underline-offset-4">Privacy Policy</a> and{' '}
