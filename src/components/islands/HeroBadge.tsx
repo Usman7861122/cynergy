@@ -30,13 +30,20 @@ export default function HeroBadge({ className = 'hidden lg:block' }: { className
           </text>
         </motion.svg>
       </motion.div>
+      {/* Cream disc so the dark green and gold mark stays easy to see over photos and video */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.85 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+        className="absolute left-1/2 top-1/2 aspect-square w-[64%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cream-50 shadow-2xl shadow-black/30"
+      />
       <motion.img
-        src="/images/cynergy-mark-light.png"
+        src="/images/cynergy-mark.png"
         alt=""
         initial={{ opacity: 0, scale: 0.85 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-        className="absolute left-1/2 top-1/2 w-[38%] -translate-x-1/2 -translate-y-1/2 drop-shadow-[0_4px_18px_rgba(0,0,0,0.35)]"
+        className="absolute left-1/2 top-1/2 w-[36%] -translate-x-1/2 -translate-y-1/2"
       />
       </motion.div>
     </div>
